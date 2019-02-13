@@ -1,0 +1,102 @@
+
+<html>
+  <!--Gracias to Camille for an outline of how to do this<3-->
+  <head>
+    <title>Yreka, CA</title>
+  <link rel="stylesheet" href="hometownmap.css">
+    <style>
+      #mymap {
+        height: 400px
+        width: 100%;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <h1> Hometown Map-Yreka, CA</h1>
+     <div id="mymap"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXS6eLxCWdf31JokswS3GbO582iuY0PqI"></script>
+    <script>
+      function showmap() {
+       var mapvar = new google.maps.Map(document.getElementById('mymap'),{
+          center: {lat: 41.7335406, lng: -122.6484536},
+          zoom: 8
+        });
+        
+//define coordinates for markers
+      var homeXY = {lat: 41.735415, lng: -122.610963};
+      var churchXY = {lat: 41.734513, lng: -122.651745}; 
+      var schoolXY = {lat: 41.741260, lng: -122.637688};
+      var northXY = {lat: 41.736260, lng: -122.652923};
+      var bbearXY = {lat: 41.704157, lng: -122.645403};
+      
+//what the windows will say      
+      var homeinfo = '<h3>Home</h3><h2> We moved into this house in April 2013, when I was finishing my senior year of high school. Even though I only lived there for a few months before moving to Utah for school, it is still home when I go back. The house is on 40 acres of land, and our friend owns the neighboring 40. It makes for some good hiking and fourwheeling.</h2>';
+      var churchinfo = '<h3>Church</h3><h2>This is where my family goes to church. Until I was a senior in high school we lived less than a block away from the church. See the North Street marker. We would cut through the neighbors lawn to make the walk shorter.</h2>';
+      var schoolinfo = '<h3> Yreka High School</h3><h2> Home of the Miners, Yreka High School is where I went to high school. I have fond memories of this place. Lots of volleyball, theater, singing, and I guess some studying. Fun story, my junior year, one our teachers disappeared. He just stopped coming to school. We still dont know where he went</h2>';
+      var northinfo = '<h3>North Street</h3><h2>We lived at the house on North Street from when I was in 2nd grade until my senior year of high school. There are lots of memories here, like rollerblading down the steep driveway, building forts in the trees in the backyard, and sliding down the stairs in sleeping bags.</h2>';
+      var bbearinfo = '<h3>Black Bear Diner</h3><h2> Because Yreka is such a small town, Black Bear was kind of our meeting place. After (or before) any big event, like games, meets, concerts, plays, dances, etc. we would meet for garlic fries and milshakes. Classic</h2>';
+        
+//Create Windows
+       var homewindow = new google.maps.InfoWindow({
+content: homeinfo});
+       var churchwindow = new google.maps.InfoWindow({
+content: churchinfo});
+       var schoolwindow = new google.maps.InfoWindow({
+content: schoolinfo});
+       var northwindow = new google.maps.InfoWindow({
+content: northinfo});
+       var bbearwindow = new google.maps.InfoWindow({
+content: bbearinfo});
+        
+//Create Markers
+        var markhome = new google.maps.Marker({
+position: homeXY,
+map: mapvar,
+title: "Home"
+});
+        var markchurch = new google.maps.Marker({
+position: churchXY,
+map: mapvar,
+title: "Church"
+});
+        var markschool = new google.maps.Marker({
+position: schoolXY,
+map: mapvar,
+title: "Yreka High School"
+});
+        var marknorth = new google.maps.Marker({
+position: northXY,
+map: mapvar,
+title: "North Street"
+});
+        var markbbear = new google.maps.Marker({
+position: bbearXY,
+map: mapvar,
+title: "Black Bear Diner"
+});
+        
+        markhome.addListener('click', function() {
+homewindow.open(mapvar, markhome);
+});
+        markchurch.addListener('click', function() {
+churchwindow.open(mapvar, markchurch);
+});
+        markschool.addListener('click', function() {
+schoolwindow.open(mapvar, markschool);
+});
+        marknorth.addListener('click', function() {
+northwindow.open(mapvar, marknorth);
+});
+        markbbear.addListener('click', function() {
+bbearwindow.open(mapvar, markbbear);
+});      
+      }
+      showmap();
+    
+
+    
+    </script>
+    
+  </body>
+</html>
