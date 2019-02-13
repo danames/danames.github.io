@@ -15,7 +15,7 @@
   <body>
     <h1> Hometown Map-Yreka, CA</h1>
      <div id="mymap"></div>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXS6eLxCWdf31JokswS3GbO582iuY0PqI"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXS6eLxCWdf31JokswS3GbO582iuY0PqI&callback=showmap()"></script>
     <script>
       function showmap() {
        var mapvar = new google.maps.Map(document.getElementById('mymap'),{
@@ -92,7 +92,7 @@ northwindow.open(mapvar, marknorth);
 bbearwindow.open(mapvar, markbbear);
 });      
       }
-      showmap();
+      //showmap();
     
 
     
