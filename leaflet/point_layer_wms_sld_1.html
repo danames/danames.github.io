@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>WMS example - Leaflet</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 600px;
+			height: 400px;
+		}
+	</style>
+
+</head>
+<body>
+
+<h1>Leaflet WMS Example - Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file</h1>
+
+<div id='map'></div>
+
+
+<script type="text/javascript">
+
+	var map = L.map('map', {
+		center: [0, -30],
+		zoom: 2
+	});
+
+	var wmsLayer = L.tileLayer.wms('https://ows.mundialis.de/services/service?', {
+		layers: 'TOPO-OSM-WMS'
+	}).addTo(map);
+
+	var wmsLayer2 = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-1427f997b3bb44ecb3fa06efa5080967/wms', {
+		layers: 'HS-1427f997b3bb44ecb3fa06efa5080967:Hometowns',
+		transparent: 'true',
+		format: 'image/png',
+		sld: 'https://danames.github.io/leaflet/sld/point_simplepoint.sld.xml'
+	}).addTo(map);
+
+</script>
+
+
+
+</body>
