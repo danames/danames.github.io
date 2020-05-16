@@ -45,7 +45,7 @@
 		layers: 'TOPO-OSM-WMS'
 	}).addTo(map);
 	
-	var wmsLayer2 = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-1427f997b3bb44ecb3fa06efa5080967/wms', {
+	var wmsLayer2 = L.Layer.wms('https://geoserver.hydroshare.org/geoserver/HS-1427f997b3bb44ecb3fa06efa5080967/wms', {
 		layers: 'HS-1427f997b3bb44ecb3fa06efa5080967:Hometowns',
 		transparent: 'true',
 		format: 'image/png'
