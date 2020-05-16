@@ -19,8 +19,8 @@
 			margin: 0;
 		}
 		#map {
-			width: 600px;
-			height: 400px;
+			width: 100%;
+			height: 100%;
 		}
 	</style>
 
@@ -40,7 +40,7 @@
 	});
 
 	var wmsLayer = L.tileLayer.wms('https://ows.mundialis.de/services/service?', {
-		layers: 'TOPO-OSM-WMS'
+		layers: 'OSM-WMS'
 	}).addTo(map);
 
 	var wmsLayer2 = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-1427f997b3bb44ecb3fa06efa5080967/wms', {
