@@ -47,12 +47,13 @@
 
 	source.getLayer('TOPO-OSM-WMS').addTo(map);
 
-	var wmsLayer2 = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-1427f997b3bb44ecb3fa06efa5080967/wms', {
-		layers: 'HS-1427f997b3bb44ecb3fa06efa5080967:Hometowns',
-		transparent: 'true',
-		format: 'image/png',
-		sld: 'https://danames.github.io/leaflet/sld/point_rotatedsquare.sld.xml'
-	}).addTo(map);
+	var hs_source = L.WMS.source('https://geoserver.hydroshare.org/geoserver/HS-1427f997b3bb44ecb3fa06efa5080967/wms', {
+		'transparent': true,
+		'format': 'image/png',
+		'sld': 'https://danames.github.io/leaflet/sld/point_rotatedsquare.sld.xml'
+	});
+
+	hs_source.getLayer('HS-1427f997b3bb44ecb3fa06efa5080967:Hometowns').addTo(map);
 
 
 
