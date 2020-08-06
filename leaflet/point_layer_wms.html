@@ -48,6 +48,12 @@
 		transparent: 'true',
 		format: 'image/png',
 	}).addTo(map);
+	
+	var wmsLayer3 = L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-c56956d05cfe4488a1208815d56a918f/wms', {
+		layers: 'HS-c56956d05cfe4488a1208815d56a918f:Linear_water tl_2019_42101_linearwater',
+		transparent: 'true',
+		format: 'image/png',
+	}).addTo(map);
 
 </script>
 
