@@ -1,85 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Menu and 3 Tab UI</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        nav {
-            background-color: #333;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-        }
-
-            nav a {
-                color: #fff;
-                text-decoration: none;
-                margin: 0 10px;
-                font-size: 20px;
-            }
-
-                nav a:hover {
-                    color: #ccc;
-                }
-
-        .tab {
-            display: none;
-            padding: 20px;
-            border: 1px solid #ccc;
-        }
-
-        .active {
-            display: block;
-        }
-    </style>
+    <title>Book Chapters</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <nav>
-        <a href="#" class="active" onclick="openTab(event, 'tab1')">Tab 1</a>
-        <a href="#" onclick="openTab(event, 'tab2')">Tab 2</a>
-        <a href="#" onclick="openTab(event, 'tab3')">Tab 3</a>
-    </nav>
+    <header>
+        <h1>Book Chapters</h1>
+        <nav>
+            <ul>
+                <li><a href="#chapter1">Chapter 1</a></li>
+                <li><a href="#chapter2">Chapter 2</a></li>
+                <li><a href="#chapter3">Chapter 3</a></li>
+                <li><a href="#chapter4">Chapter 4</a></li>
+                <li><a href="#chapter5">Chapter 5</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div id="tab1" class="tab active">
-        <h2>Tab 1 Content</h2>
-        <p>This is the content for Tab 1.</p>
-    </div>
+    <main>
+        <section id="chapter1">
+            <h2>Chapter 1</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Paragraph</th>
+                        <th>Language 1</th>
+                        <th>Language 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Translation 1</td>
+                        <td>Translation 2</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Translation 1</td>
+                        <td>Translation 2</td>
+                    </tr>
+                    <!-- More paragraphs here -->
+                </tbody>
+            </table>
+        </section>
 
-    <div id="tab2" class="tab">
-        <h2>Tab 2 Content</h2>
-        <p>This is the content for Tab 2.</p>
-    </div>
+        <section id="chapter2">
+            <h2>Chapter 2</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Paragraph</th>
+                        <th>Language 1</th>
+                        <th>Language 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Translation 1</td>
+                        <td>Translation 2</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Translation 1</td>
+                        <td>Translation 2</td>
+                    </tr>
+                    <!-- More paragraphs here -->
+                </tbody>
+            </table>
+        </section>
 
-    <div id="tab3" class="tab">
-        <h2>Tab 3 Content</h2>
-        <p>This is the content for Tab 3.</p>
-    </div>
+        <!-- More sections for other chapters -->
+    </main>
 
-    <script>function openTab(evt, tabName) {
-        // Declare all variables
-        var i, tabcontent, tablinks;
-
-        // Get all elements with class="tab" and hide them
-        tabcontent = document.getElementsByClassName("tab");
-        for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        }
-
-        // Get all elements with class="tablinks" and remove the class "active"
-        tablinks = document.getElementsByTagName("a");
-        for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        // Show the current tab, and add an "active" class to the link that opened the tab
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-        }</script>
+    <footer>
+        <p>Copyright © Your Name</p>
+    </footer>
 </body>
 </html>
