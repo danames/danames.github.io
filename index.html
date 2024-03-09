@@ -10,18 +10,31 @@
   .profile { text-align: center; margin: 20px 0; }
   .profile img { width: 100px; height: 100px; border-radius: 50%; }
   .profile h1 { margin: 10px 0; }
-  .links { list-style: none; padding: 0; }
-  .links li a {
-    display: block;
+  .link-item {
+    display: flex;
+    align-items: center;
     background-color: #fff;
-    color: #333;
-    padding: 15px 20px;
     margin: 10px 0;
-    text-decoration: none;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-decoration: none;
   }
-  .links li a:hover { background-color: #e9e9e9; }
+  .link-item img {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  .link-item div {
+    flex-grow: 1;
+  }
+  .link-item a {
+    display: block;
+    color: #333;
+    padding: 15px 20px;
+    text-decoration: none;
+  }
+  .link-item:hover { background-color: #e9e9e9; }
 </style>
 </head>
 <body>
@@ -31,13 +44,23 @@
     <h1>Your Name</h1>
     <p>Short bio or tagline here.</p>
   </div>
-  <ul class="links">
-    <li><a href="https://example.com">Portfolio</a></li>
-    <li><a href="https://example.com">Blog</a></li>
-    <li><a href="https://example.com">Projects</a></li>
-    <li><a href="https://example.com">Contact</a></li>
-    <!-- Add more links as needed -->
-  </ul>
+  <div class="link-item">
+    <img src="thumbnail1.jpg" alt="Thumbnail">
+    <div><a href="https://example.com">Portfolio</a></div>
+  </div>
+  <div class="link-item">
+    <img src="thumbnail2.jpg" alt="Thumbnail">
+    <div><a href="https://example.com">Blog</a></div>
+  </div>
+  <div class="link-item">
+    <img src="thumbnail3.jpg" alt="Thumbnail">
+    <div><a href="https://example.com">Projects</a></div>
+  </div>
+  <div class="link-item">
+    <img src="thumbnail4.jpg" alt="Thumbnail">
+    <div><a href="https://example.com">Contact</a></div>
+  </div>
+  <!-- Add more links as needed -->
 </div>
 <script>
   // JavaScript can go here if you need any interactivity
