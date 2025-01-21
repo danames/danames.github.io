@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dan Ames' Leaflet Examples</title>
+    <style>
+        /* Basic Page Styling */
+        body {
+            font-family: 'Arial', sans-serif; /* Modern sans-serif font */
+            background-color: #f8f9fa; /* Light background color */
+            color: #343a40; /* Dark gray text for readability */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Container for Content */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* White background for the content */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lift */
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        /* Header Styling */
+        h1 {
+            color: #007bff; /* Blue header color */
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #28a745; /* Green subheader color */
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* Italics Text */
+        i {
+            font-style: italic;
+            color: #6c757d; /* Slightly muted color */
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #ced4da; /* Light gray line */
+            margin: 20px 0;
+        }
+
+        /* Unordered List Styling */
+        ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        /* Link Styling */
+        a {
+            color: #007bff; /* Blue link color */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+
+        a:hover {
+            color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Specific Section Styling */
+        .wms-info,
+        .plugin-info,
+        .resource-info {
+            background-color: #e9ecef; /* Light gray background for sections */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Some Leaflet Examples by Dr. Ames</h1>
+        <i>Updated May 16, 2020</i>
+        <hr>
+
+        <h2>Simple Map Examples</h2>
+        <ul>
+            <li>
+                <a href="simple_map_with_basemap.html" target="_blank">Simple map with a basemap layer</a>
+            </li>
+        </ul>
+
+        <div class="wms-info">
+          <h2>Web Mapping Service Examples</h2>
+          <i>These examples use WMS services hosted on <a href="https://www.hydroshare.org" target="_blank">HydroShare</a>. See HydroShare <a href="https://help.hydroshare.org/introduction-to-hydroshare/getting-started/" target="_blank">documentation</a> for more information on creating resources. If you load a shapefile or GeoTIFF on HydroShare it will automatically create WMS end points for you in <a href="https://geoserver.hydroshare.org" target="_blank">geoserver.hydroshare.org</a>.</i>
+        </div>
+        <ul>
+            <li>
+                <a href="point_layer_wms.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with default styling</a>
+            </li>
+            <li>
+                <a href="point_layer_wms_sld_1.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file</a>
+            </li>
+            <li>
+                <a href="point_layer_wms_sld_2.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file - point with stroke</a>
+            </li>
+            <li>
+                <a href="point_layer_wms_sld_3.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file - rotated square</a>
+            </li>
+            <li>
+                <a href="point_layer_wms_sld_4.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file - transparent triangle</a>
+            </li>
+        </ul>
+
+        <div class="plugin-info">
+          <h2>Leaflet Plugin Examples</h2>
+          <i>Leaflet Plugins are JavaScript files that provide additional capabilities and functions for Leaflet. There is a <a href="https://leafletjs.com/plugins.html" target="_blank">list of all known Leaflet plugins</a> on the official Leaflet web site. Here are just a few examples of using a couple of these plugins.</i>
+        </div>
+        <ul>
+            <li>
+                <a href="simple_map_graticule_plugin.html" target="_blank">Simple map with a graticule plugin</a> (<a href="https://github.com/turban/Leaflet.Graticule" target="_blank">Leaflet.Graticule plugin GitHub page</a>)
+            </li>
+            <li>
+                <a>Basemap with points using Leaflet.WMS plugin to get feature info</a>
+            </li>
+        </ul>
+
+        <div class="resource-info">
+          <h2>Leaflet and WMS Resources</h2>
+        </div>
+        <ul>
+            <li>
+                <a href="https://leafletjs.com/examples/quick-start/" target="_blank">Official Leaflet.js Quick Start Guide</a>
+            </li>
+            <li>
+                <a href="https://leafletjs.com/examples/wms/wms.html" target="_blank">Official Leaflet.js WMS in Leaflet Guide</a>
+            </li>
+            <li>
+                <a href="https://docs.geoserver.org/stable/en/user/styling/sld/working.html" target="_blank">Official GeoServer Documentation on working wth SLD Styling</a>
+            </li>
+            <li>
+                <a href="https://docs.geoserver.org/latest/en/user/styling/sld/cookbook/points.html#simple-point" target="_blank">Official GeoServer SLD Cookbook</a>
+            </li>
+            <li>
+                <a href="https://flexberry.github.io/Leaflet-WMS/" target="_blank">Leaflet WMS examples by Flexberry</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
