@@ -158,10 +158,11 @@
         //Function to compute the distance between two points using the Haversine formula
         function compute_distance(lat1,lng1,lat2,lng2){
         		//convert inputs to radians
-            rad_lat1 = lat1 * Math.PI/180;
-            rad_lng1 = lng1 * Math.PI/180;
-            rad_lat2 = lat2 * Math.PI/180;
-            rad_lng2 = lng2 * Math.PI/180;
+            const rad_lat1 = lat1 * Math.PI/180;
+            const rad_lng1 = lng1 * Math.PI/180;
+            const rad_lat2 = lat2 * Math.PI/180;
+            const rad_lng2 = lng2 * Math.PI/180;
+            console.log(rad_lat1);
             
             //Differences in coordinates
             const dLat = rad_lat2 - rad_lat1;
@@ -179,8 +180,7 @@
 						//d = R * c
 						           
             //Write resulting distance
-            document.getElementById("results").innerHTML = "Distance = " + distance;
-            console.log("here");
+            document.getElementById("results").innerHTML = "Distance = " + distance + " km";
         
         }        
 
@@ -201,7 +201,7 @@
                 }).addTo(map);
                 marker.bindPopup("Marker at [" + end_lat + ", " + end_lng + "]");
                 //compute the distance between the two points						
-                compute_distance();
+                compute_distance(start_lat,start_lng,end_lat,end_lng);
 					} else {
                 alert('Please enter valid coordinates.');
             }
