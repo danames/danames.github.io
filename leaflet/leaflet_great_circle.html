@@ -162,7 +162,6 @@
             const rad_lng1 = lng1 * Math.PI/180;
             const rad_lat2 = lat2 * Math.PI/180;
             const rad_lng2 = lng2 * Math.PI/180;
-            console.log(rad_lat1);
             
             //Differences in coordinates
             const dLat = rad_lat2 - rad_lat1;
@@ -181,9 +180,43 @@
 						           
             //Write resulting distance
             document.getElementById("results").innerHTML = "Distance = " + distance + " km";
-        
         }        
 
+// Function to draw a great circle line connecting the two points
+function great_circle(lat1, lng1, lat2, lng2) {
+  // Convert inputs to radians
+  const rad_lat1 = lat1 * Math.PI / 180;
+  const rad_lng1 = lng1 * Math.PI / 180;
+  const rad_lat2 = lat2 * Math.PI / 180;
+  const rad_lng2 = lng2 * Math.PI / 180;
+
+  // Calculate the initial bearing (θ) between the two points
+  const dLon = rad_lng2 - rad_lng1;
+  const dLat = rad_lat2 - rad_lat1;
+  const bearing = Math.atan2(Math.sin(dLon) * Math.cos(rad_lat2), Math.cos(rad_lat1) * Math.sin(rad_lat2) - Math.sin(rad_lat1) * Math.cos(rad_lat2) * Math.cos(dLon));
+
+  // Calculate the distance between the two points using the Haversine formula
+  const haversine = Math.sin(dLat / 2) ** 2 + Math.cos(rad_lat1) * Math.cos(rad_lat2) * Math.sin(dLon / 2) ** 2;
+  const distance = 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine)) * 6371; // Earth's radius in km
+
+  // Divide the distance into 10 segments
+  const num_segments = 10;
+  const segment_length = distance / num_segments;
+
+  // Generate points along the great circle
+  const points = [];
+  for (let i = 0; i <= num_segments; i++) {
+    const new_lat = rad_lat1 + i * segment_length * Math.cos(bearing) / 6371;
+    const new_lng = rad_lng1 + i * segment_length * Math.sin(bearing) / 6371 * Math.cos(rad_lat1);
+    points.push([new_lat * 180 / Math.PI, new_lng * 180 / Math.PI]);
+  }
+
+  // Draw the great circle line
+  const polyline = L.polyline(points, { color: 'red' }).addTo(map);
+}
+            
+        
+        }
         // Add marker on form submission
         document.getElementById('submit-button').addEventListener('click', function() {
             var start_lat = parseFloat(document.getElementById('start_latitude').value);
@@ -202,7 +235,9 @@
                 marker.bindPopup("Marker at [" + end_lat + ", " + end_lng + "]");
                 //compute the distance between the two points						
                 compute_distance(start_lat,start_lng,end_lat,end_lng);
-					} else {
+                great_circle(start_lat,start_lng,end_lat,end_lng);
+
+						} else {
                 alert('Please enter valid coordinates.');
             }
         });
