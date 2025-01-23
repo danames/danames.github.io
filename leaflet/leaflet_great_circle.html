@@ -182,41 +182,47 @@
             document.getElementById("results").innerHTML = "Distance = " + distance + " km";
         }        
 
-// Function to draw a great circle line connecting the two points
-function great_circle(lat1, lng1, lat2, lng2) {
+
+          // Function to draw a great circle line connecting the two points
+       function great_circle(lat1, lng1, lat2, lng2) {
   // Convert inputs to radians
   const rad_lat1 = lat1 * Math.PI / 180;
   const rad_lng1 = lng1 * Math.PI / 180;
   const rad_lat2 = lat2 * Math.PI / 180;
   const rad_lng2 = lng2 * Math.PI / 180;
 
-  // Calculate the initial bearing (θ) between the two points
+  // Calculate the angular distance (δ) between the two points using the Haversine formula
   const dLon = rad_lng2 - rad_lng1;
   const dLat = rad_lat2 - rad_lat1;
-  const bearing = Math.atan2(Math.sin(dLon) * Math.cos(rad_lat2), Math.cos(rad_lat1) * Math.sin(rad_lat2) - Math.sin(rad_lat1) * Math.cos(rad_lat2) * Math.cos(dLon));
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(rad_lat1) * Math.cos(rad_lat2) * Math.sin(dLon / 2) ** 2;
+  const angular_distance = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); // This is 'c' in your equations
 
-  // Calculate the distance between the two points using the Haversine formula
-  const haversine = Math.sin(dLat / 2) ** 2 + Math.cos(rad_lat1) * Math.cos(rad_lat2) * Math.sin(dLon / 2) ** 2;
-  const distance = 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine)) * 6371; // Earth's radius in km
-
-  // Divide the distance into 10 segments
+  // Divide the angular distance into 10 segments
   const num_segments = 10;
-  const segment_length = distance / num_segments;
+  const segment_angle = angular_distance / num_segments;
 
   // Generate points along the great circle
   const points = [];
   for (let i = 0; i <= num_segments; i++) {
-    const new_lat = rad_lat1 + i * segment_length * Math.cos(bearing) / 6371;
-    const new_lng = rad_lng1 + i * segment_length * Math.sin(bearing) / 6371 * Math.cos(rad_lat1);
+    const f = i / num_segments;
+
+    // Calculate intermediate latitude (φ) and longitude (λ)
+    const A = Math.sin((1 - f) * angular_distance) / Math.sin(angular_distance);
+    const B = Math.sin(f * angular_distance) / Math.sin(angular_distance);
+    const x = A * Math.cos(rad_lat1) * Math.cos(rad_lng1) + B * Math.cos(rad_lat2) * Math.cos(rad_lng2);
+    const y = A * Math.cos(rad_lat1) * Math.sin(rad_lng1) + B * Math.cos(rad_lat2) * Math.sin(rad_lng2);
+    const z = A * Math.sin(rad_lat1) + B * Math.sin(rad_lat2);
+    const new_lat = Math.atan2(z, Math.sqrt(x ** 2 + y ** 2));
+    const new_lng = Math.atan2(y, x);
+
     points.push([new_lat * 180 / Math.PI, new_lng * 180 / Math.PI]);
   }
 
   // Draw the great circle line
   const polyline = L.polyline(points, { color: 'red' }).addTo(map);
 }
-            
-        
-        }
+    
+    
         // Add marker on form submission
         document.getElementById('submit-button').addEventListener('click', function() {
             var start_lat = parseFloat(document.getElementById('start_latitude').value);
