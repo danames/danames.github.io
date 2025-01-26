@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw the Great Circle Path</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="leaflet_great_circle.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Drawing the Great Circle on a Leaflet Map</h1>
+        <p class="subtitle">By Dr. Dan Ames - Jan 23, 2025</p>
+
+        <div id="map"></div>
+
+        <h2>Enter the Start and End Coordinates</h2>
+        <div class="form-container">
+          <div class="form-group">
+              <label for="start_latitude">Start Latitude:</label>
+              <input type="number" id="start_latitude" name="start_latitude" value="40.0">
+          </div>
+          <div class="form-group">
+              <label for="start_longitude">Start Longitude:</label>
+              <input type="number" id="start_longitude" name="start_longitude" value="-111.0">
+          </div>
+          <div class="form-group">
+              <label for="end_latitude">End Latitude:</label>
+              <input type="number" id="end_latitude" name="end_latitude" value="39.0">
+          </div>
+          <div class="form-group">
+              <label for="end_longitude">End Longitude:</label>
+              <input type="number" id="end_longitude" name="end_longitude" value="1.0">
+          </div>
+          
+          <button id="submit-button">Draw Points and Great Circle</button>
+        </div>
+        <div id="results">
+          Results: 
+        </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="leaflet_great_circle.js"></script>
+    </div>
+</body>
+</html>
