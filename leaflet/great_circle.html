@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Draw the Great Circle Path</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="great_circle.css">
+    <link rel="stylesheet" href="leaflet_great_circle.css">
 </head>
 <body>
     <div class="container">
         <h1>Drawing the Great Circle on a Leaflet Map</h1>
         <p class="subtitle">By Dr. Dan Ames - Jan 23, 2025</p>
+        <p>This example demonstrates the implementation of a Leaflet map that allows users to visualize the great circle path between two points on the Earth's surface. It's designed as a learning resource for BYU Civil and Construction Engineering 514: Geospatial Software Development. This page showcases the integration of HTML forms for user input, CSS for styling, and JavaScript for dynamic map interaction and geospatial calculations using the Haversine formula.</p>
+
 
         <div id="map"></div>
 
@@ -39,8 +41,141 @@
           Results: 
         </div>
 
+        <h1>Key Points with Sample Code</h1>
+
+        <h2>HTML Form Setup</h2>
+        <ul>
+            <li>The HTML form uses `input` elements of type `number` to collect latitude and longitude coordinates for the start and end points.</li>
+            <li>Each input field has a unique `id` for JavaScript to reference and retrieve values.</li>
+            <li>A submit `button` triggers the JavaScript function to process the input and draw on the map.</li>
+            <li>Labels are associated with inputs using the `for` attribute, improving accessibility.</li>
+        </ul>
+
+        <h2>CSS Styling</h2>
+        <ul>
+            <li>The `#map` element is styled to have a fixed height, width, and a border, providing a defined area for the map.</li>
+            <li>Form elements are styled for consistent alignment and spacing.</li>
+            <li>A custom CSS class `.city-icon` is defined to style the city markers using an SVG background image.</li>
+        </ul>
+        
+        <h2>JavaScript Implementation</h2>
+        <ul>
+          <li><b>Map Initialization:</b>
+            <ul>
+              <li>A Leaflet map is initialized and centered at a specific location with an initial zoom level.</li>
+              <li>An OpenStreetMap tile layer is added as the base map.</li>
+              <pre><code class="javascript">
+                var map = L.map('map').setView([39.0, -45.0], 3);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+              </code></pre>
+            </ul>
+          </li>
+          <li><b>Custom Icon Creation:</b>
+            <ul>
+              <li>A function `createCityIcon()` creates a custom icon for the city markers using `L.divIcon`.</li>
+              <pre><code class="javascript">
+                function createCityIcon() {
+                  return L.divIcon({
+                    className: 'city-icon',
+                    iconSize: [32, 32]
+                  });
+                }
+              </code></pre>
+            </ul>
+          </li>
+          <li><b>Haversine Formula for Distance Calculation:</b>
+            <ul>
+              <li>The `compute_distance()` function calculates the great-circle distance between two points using the Haversine formula.</li>
+              <li>The formula calculates the great circle distance between two points on a sphere given their longitudes and latitudes. Here is the basic formula implemented in the `compute_distance()` function:</li>
+                <pre><code class="javascript">
+                  a = sin²(Δφ/2) + cos(φ1) * cos(φ2) * sin²(Δλ/2)
+                  c = 2 * atan2(√a, √(1-a))
+                  d = R * c
+                </code></pre>
+                <ul>
+                  <li>Where:
+                    <ul>
+                      <li>φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km);</li>
+                      <li>Δ is the difference between two coordinates (e.g., Δφ = φ2 - φ1);</li>
+                      <li>a is the square of half the chord length between the points;</li>
+                      <li>c is the angular distance in radians;</li>
+                      <li>and d is the distance between the two points.</li>
+                    </ul>
+                  </li>
+                </ul>
+                <pre><code class="javascript">
+                  function compute_distance(lat1, lng1, lat2, lng2) {
+                    const R = 6371; // Earth's radius in km
+                    const radLat1 = lat1 * Math.PI / 180;
+                    const radLng1 = lng1 * Math.PI / 180;
+                    const radLat2 = lat2 * Math.PI / 180;
+                    const radLng2 = lng2 * Math.PI / 180;
+                    const dLat = radLat2 - radLat1;
+                    const dLon = radLng2 - radLng1;
+                    const a = Math.sin(dLat / 2) ** 2 + Math.cos(radLat1) * Math.cos(radLat2) * Math.sin(dLon / 2) ** 2;
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    const distance = R * c;
+                    document.getElementById("results").innerHTML = "Distance = " + distance + " km";
+                  }
+                </code></pre>
+            </ul>
+          </li>
+          <li><b>Great Circle Path Calculation and Drawing:</b>
+            <ul>
+              <li>The `great_circle()` function calculates and draws the great circle path between two points.</li>
+              <li>The path is calculated by interpolating points along the great circle using spherical linear interpolation (SLERP).</li>
+              <li>In the `great_circle()` function, the angular distance is calculated using the Haversine formula, and then points are interpolated along the great circle:</li>
+                <pre><code class="javascript">
+                  // Calculate intermediate points
+                  const A = Math.sin((1 - f) * angular_distance) / Math.sin(angular_distance);
+                  const B = Math.sin(f * angular_distance) / Math.sin(angular_distance);
+                  const x = A * Math.cos(radLat1) * Math.cos(radLng1) + B * Math.cos(radLat2) * Math.cos(radLng2);
+                  const y = A * Math.cos(radLat1) * Math.sin(radLng1) + B * Math.cos(radLat2) * Math.sin(radLng2);
+                  const z = A * Math.sin(radLat1) + B * Math.sin(radLat2);
+                  const newLat = Math.atan2(z, Math.sqrt(x ** 2 + y ** 2));
+                  const newLng = Math.atan2(y, x);
+                </code></pre>
+                <ul>
+                  <li>Where:
+                    <ul>
+                      <li>`f` is a fraction along the path from the start point to the end point (varies from 0 to 1);</li>
+                      <li>`angular_distance` is the angular distance between the two points;</li>
+                      <li>`A` and `B` are interpolation parameters;</li>
+                      <li>`x`, `y`, and `z` are Cartesian coordinates of the intermediate point;</li>
+                      <li>`newLat` and `newLng` are the latitude and longitude of the intermediate point.</li>
+                    </ul>
+                  </li>
+                </ul>
+              <li>A Leaflet polyline is created from the calculated points and added to the map.</li>
+              <pre><code class="javascript">
+                function great_circle(lat1, lng1, lat2, lng2) {
+                  // ... (calculate angular_distance, num_segments) ...
+                  const points = [];
+                  for (let i = 0; i &lt;= num_segments; i++) {
+                    const f = i / num_segments;
+                    // ... (calculate intermediate latitude and longitude) ...
+                    points.push([new_lat * 180 / Math.PI, new_lng * 180 / Math.PI]);
+                  }
+                  const polyline = L.polyline(points, { color: 'red' }).addTo(map);
+                }
+              </code></pre>
+            </ul>
+          </li>
+          <li><b>Form Submission Handling:</b>
+            <ul>
+              <li>An event listener is attached to the submit button to handle form submission.</li>
+              <li>Input values are parsed as floating-point numbers.</li>
+              <li>Markers are added to the map for the start and end points.</li>
+              <li>The `compute_distance()` and `great_circle()` functions are called to calculate the distance and draw the path.</li>
+              <li>Input validation is performed to ensure valid coordinates are entered.</li>
+            </ul>
+          </li>
+        </ul>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="great_circle.js"></script>
+    <script src="leaflet_great_circle.js"></script>
     </div>
 </body>
 </html>
