@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adding Markers Dynamically</title>
+    <title>Draw the Great Circle Path</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
         body {
@@ -106,7 +106,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         // Initialize the map
-        var map = L.map('map').setView([39.0, -40.0], 3); // Centered on Utah
+        var map = L.map('map').setView([39.0, -45.0], 3); // Centered on Utah
 
         // Add a tile layer (base map) from OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -115,10 +115,18 @@
 
         // Function to create a triangle marker
         function createTriangleIcon() {
-            return L.divIcon({
-                className: 'triangle',
-                iconSize: [16, 16]
-            });
+            //return L.divIcon({
+           //     className: 'triangle',
+            //    iconSize: [16, 16]
+            //});
+	    return greenLeafIcon <- makeIcon(
+  		iconUrl = "https://leafletjs.com/examples/custom-icons/leaf-green.png",
+  		iconWidth = 38, iconHeight = 95,
+  		iconAnchorX = 22, iconAnchorY = 94,
+  		shadowUrl = "https://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+  		shadowWidth = 50, shadowHeight = 64,
+  		shadowAnchorX = 4, shadowAnchorY = 62
+		);
         }
         //Function to compute the distance between two points using the Haversine formula
         function compute_distance(lat1,lng1,lat2,lng2){
