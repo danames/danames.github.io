@@ -115,19 +115,11 @@
 
         // Function to create a triangle marker
         function createTriangleIcon() {
-            //return L.divIcon({
-           //     className: 'triangle',
-            //    iconSize: [16, 16]
-            //});
-	    return greenLeafIcon <- makeIcon(
-  		iconUrl = "https://leafletjs.com/examples/custom-icons/leaf-green.png",
-  		iconWidth = 38, iconHeight = 95,
-  		iconAnchorX = 22, iconAnchorY = 94,
-  		shadowUrl = "https://leafletjs.com/examples/custom-icons/leaf-shadow.png",
-  		shadowWidth = 50, shadowHeight = 64,
-  		shadowAnchorX = 4, shadowAnchorY = 62
-		);
-        }
+            return L.divIcon({
+                className: 'triangle',
+                iconSize: [16, 16]
+            });
+
         //Function to compute the distance between two points using the Haversine formula
         function compute_distance(lat1,lng1,lat2,lng2){
         		//convert inputs to radians
