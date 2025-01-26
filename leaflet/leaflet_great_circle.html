@@ -77,7 +77,7 @@
 
         <div id="map"></div>
 
-        <h2>Enter Coordinates</h2>
+        <h2>Enter the Start and End Coordinates</h2>
         <div class="form-container">
           <div class="form-group">
               <label for="start_latitude">Start Latitude:</label>
@@ -93,7 +93,7 @@
           </div>
           <div class="form-group">
               <label for="end_longitude">End Longitude:</label>
-              <input type="number" id="end_longitude" name="end_longitude" value="-112.0">
+              <input type="number" id="end_longitude" name="end_longitude" value="1.0">
           </div>
           
           <button id="submit-button">Draw Points and Great Circle</button>
@@ -106,47 +106,12 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         // Initialize the map
-        var map = L.map('map').setView([39.32, -111.69], 7); // Centered on Utah
+        var map = L.map('map').setView([39.0, -40.0], 3); // Centered on Utah
 
         // Add a tile layer (base map) from OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-
-        // 1. Red Circle around Provo, Utah
-        var circle = L.circle([40.2338, -111.6585], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 10000 // 10 km in meters
-        }).addTo(map);
-        circle.bindPopup("Provo, Utah");
-
-        // 2. Blue Polyline between Provo and St. George
-        var polyline = L.polyline([
-            [40.2338, -111.6585], // Provo
-            [37.0965, -113.5684]  // St. George
-        ], {
-            color: 'blue'
-        }).addTo(map);
-        polyline.bindPopup("A Road between Provo and St. George");
-
-        // 3. Polygon representing Utah's shape
-        var utahCoords = [
-            [42.00, -114.05],
-            [42.00, -111.05],
-            [41.00, -111.05],
-            [41.00, -109.05],
-            [38.50, -109.05],
-            [37.00, -109.05],
-            [37.00, -114.05]
-        ];
-        var polygon = L.polygon(utahCoords, {
-            color: 'green',
-            fillColor: '#0f0',
-            fillOpacity: 0.3
-        }).addTo(map);
-        polygon.bindPopup("Utah");
 
         // Function to create a triangle marker
         function createTriangleIcon() {
@@ -178,7 +143,7 @@
 						//c = 2 * atan2(√a, √(1-a))
 						//d = R * c
 						           
-            //Write resulting distance
+            //Write the resulting distance
             document.getElementById("results").innerHTML = "Distance = " + distance + " km";
         }        
 
