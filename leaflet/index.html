@@ -2,173 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dan Ames' Leaflet Examples</title>
-    <style>
-        /* Basic Page Styling */
-        body {
-            font-family: 'Arial', sans-serif; /* Modern sans-serif font */
-            background-color: #f8f9fa; /* Light background color */
-            color: #343a40; /* Dark gray text for readability */
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        /* Container for Content */
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff; /* White background for the content */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lift */
-            border-radius: 8px; /* Rounded corners */
-        }
-
-        /* Header Styling */
-        h1 {
-            color: #007bff; /* Blue header color */
-            text-align: center;
-            margin-bottom: 5px;
-        }
-
-        h2 {
-            color: #28a745; /* Green subheader color */
-            margin-top: 30px;
-            margin-bottom: 10px;
-        }
-
-        /* Italics Text */
-        i {
-            font-style: italic;
-            color: #6c757d; /* Slightly muted color */
-            text-align: center;
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        /* Horizontal Rule */
-        hr {
-            border: none;
-            height: 1px;
-            background-color: #ced4da; /* Light gray line */
-            margin: 20px 0;
-        }
-
-        /* Unordered List Styling */
-        ul {
-            list-style: none; /* Remove default bullet points */
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 15px;
-        }
-
-        /* Link Styling */
-        a {
-            color: #007bff; /* Blue link color */
-            text-decoration: none; /* Remove underline */
-            transition: color 0.3s ease; /* Smooth color transition on hover */
-        }
-
-        a:hover {
-            color: #0056b3; /* Darker blue on hover */
-        }
-
-        /* Specific Section Styling */
-        .wms-info,
-        .plugin-info,
-        .resource-info {
-            background-color: #e9ecef; /* Light gray background for sections */
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Examples for GIS and Web Development</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css"> </head>
 <body>
     <div class="container">
-        <h1>Some Leaflet Examples by Dr. Ames</h1>
-        <i>Updated Jan 21, 2025</i>
-        <hr>
-        <div class="wms-info">
-        <h2>Simple Map Examples</h2>
-            <i>Simple examples of using Leaflet with drawings and interaction.</i>
-        </div>
-        <ul>
-            <li>
-                <a href="simple_map_with_basemap.html" target="_blank">Simple map with a basemap layer</a>
-            </li>
-            <li>
-                <a href="simple_map_with_basemap_2.html" target="_blank">Simple map with a basemap layer with instructions</a>
-            </li>
-            <li>
-                <a href="leaflet_map_with_markers.html" target="_blank">Simple map with markers</a>
-            </li>
-            <li>
-                <a href="leaflet_map_interactive_markers.html" target="_blank">Simple map with interactive markers</a>
-            </li>
-            <li>
-                <a href="leaflet_great_circle.html" target="_blank">Add two points and draw the Great Circle connector</a>
-            </li>
-        </ul>
+        <h1>Leaflet Examples for GIS and Web Development</h1>
+        <p class="intro-text">
+            Welcome to the Leaflet examples page, designed for students in BYU Civil and Construction Engineering 514: Geospatial Software Development. This resource provides a collection of examples and tutorials on using Leaflet, a powerful JavaScript library for interactive maps. These examples will guide you through basic map creation, integrating Web Mapping Services (WMS), and utilizing various Leaflet plugins. Additionally, you'll find tips and resources to enhance your web mapping skills.
+        </p>
 
-
-        <div class="wms-info">
-          <h2>Web Mapping Service Examples</h2>
-          <i>These examples use WMS services hosted on <a href="https://www.hydroshare.org" target="_blank">HydroShare</a>. See HydroShare <a href="https://help.hydroshare.org/introduction-to-hydroshare/getting-started/" target="_blank">documentation</a> for more information on creating resources. If you load a shapefile or GeoTIFF on HydroShare it will automatically create WMS end points for you in <a href="https://geoserver.hydroshare.org" target="_blank">geoserver.hydroshare.org</a>.</i>
+        <div class="section">
+            <h2 class="section-title">Simple Map Examples</h2>
+            <p>These examples demonstrate fundamental concepts of Leaflet, including map initialization, adding markers, and basic interactivity.</p>
+            <ul>
+                <li><i class="fas fa-map-marker-alt"></i> <a href="simple_map_with_basemap.html" target="_blank">Simple map with a basemap layer</a></li>
+                <li><i class="fas fa-book-open"></i> <a href="simple_map_with_basemap_2.html" target="_blank">Simple map with a basemap layer with instructions</a></li>
+                <li><i class="fas fa-map-pin"></i> <a href="leaflet_map_with_markers.html" target="_blank">Simple map with markers</a></li>
+                <li><i class="fas fa-hand-pointer"></i> <a href="leaflet_map_interactive_markers.html" target="_blank">Simple map with interactive markers</a></li>
+                <li><i class="fas fa-globe-americas"></i> <a href="great_circle.html" target="_blank">Add two points and draw the Great Circle connector</a></li>
+            </ul>
         </div>
-        <ul>
-            <li>
-                <a href="point_layer_wms.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with default styling</a>
-            </li>
-            <li>
-                <a href="point_layer_wms_sld_1.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file</a>
-            </li>
-            <li>
-                <a href="point_layer_wms_sld_2.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file - point with stroke</a>
-            </li>
-            <li>
-                <a href="point_layer_wms_sld_3.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file - rotated square</a>
-            </li>
-            <li>
-                <a href="point_layer_wms_sld_4.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with a simple point styling using an SLD file - transparent triangle</a>
-            </li>
-        </ul>
 
-        <div class="plugin-info">
-          <h2>Leaflet Plugin Examples</h2>
-          <i>Leaflet Plugins are JavaScript files that provide additional capabilities and functions for Leaflet. There is a <a href="https://leafletjs.com/plugins.html" target="_blank">list of all known Leaflet plugins</a> on the official Leaflet web site. Here are just a few examples of using a couple of these plugins.</i>
+        <div class="section">
+            <h2 class="section-title">Web Mapping Service (WMS) Examples</h2>
+            <p>Learn how to integrate WMS layers into your Leaflet maps. These examples utilize services hosted on <a href="https://www.hydroshare.org" target="_blank">HydroShare</a>. For more information, refer to the <a href="https://help.hydroshare.org/introduction-to-hydroshare/getting-started/" target="_blank">HydroShare documentation</a>.</p>
+            <ul>
+                <li><i class="fas fa-server"></i> <a href="point_layer_wms.html" target="_blank">Basemap plus a WMS point layer from HydroShare GeoServer with default styling</a></li>
+                <li><i class="fas fa-palette"></i> <a href="point_layer_wms_sld_1.html" target="_blank">Basemap plus a WMS point layer with simple point styling (SLD)</a></li>
+                <li><i class="fas fa-map"></i> <a href="point_layer_wms_sld_2.html" target="_blank">Basemap plus a WMS point layer with styled point and stroke (SLD)</a></li>
+                <li><i class="fas fa-square"></i> <a href="point_layer_wms_sld_3.html" target="_blank">Basemap plus a WMS point layer with styled rotated square (SLD)</a></li>
+                <li><i class="fas fa-star"></i> <a href="point_layer_wms_sld_4.html" target="_blank">Basemap plus a WMS point layer with styled transparent triangle (SLD)</a></li>
+            </ul>
         </div>
-        <ul>
-            <li>
-                <a href="simple_map_graticule_plugin.html" target="_blank">Simple map with a graticule plugin</a> (<a href="https://github.com/turban/Leaflet.Graticule" target="_blank">Leaflet.Graticule plugin GitHub page</a>)
-            </li>
-            <li>
-                <a>Basemap with points using Leaflet.WMS plugin to get feature info</a>
-            </li>
-        </ul>
 
-        <div class="resource-info">
-          <h2>Leaflet and WMS Resources</h2>
+        <div class="section">
+            <h2 class="section-title">Leaflet Plugin Examples</h2>
+            <p>Explore the capabilities of Leaflet plugins to extend the functionality of your maps. A comprehensive list of plugins can be found on the <a href="https://leafletjs.com/plugins.html" target="_blank">official Leaflet plugins page</a>.</p>
+            <ul>
+                <li><i class="fas fa-ruler-combined"></i> <a href="simple_map_graticule_plugin.html" target="_blank">Simple map with a graticule</a> (<a href="https://github.com/turban/Leaflet.Graticule" target="_blank">Leaflet.Graticule plugin</a>)</li>
+                <li><i class="fas fa-info-circle"></i> <a>Basemap with points using Leaflet.WMS plugin to get feature info</a> (Coming Soon)</li>
+            </ul>
         </div>
-        <ul>
-            <li>
-                <a href="https://leafletjs.com/examples/quick-start/" target="_blank">Official Leaflet.js Quick Start Guide</a>
-            </li>
-            <li>
-                <a href="https://leafletjs.com/examples/wms/wms.html" target="_blank">Official Leaflet.js WMS in Leaflet Guide</a>
-            </li>
-            <li>
-                <a href="https://docs.geoserver.org/stable/en/user/styling/sld/working.html" target="_blank">Official GeoServer Documentation on working wth SLD Styling</a>
-            </li>
-            <li>
-                <a href="https://docs.geoserver.org/latest/en/user/styling/sld/cookbook/points.html#simple-point" target="_blank">Official GeoServer SLD Cookbook</a>
-            </li>
-            <li>
-                <a href="https://flexberry.github.io/Leaflet-WMS/" target="_blank">Leaflet WMS examples by Flexberry</a>
-            </li>
-        </ul>
+
+        <div class="section">
+            <h2 class="section-title">Tips and Tricks</h2>
+            <ul>
+                <li>
+                  <i class="fas fa-search-location"></i> <b>Geocoding Tip:</b> Convert addresses to geographic coordinates (and vice-versa) using a geocoding service. Many services, including <a href="https://developer.mapquest.com/documentation/open/geocoding-api" target="_blank">Mapquest Open Geocoding</a>, <a href="https://developer.here.com/documentation/geocoding-search-api/dev_guide/topics/quick-start-get-location.html" target="_blank">HERE Geocoding</a>, <a href="https://docs.camptocamp.com/camptocamp-training/courses/geoserver-geoserver_cloud-intermediate/geoserver-geoserver_cloud-advanced/index.html" target="_blank">GeoServer Geocoding</a> and <a href="https://nominatim.org/release-docs/develop/api/Overview/" target="_blank">Nominatim</a> provide APIs for this.
+                </li>
+                <li>
+                  <i class="fas fa-layer-group"></i> <b>Layer Control:</b> Use `L.control.layers` to create a layer control that allows users to toggle different base maps and overlays. See the <a href="https://leafletjs.com/examples/layers-control/" target="_blank">official Leaflet documentation</a> for an example.
+                </li>
+                <li>
+                  <i class="fas fa-expand-arrows-alt"></i> <b>Custom Zoom Control:</b> If you don't like the default zoom control, you can create your own using buttons and the `map.zoomIn()` and `map.zoomOut()` methods.
+                </li>
+                <li>
+                  <i class="fas fa-paint-roller"></i> <b>Styling Tip:</b> When adding GeoJSON data to your map, use the `style` option to customize the appearance of features based on their properties. This is particularly useful for choropleth maps. For more on styling, review the <a href="https://leafletjs.com/examples/geojson/" target="_blank">official Leaflet documentation</a>.
+                </li>
+                <li>
+                  <i class="fas fa-object-group"></i> <b>Clustering Markers:</b> For maps with many markers, use a marker clustering plugin like <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">Leaflet.markercluster</a> to group nearby markers into clusters, improving performance and readability.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Useful Resources</h2>
+            <ul class="resource-list">
+                <li><i class="fas fa-book"></i> <a href="https://leafletjs.com/examples/quick-start/" target="_blank">Official Leaflet.js Quick Start Guide</a></li>
+                <li><i class="fas fa-globe"></i> <a href="https://leafletjs.com/examples/wms/wms.html" target="_blank">Official Leaflet.js WMS Guide</a></li>
+                <li><i class="fas fa-paint-brush"></i> <a href="https://docs.geoserver.org/stable/en/user/styling/sld/working.html" target="_blank">GeoServer SLD Styling Documentation</a></li>
+                <li><i class="fas fa-utensils"></i> <a href="https://docs.geoserver.org/latest/en/user/styling/sld/cookbook/points.html#simple-point" target="_blank">GeoServer SLD Cookbook</a></li>
+                <li><i class="fas fa-map-marked"></i> <a href="https://flexberry.github.io/Leaflet-WMS/" target="_blank">Leaflet WMS Examples by Flexberry</a></li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>Developed by Dr. Dan Ames, BYU Civil and Construction Engineering</p>
+        </div>
     </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </body>
 </html>
