@@ -9,30 +9,32 @@
     <script src="https://unpkg.com/tokml@2.1.0/tokml.js"></script>
 
     <script>
+        // Declare global variables to store the map object and individual country layers
         var map, australia, bahrain, canada, cayman, czechia, england, france, germany, japan, mexico, spain, switzerland, thailand, thenetherlands, usa, vietnam;
         var apiKey = "YOUR_BING_MAPS_API_KEY"; // Replace with your actual Bing Maps API key
 
         function init() {
-            map = L.map("map_id").setView(, 2);
+            // Initialize the Leaflet map and set the initial view to a global extent
+            map = L.map("map_id").setView(, 2); 
 
-            var bing_layer = L.tileLayer.bing({
-                name: "Bing Roads",
-                key: apiKey,
-                attribution: '&copy; <a href="http://www.bing.com/maps">Bing Maps</a>'
+            // Add an openstreetmaps tile layer as the basemap
+            var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             });
-            map.addLayer(bing_layer);
+            map.addLayer(osmLayer); // Add the OSM layer to the map
 
-            // Function to load KML and add it to the map
+            // Function to load KML data from a URL, convert it to GeoJSON, and add it as a layer to the map
             function loadKML(layer, url) {
-                fetch(url)
-                  .then(response => response.text())
+                fetch(url)               // Fetch the KML data from the given URL
+                  .then(response => response.text())  // Extract the response as text
                   .then(kml => {
-                        const geojson = tokml(kml, {extractStyles: true, extractAttributes: true});
-                        layer.addData(geojson);
-                        map.addLayer(layer);
+                        const geojson = tokml(kml, {extractStyles: true, extractAttributes: true}); // Convert KML to GeoJSON using tokml library
+                        layer.addData(geojson);           // Add the GeoJSON data to the Leaflet layer
+                        map.addLayer(layer);             // Add the layer to the map
                     });
             }
 
+            // Create Leaflet GeoJSON layers for each country and load the corresponding KML data
             australia = L.geoJson(null, {name: "australia"});
             loadKML(australia, "kml/australia.kml");
 
@@ -81,39 +83,41 @@
             vietnam = L.geoJson(null, {name: "vietnam"});
             loadKML(vietnam, "kml/vietnam.kml");
 
-            // Call setCountry after all layers are loaded
+            // Set a timeout to ensure all layers are loaded before setting the initial view
             setTimeout(() => {
-                setCountry("none");
-            }, 1000); // Adjust the timeout as needed
+                setCountry("none"); // Call the setCountry function to initially show no specific country
+            }, 1000); // Adjust the timeout as needed to ensure all layers have loaded
         }
 
+        // Function to display a specific country on the map
         function setCountry(theCountry) {
-            console.log(theCountry);
+            console.log(theCountry); // Log the selected country to the console for debugging
 
-            // Hide all layers
-            map.eachLayer(layer => {
-                if (layer instanceof L.GeoJSON) {
-                    map.removeLayer(layer);
+            // Iterate over all layers on the map and remove any GeoJSON layers (i.e., country layers)
+            map.eachLayer(layer => { 
+                if (layer instanceof L.GeoJSON) { 
+                    map.removeLayer(layer); 
                 }
             });
 
             if (theCountry!== "none") {
-                // Show the selected layer
-                var selectedLayer = getLayerByName(theCountry);
+                // If a country is selected, get the corresponding layer and add it to the map
+                var selectedLayer = getLayerByName(theCountry); 
                 if (selectedLayer) {
-                    map.addLayer(selectedLayer);
-                    map.fitBounds(selectedLayer.getBounds());
-                    document.getElementById("viewing").innerHTML = fullName(theCountry);
-                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/" + fullName(theCountry);
+                    map.addLayer(selectedLayer);                // Add the selected country layer to the map
+                    map.fitBounds(selectedLayer.getBounds());    // Zoom the map to the bounds of the selected country
+                    document.getElementById("viewing").innerHTML = fullName(theCountry); // Update the "viewing" div to display the country name
+                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/" + fullName(theCountry); // Update the iframe to show the Wikipedia page for the country
                 }
             } else {
-                map.setView(, 2); // Zoom to the world
-                document.getElementById("viewing").innerHTML = "Earth";
-                document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/Earth";
+                // If no country is selected, set the map view to the initial global extent
+                map.setView(, 2); 
+                document.getElementById("viewing").innerHTML = "Earth";  // Update the "viewing" div to display "Earth"
+                document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/Earth"; // Update the iframe to show the Wikipedia page for Earth
             }
         }
 
-        // Helper function to get layer by name
+        // Helper function to retrieve a Leaflet layer by its name
         function getLayerByName(name) {
             switch (name) {
                 case "australia": return australia;
@@ -132,7 +136,7 @@
                 case "thenetherlands": return thenetherlands;
                 case "usa": return usa;
                 case "vietnam": return vietnam;
-                default: return null;
+                default: return null; // Return null if no layer with the given name is found
             }
         }
 
