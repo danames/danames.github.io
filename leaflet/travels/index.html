@@ -92,7 +92,143 @@
             }
         }
 
-        //... rest of the functions (setCountryViaCheckbox, showRegion, fullName)...
+       
+        function setCountry(theCountry) {
+            console.log(theCountry);
+
+            // Hide all country layers
+            map.eachLayer(layer => {
+                if (layer instanceof L.GeoJSON) {
+                    map.removeLayer(layer);
+                }
+            });
+
+            if (theCountry!== "none") {
+                var selectedLayer = getLayerByName(theCountry);
+                if (selectedLayer) {
+                    map.addLayer(selectedLayer);
+                    map.fitBounds(selectedLayer.getBounds());
+                    document.getElementById("viewing").innerHTML = fullName(theCountry);
+                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/" + fullName(theCountry);
+                }
+            } else {
+                map.setView(, 2); // Zoom to the world
+                document.getElementById("viewing").innerHTML = "Earth";
+                document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/Earth";
+            }
+        }
+
+        function setCountryViaCheckbox(theCountry) {
+            console.log(theCountry);
+
+            if (document.getElementById("ch_" + theCountry).checked == true) {
+                setCountry(theCountry); // Use setCountry to handle layer visibility
+            }
+        }
+
+        function showRegion(theRegion) {
+            // First, hide all country layers
+            map.eachLayer(layer => {
+                if (layer instanceof L.GeoJSON) {
+                    map.removeLayer(layer);
+                }
+            });
+
+            switch (theRegion) {
+                case "none":
+                    map.setView(, 2);
+                    document.getElementById("viewing").innerHTML = "Earth";
+                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/Earth";
+                    break;
+
+                case "americas":
+                    map.addLayer(canada);
+                    map.addLayer(usa);
+                    map.addLayer(mexico);
+                    map.addLayer(cayman);
+                    map.fitBounds(L.latLngBounds(
+                        L.latLng(5.2594, -172.6396), // Southwest corner
+                        L.latLng(83.1619, -52.3438)   // Northeast corner
+                    ));
+                    document.getElementById("viewing").innerHTML = "The Americas";
+                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/The_Americas";
+                    break;
+
+                case "europe":
+                    map.addLayer(germany);
+                    map.addLayer(france);
+                    map.addLayer(england);
+                    map.addLayer(switzerland);
+                    map.addLayer(czechia);
+                    map.addLayer(spain);
+                    map.addLayer(thenetherlands);
+                    map.fitBounds(L.latLngBounds(
+                        L.latLng(35.9375, -10.6250), // Southwest corner
+                        L.latLng(71.0596, 31.1816)    // Northeast corner
+                    ));
+                    document.getElementById("viewing").innerHTML = "Europe";
+                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/Europe";
+                    break;
+
+                case "asia":
+                    map.addLayer(japan);
+                    map.addLayer(australia);
+                    map.addLayer(thailand);
+                    map.addLayer(vietnam);
+                    map.fitBounds(L.latLngBounds(
+                        L.latLng(-43.6345, 65.7519), // Southwest corner
+                        L.latLng(55.6758, 179.1211)   // Northeast corner
+                    ));
+                    document.getElementById("viewing").innerHTML = "Asia";
+                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/Asia";
+                    break;
+
+                case "middleeast":
+                    map.addLayer(bahrain);
+                    map.fitBounds(bahrain.getBounds());
+                    document.getElementById("viewing").innerHTML = "The Middle East";
+                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/The_Middle_East";
+                    break;
+            }
+        }
+
+        function fullName(theCountry) {
+            switch (theCountry) {
+                case "england":
+                    return "United Kingdom";
+                case "usa":
+                    return "The United States of America";
+                case "thenetherlands":
+                    return "The Netherlands";
+                case "cayman":
+                    return "Cayman Islands";
+                default:
+                    return theCountry.charAt(0).toUpperCase() + theCountry.slice(1);
+            }
+        }
+
+        // Helper function to retrieve a Leaflet layer by its name
+        /*function getLayerByName(name) {
+            switch (name) {
+                case "australia": return australia;
+                case "bahrain": return bahrain;
+                case "canada": return canada;
+                case "cayman": return cayman;
+                case "czechia": return czechia;
+                case "england": return england;
+                case "france": return france;
+                case "germany": return germany;
+                case "japan": return japan;
+                case "mexico": return mexico;
+                case "spain": return spain;
+                case "switzerland": return switzerland;
+                case "thailand": return thailand;
+                case "thenetherlands": return thenetherlands;
+                case "usa": return usa;
+                case "vietnam": return vietnam;
+                default: return null;
+            }*/
+        }
     </script>
 </head>
 <body onLoad="init()">
