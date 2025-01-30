@@ -4,91 +4,43 @@
     <title>Dan Ames to See the World</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-geojson@2.10.0/dist/leaflet-geojson.js"></script>
-    <script src="https://unpkg.com/leaflet-bing@2.0.0/dist/leaflet-bing.js"></script>
-    <script src="https://unpkg.com/tokml@2.1.0/tokml.js"></script>
+    <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script> 
 
     <script>
         // Declare global variables to store the map object and individual country layers
         var map, australia, bahrain, canada, cayman, czechia, england, france, germany, japan, mexico, spain, switzerland, thailand, thenetherlands, usa, vietnam;
-        var apiKey = "YOUR_BING_MAPS_API_KEY"; // Replace with your actual Bing Maps API key
 
         function init() {
             // Initialize the Leaflet map and set the initial view to a global extent
-            map = L.map("map_id").setView(, 2); 
+            map = L.map("map_id").setView(, 2);
 
-            // Add an openstreetmaps tile layer as the basemap
+            // Add an OpenStreetMap tile layer as the basemap
             var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             });
-            map.addLayer(osmLayer); // Add the OSM layer to the map
+            map.addLayer(osmLayer);
 
-            // Function to load KML data from a URL, convert it to GeoJSON, and add it as a layer to the map
-            function loadKML(layer, url) {
-                fetch(url)               // Fetch the KML data from the given URL
-                  .then(response => response.text())  // Extract the response as text
-                  .then(kml => {
-                        const geojson = tokml(kml, {extractStyles: true, extractAttributes: true}); // Convert KML to GeoJSON using tokml library
-                        layer.addData(geojson);           // Add the GeoJSON data to the Leaflet layer
-                        map.addLayer(layer);             // Add the layer to the map
-                    });
-            }
+            // Load KML files directly using Leaflet-omnivore
+            australia = omnivore.kml('kml/australia.kml', null, {name: 'australia'}).addTo(map);
+            bahrain = omnivore.kml('kml/bahrain.kml', null, {name: 'bahrain'}).addTo(map);
+            canada = omnivore.kml('kml/canada.kml', null, {name: 'canada'}).addTo(map);
+            cayman = omnivore.kml('kml/cayman.kml', null, {name: 'cayman'}).addTo(map);
+            czechia = omnivore.kml('kml/czechia.kml', null, {name: 'czechia'}).addTo(map);
+            england = omnivore.kml('kml/england.kml', null, {name: 'england'}).addTo(map);
+            france = omnivore.kml('kml/france.kml', null, {name: 'france'}).addTo(map);
+            germany = omnivore.kml('kml/germany.kml', null, {name: 'germany'}).addTo(map);
+            japan = omnivore.kml('kml/japan.kml', null, {name: 'japan'}).addTo(map);
+            mexico = omnivore.kml('kml/mexico.kml', null, {name: 'mexico'}).addTo(map);
+            spain = omnivore.kml('kml/spain.kml', null, {name: 'spain'}).addTo(map);
+            switzerland = omnivore.kml('kml/switzerland.kml', null, {name: 'switzerland'}).addTo(map);
+            thailand = omnivore.kml('kml/thailand.kml', null, {name: 'thailand'}).addTo(map);
+            thenetherlands = omnivore.kml('kml/thenetherlands.kml', null, {name: 'thenetherlands'}).addTo(map);
+            usa = omnivore.kml('kml/usa.kml', null, {name: 'usa'}).addTo(map);
+            vietnam = omnivore.kml('kml/vietnam.kml', null, {name: 'vietnam'}).addTo(map);
 
-            // Create Leaflet GeoJSON layers for each country and load the corresponding KML data
-            australia = L.geoJson(null, {name: "australia"});
-            loadKML(australia, "kml/australia.kml");
-
-            bahrain = L.geoJson(null, {name: "bahrain"});
-            loadKML(bahrain, "kml/bahrain.kml");
-
-            canada = L.geoJson(null, {name: "canada"});
-            loadKML(canada, "kml/canada.kml");
-
-            cayman = L.geoJson(null, {name: "cayman"});
-            loadKML(cayman, "kml/cayman.kml");
-
-            czechia = L.geoJson(null, {name: "czechia"});
-            loadKML(czechia, "kml/czechia.kml");
-
-            england = L.geoJson(null, {name: "england"});
-            loadKML(england, "kml/england.kml");
-
-            france = L.geoJson(null, {name: "france"});
-            loadKML(france, "kml/france.kml");
-
-            germany = L.geoJson(null, {name: "germany"});
-            loadKML(germany, "kml/germany.kml");
-
-            japan = L.geoJson(null, {name: "japan"});
-            loadKML(japan, "kml/japan.kml");
-
-            mexico = L.geoJson(null, {name: "mexico"});
-            loadKML(mexico, "kml/mexico.kml");
-
-            spain = L.geoJson(null, {name: "spain"});
-            loadKML(spain, "kml/spain.kml");
-
-            switzerland = L.geoJson(null, {name: "switzerland"});
-            loadKML(switzerland, "kml/switzerland.kml");
-
-            thailand = L.geoJson(null, {name: "thailand"});
-            loadKML(thailand, "kml/thailand.kml");
-
-            thenetherlands = L.geoJson(null, {name: "thenetherlands"});
-            loadKML(thenetherlands, "kml/thenetherlands.kml");
-
-            usa = L.geoJson(null, {name: "usa"});
-            loadKML(usa, "kml/usa.kml");
-
-            vietnam = L.geoJson(null, {name: "vietnam"});
-            loadKML(vietnam, "kml/vietnam.kml");
-
-            // Set a timeout to ensure all layers are loaded before setting the initial view
-            setTimeout(() => {
-                setCountry("none"); // Call the setCountry function to initially show no specific country
-            }, 1000); // Adjust the timeout as needed to ensure all layers have loaded
+            // No need for setTimeout as omnivore adds layers synchronously
+            setCountry("none"); 
         }
-
         // Function to display a specific country on the map
         function setCountry(theCountry) {
             console.log(theCountry); // Log the selected country to the console for debugging
