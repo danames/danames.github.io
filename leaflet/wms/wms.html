@@ -21,6 +21,12 @@
             transparent: true,
             attribution: 'Hydroshare GeoServer'
         }).addTo(map);
+        L.tileLayer.wms('https://geoserver.hydroshare.org/geoserver/HS-0b3452c0c2d34f099e6da847a6ce828d/wms', {
+            layers: 'counties', // Corrected layer name
+            format: 'image/png',
+            transparent: true,
+            attribution: 'Hydroshare GeoServer'
+        }).addTo(map);
     </script>
 </body>
 </html>
