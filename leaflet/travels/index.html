@@ -1,1 +1,564 @@
-test
+<html>
+	<head>
+		<title>Dan Ames to See the World</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+		<script src="/openlayers/OpenLayers.js"></script>
+		<script>
+			//Note that I'm declaring all my layer variables as global so I can easily access them to turn them on and off through buttons.
+			var map,australia,bahrain,canada,cayman,czechia,england,france,germany,japan,mexico,spain,switzerland,thailand,thenetherlands,usa,vietnam ;
+			function init(){
+				//Set up my API key for Bing Maps.
+				var apiKey = "AiW41aALyX4pDfE0jQG93WywSHLih1ihycHtwbaIPmtpZEOuw1iloQuuBmwJm5UA";
+				
+				//Create a new map object and connect it to the right DIV id that is in the html.
+				map = new OpenLayers.Map("map_id");
+				
+				//Add some useful map controls
+				map.addControl(new OpenLayers.Control.LayerSwitcher());
+				map.addControl(new OpenLayers.Control.Navigation());
+				map.addControl(new OpenLayers.Control.ScaleLine());
+
+				//Create a layer object that holds the Bing map roads layer.
+				var bing_layer = new OpenLayers.Layer.Bing({name: "Bing Roads", key: apiKey, type: "Road"});
+
+				//Create layers for each KML file
+				australia = new OpenLayers.Layer.Vector("australia", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/australia.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				bahrain = new OpenLayers.Layer.Vector("bahrain", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/bahrain.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				canada = new OpenLayers.Layer.Vector("canada", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/canada.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				cayman = new OpenLayers.Layer.Vector("cayman", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/cayman.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})				
+				czechia = new OpenLayers.Layer.Vector("czechia", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/czechia.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				england = new OpenLayers.Layer.Vector("england", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/england.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				france = new OpenLayers.Layer.Vector("france", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/france.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})					
+				germany = new OpenLayers.Layer.Vector("germany", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/germany.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})					
+				japan = new OpenLayers.Layer.Vector("japan", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/japan.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})					
+				mexico = new OpenLayers.Layer.Vector("mexico", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/mexico.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})					
+				spain = new OpenLayers.Layer.Vector("spain", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/spain.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})					
+				switzerland = new OpenLayers.Layer.Vector("switzerland", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/switzerland.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				thailand = new OpenLayers.Layer.Vector("thailand", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/thailand.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				thenetherlands = new OpenLayers.Layer.Vector("thenetherlands", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/thenetherlands.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				usa = new OpenLayers.Layer.Vector("usa", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/usa.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+				vietnam = new OpenLayers.Layer.Vector("vietnam", {
+						strategies: [new OpenLayers.Strategy.Fixed()],
+						protocol: new OpenLayers.Protocol.HTTP({
+							url: "kml/vietnam.kml",						
+							format: new OpenLayers.Format.KML({
+								extractStyles: true, 
+								extractAttributes: true,
+								maxDepth: 2
+							})
+						})
+				})	
+
+				
+				//Add both layers to the map control. 
+				map.addLayer(bing_layer);
+				map.addLayers([australia, bahrain, canada, cayman, czechia, england, france, germany, japan, mexico, spain, switzerland, thailand, thenetherlands, usa, vietnam]);
+				setCountry("none");
+			
+			}
+			
+			function setCountry(theCountry) 
+			{
+				//Check to make sure the country name is properly getting passed into this function
+				//console.log(someString) will write the contents of someString out to the Chrome console window.
+				console.log(theCountry);
+				
+				//Cycle through all my layers. 
+				//If the layer name is the same as the one that got passed in (theCountry) then turn it's visibility on
+				//otherwise turn its visbility off.
+				for (var i=1; i <= 16; i++) 
+				{
+					if (map.layers[i].name==theCountry) 
+					{
+						//turn on the layer
+						map.layers[i].setVisibility(true);
+						//zoom to the layer extents
+						map.zoomToExtent(map.layers[i].getDataExtent());
+						//set some custom text on the web page showing the country name
+						document.getElementById("viewing").innerHTML = fullName(theCountry);
+						document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/" + fullName(theCountry);
+					}
+					else
+					{ 	
+						//turn off all other layers
+						map.layers[i].setVisibility(false);
+					}
+				}
+				
+				//If "none" then zoom to max extent of map
+				if (theCountry=="none") 
+				{
+					map.zoomToMaxExtent();
+					document.getElementById("viewing").innerHTML = "Earth";
+					document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/Earth";
+				}
+			}
+			
+			function setCountryViaCheckbox(theCountry) 
+			{
+				//Checkboxes get some special treatment here since I want to turn off the checked ones 
+				//Check to make sure the country name is properly getting passed into this function
+				//console.log(someString) will write the contents of someString out to the Chrome console window.
+				console.log(theCountry);
+				
+				//Cycle through all my layers. 
+				//If the layer name is the same as the one that got passed in (theCountry) then turn it's visibility on
+				//otherwise turn its visbility off.
+				if (document.getElementById("ch_" + theCountry).checked == true)
+				{
+					for (var i=1; i <= 16; i++) 
+					{
+						if (map.layers[i].name==theCountry) 
+						{
+							map.layers[i].setVisibility(true);
+							map.zoomToExtent(map.layers[i].getDataExtent());
+							//set some custom text on the web page showing the country name
+							document.getElementById("viewing").innerHTML = fullName(theCountry);
+							document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/" + fullName(theCountry);
+						}
+						else
+						{ 	
+							map.layers[i].setVisibility(false);
+							document.getElementById("ch_" + map.layers[i].name).checked=false;
+						}
+					}
+					
+					//If "none" then zoom to max extent of map
+					if (theCountry=="none") 
+					{
+						map.zoomToMaxExtent();
+						document.getElementById("viewing").innerHTML = "Earth";
+						document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/Earth";
+						
+					}
+					else
+					{
+						document.getElementById("ch_none").checked=false;
+					}
+				}		
+			}
+			
+			function showRegion(theRegion) 
+			{
+				switch(theRegion)
+				{
+					case "none":
+						map.zoomToMaxExtent();
+						canada.setVisibility(false);
+						usa.setVisibility(false);
+						mexico.setVisibility(false);
+						cayman.setVisibility(false);
+						
+						germany.setVisibility(false);
+						france.setVisibility(false);
+						england.setVisibility(false);
+						switzerland.setVisibility(false);
+						czechia.setVisibility(false);
+						spain.setVisibility(false);
+						thenetherlands.setVisibility(false);
+						
+						japan.setVisibility(false);
+						australia.setVisibility(false);
+						thailand.setVisibility(false);
+						vietnam.setVisibility(false);
+						
+						bahrain.setVisibility(false);
+
+						document.getElementById("viewing").innerHTML = "Earth";
+						document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/Earth";						
+						break;
+
+					case "americas":
+						canada.setVisibility(true);
+						usa.setVisibility(true);
+						mexico.setVisibility(true);
+						cayman.setVisibility(true);
+						
+						germany.setVisibility(false);
+						france.setVisibility(false);
+						england.setVisibility(false);
+						switzerland.setVisibility(false);
+						czechia.setVisibility(false);
+						spain.setVisibility(false);
+						thenetherlands.setVisibility(false);
+						
+						japan.setVisibility(false);
+						australia.setVisibility(false);
+						thailand.setVisibility(false);
+						vietnam.setVisibility(false);
+						
+						bahrain.setVisibility(false);
+						
+						bb = OpenLayers.Bounds.fromArray([-19023536, 1005077, -3369232, 12745805]);
+						map.zoomToExtent(bb);
+						document.getElementById("viewing").innerHTML = "The Americas";
+						document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/The Americas";						
+						break;
+						
+					case "europe":
+						canada.setVisibility(false);
+						usa.setVisibility(false);
+						mexico.setVisibility(false);
+						cayman.setVisibility(false);
+						
+						germany.setVisibility(true);
+						france.setVisibility(true);
+						england.setVisibility(true);
+						switzerland.setVisibility(true);
+						czechia.setVisibility(true);
+						spain.setVisibility(true);
+						thenetherlands.setVisibility(true);
+						
+						japan.setVisibility(false);
+						australia.setVisibility(false);
+						thailand.setVisibility(false);
+						vietnam.setVisibility(false);
+						
+						bahrain.setVisibility(false);
+
+						bb = OpenLayers.Bounds.fromArray([1898528, 4670942, 2015046, 7606124]);
+						map.zoomToExtent(bb);
+						document.getElementById("viewing").innerHTML = "Europe";
+						document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/Europe";						
+						break;
+						
+					case "asia":
+						canada.setVisibility(false);
+						usa.setVisibility(false);
+						mexico.setVisibility(false);
+						cayman.setVisibility(false);
+						
+						germany.setVisibility(false);
+						france.setVisibility(false);
+						england.setVisibility(false);
+						switzerland.setVisibility(false);
+						czechia.setVisibility(false);
+						spain.setVisibility(false);
+						thenetherlands.setVisibility(false);
+						
+						japan.setVisibility(true);
+						australia.setVisibility(true);
+						thailand.setVisibility(true);
+						vietnam.setVisibility(true);
+						
+						bahrain.setVisibility(false);
+						
+						bb = OpenLayers.Bounds.fromArray([10977135, -1874512, 18804287, 3995850]);
+						map.zoomToExtent(bb);
+
+						document.getElementById("viewing").innerHTML = "Asia";
+						document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/Asia";						
+						break;
+						
+					case "middleeast":
+						canada.setVisibility(false);
+						usa.setVisibility(false);
+						mexico.setVisibility(false);
+						cayman.setVisibility(false);
+						
+						germany.setVisibility(false);
+						france.setVisibility(false);
+						england.setVisibility(false);
+						switzerland.setVisibility(false);
+						czechia.setVisibility(false);
+						spain.setVisibility(false);
+						thenetherlands.setVisibility(false);
+						
+						japan.setVisibility(false);
+						australia.setVisibility(false);
+						thailand.setVisibility(false);
+						vietnam.setVisibility(false);
+									
+						bahrain.setVisibility(true);
+						map.zoomToExtent(bahrain.getDataExtent());
+						
+						document.getElementById("viewing").innerHTML = "The Middle East";
+						document.getElementById("ifInfo").src="http://en.wikipedia.org/wiki/The Middle East";						
+						break;
+				}
+			}
+			
+			function fullName(theCountry)
+			{
+				switch (theCountry)
+				{
+					case "england":
+						return "United Kingdom";
+						break;
+					case "usa":
+						return "The United States of America";
+						break;
+					case "thenetherlands":
+						return "The Netherlands";
+						break;
+					case "cayman":
+						return "Cayman Islands";
+						break;
+					default: 
+						return theCountry.charAt(0).toUpperCase() + theCountry.slice(1);
+						break;
+				}
+			}
+			
+			
+		</script>		
+	</head>
+    
+    <body onLoad="init()">
+		<h1 id="header">Dan Ames to See the World</h1>
+		<p>I have visited these countries. Note that this is <strong>not</strong> a complete exapmle of a final project. It is just supposed to demonstrate interactively adding and removing maps layers using control events. Notice there are no popup bubbles or point and line data, etc. Also the CSS is really rough. But pay attention to the use of controls and iframes. </p>
+
+        <h2>Custom Images</h2>
+        <img src="images/middleeast.png" height="60px" border="0" onClick="showRegion('middleeast')">
+        <img src="images/asia.png" height="60px" border="0" onClick="showRegion('asia')">
+        <img src="images/europe.png" height="60px" border="0" onClick="showRegion('europe')">
+        <img src="images/americas.png" height="60px" border="0" onClick="showRegion('americas')">
+        <img src="images/engine.png" height="60px" border="0" onClick="showRegion('none')">
+
+		<h2>Dropdown List</h2>
+        
+        <form>
+            <select onChange="setCountry(this.value)">
+            	<option value="none">(Choose a country)</option>
+                <option value="australia">Australia</option>
+                <option value="bahrain">Bahrain</option>
+                <option value="canada">Canada</option>
+                <option value="cayman">Cayman Islands</option>
+                <option value="czechia">Czechia</option>
+                <option value="england">United Kingdom</option>
+                <option value="france">France</option>
+                <option value="germany">Germany</option>
+                <option value="japan">Japan</option>
+                <option value="mexico">Mexico</option>
+                <option value="spain">Spain</option>
+                <option value="switzerland">Switzerland</option>
+                <option value="thailand">Thailand</option>
+                <option value="thenetherlands">The Netherlands</option>
+                <option value="usa">USA</option>
+                <option value="vietnam">Vietnam</option>
+            </select> 
+        </form>
+
+        <h2>Buttons</h2>
+
+        <form>
+            <input type="button" onClick="setCountry(this.id)"  id="none" value="None">
+            <input type="button" onClick="setCountry(this.id)"  id="australia" value="Australia">
+            <input type="button" onClick="setCountry(this.id)"  id="bahrain" value ="Bahrain">
+            <input type="button" onClick="setCountry(this.id)"  id="canada" value="Canada">
+            <input type="button" onClick="setCountry(this.id)"  id="cayman" value="Cayman Islands">
+            <input type="button" onClick="setCountry(this.id)"  id="czechia" value="Czechia">
+            <input type="button" onClick="setCountry(this.id)"  id="england" value="United Kingdom">
+            <input type="button" onClick="setCountry(this.id)"  id="france" value="France">
+            <input type="button" onClick="setCountry(this.id)"  id="germany" value="Germany">
+            <input type="button" onClick="setCountry(this.id)"  id="japan" value="Japan">
+            <input type="button" onClick="setCountry(this.id)"  id="mexico" value="Mexico">
+            <input type="button" onClick="setCountry(this.id)"  id="spain" value="Spain">
+            <input type="button" onClick="setCountry(this.id)"  id="switzerland" value="Switzerland">
+            <input type="button" onClick="setCountry(this.id)"  id="thailand" value="Thailand">
+            <input type="button" onClick="setCountry(this.id)"  id="thenetherlands" value= "The Netherlands">
+            <input type="button" onClick="setCountry(this.id)"  id="usa" value="USA">
+            <input type="button" onClick="setCountry(this.id)"  id="vietnam" value="Vietnam">
+        </form>
+        
+        <h2>Checkboxes</h2>
+
+        <form>
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_none" name="none">None
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_australia" name="australia">Australia 
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_bahrain" name="bahrain">Bahrain
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_canada" name="canada">Canada
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_cayman" name="cayman">Cayman Islands
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_czechia" name="czechia">Czechia
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_england" name="england">United Kingdom
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_france" name="france">France
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_germany" name="germany">Germany
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_japan" name="japan">Japan
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_mexico" name="mexico">Mexico
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_spain" name="spain">Spain
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_switzerland" name="switzerland">Switzerland
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_thailand" name="thailand">Thailand
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_thenetherlands" name="thenetherlands">The Netherlands
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_usa" name="usa">USA
+            <input type="checkbox" onClick="setCountryViaCheckbox(this.name)"  id="ch_vietnam" name="vietnam">Vietnam
+            
+        </form>
+        
+        <h2>Radio Buttons</h2>
+        <form>
+			<input type="radio" onClick="setCountry(this.id)"  id="none" name="country" checked="true">None
+            <input type="radio" onClick="setCountry(this.id)"  id="australia" name="country">Australia 
+            <input type="radio" onClick="setCountry(this.id)"  id="bahrain" name="country">Bahrain
+            <input type="radio" onClick="setCountry(this.id)"  id="canada" name="country">Canada
+            <input type="radio" onClick="setCountry(this.id)"  id="cayman" name="country">Cayman Islands
+            <input type="radio" onClick="setCountry(this.id)"  id="czechia" name="country">Czechia
+            <input type="radio" onClick="setCountry(this.id)"  id="england" name="country">United Kingdom
+            <input type="radio" onClick="setCountry(this.id)"  id="france" name="country">France
+            <input type="radio" onClick="setCountry(this.id)"  id="germany" name="country">Germany
+            <input type="radio" onClick="setCountry(this.id)"  id="japan" name="country">Japan
+            <input type="radio" onClick="setCountry(this.id)"  id="mexico" name="country">Mexico
+            <input type="radio" onClick="setCountry(this.id)"  id="spain" name="country">Spain
+            <input type="radio" onClick="setCountry(this.id)"  id="switzerland" name="country">Switzerland
+            <input type="radio" onClick="setCountry(this.id)"  id="thailand" name="country">Thailand
+            <input type="radio" onClick="setCountry(this.id)"  id="thenetherlands" name="country">The Netherlands
+            <input type="radio" onClick="setCountry(this.id)"  id="usa" name="country">USA
+            <input type="radio" onClick="setCountry(this.id)"  id="vietnam" name="country">Vietnam
+        </form>
+		<table border="1">
+        <tr>
+        <td colspan="2" align="center"><div id="viewing">The whole world</div></td></tr>
+        <tr><td><div id="map_id" style="width:600px; height:400px;"></div></td><td><iframe style="width:600px; height:400px;" id="ifInfo" scrolling="yes">This is the world</iframe></td></tr>
+        </table>
+        
+	</body>
+</html>
