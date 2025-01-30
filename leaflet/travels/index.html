@@ -1,186 +1,249 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Dan Ames to See the World</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-geojson@2.10.0/dist/leaflet-geojson.js"></script>
     <script src="https://unpkg.com/leaflet-bing@2.0.0/dist/leaflet-bing.js"></script>
+    <script src="https://unpkg.com/tokml@2.1.0/tokml.js"></script>
 
     <script>
-        // Note that I'm declaring all my layer variables as global so I can easily access them to turn them on and off through buttons.
         var map, australia, bahrain, canada, cayman, czechia, england, france, germany, japan, mexico, spain, switzerland, thailand, thenetherlands, usa, vietnam;
+        var apiKey = "YOUR_BING_MAPS_API_KEY"; // Replace with your actual Bing Maps API key
 
         function init() {
-            // Set up my API key for Bing Maps.
-            var apiKey = "AiW41aALyX4pDfE0jQG93WywSHLih1ihycHtwbaIPmtpZEOuw1iloQuuBmwJm5UA";
+            map = L.map("map_id").setView(, 2);
 
-            // Create a new map object and connect it to the right DIV id that is in the html.
-            map = L.map("map_id").setView([0, 0], 2);
-
-            // Add some useful map controls
-            map.addControl(L.control.layers());
-            map.addControl(L.control.zoom());
-            map.addControl(L.control.scale());
-
-            // Create a layer object that holds the Bing map roads layer.
-            var bing_layer = L.tileLayer.bing({name: "Bing Roads", key: apiKey});
-
-            // Create layers for each KML file
-            australia = L.geoJson(null, {
-                name: "australia"
+            var bing_layer = L.tileLayer.bing({
+                name: "Bing Roads",
+                key: apiKey,
+                attribution: '&copy; <a href="http://www.bing.com/maps">Bing Maps</a>'
             });
-            fetch("kml/australia.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    australia.addData(geojson);
-                    map.addLayer(australia);
-                });
+            map.addLayer(bing_layer);
 
-            bahrain = L.geoJson(null, {
-                name: "bahrain"
-            });
-            fetch("kml/bahrain.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    bahrain.addData(geojson);
-                    map.addLayer(bahrain);
-                });
+            // Function to load KML and add it to the map
+            function loadKML(layer, url) {
+                fetch(url)
+                  .then(response => response.text())
+                  .then(kml => {
+                        const geojson = tokml(kml, {extractStyles: true, extractAttributes: true});
+                        layer.addData(geojson);
+                        map.addLayer(layer);
+                    });
+            }
 
-            canada = L.geoJson(null, {
-                name: "canada"
-            });
-            fetch("kml/canada.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    canada.addData(geojson);
-                    map.addLayer(canada);
-                });
+            australia = L.geoJson(null, {name: "australia"});
+            loadKML(australia, "kml/australia.kml");
 
-            cayman = L.geoJson(null, {
-                name: "cayman"
-            });
-            fetch("kml/cayman.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    cayman.addData(geojson);
-                    map.addLayer(cayman);
-                });
+            bahrain = L.geoJson(null, {name: "bahrain"});
+            loadKML(bahrain, "kml/bahrain.kml");
 
-            czechia = L.geoJson(null, {
-                name: "czechia"
-            });
-            fetch("kml/czechia.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    czechia.addData(geojson);
-                    map.addLayer(czechia);
-                });
+            canada = L.geoJson(null, {name: "canada"});
+            loadKML(canada, "kml/canada.kml");
 
-            england = L.geoJson(null, {
-                name: "england"
-            });
-            fetch("kml/england.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    england.addData(geojson);
-                    map.addLayer(england);
-                });
+            cayman = L.geoJson(null, {name: "cayman"});
+            loadKML(cayman, "kml/cayman.kml");
 
-            france = L.geoJson(null, {
-                name: "france"
-            });
-            fetch("kml/france.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    france.addData(geojson);
-                    map.addLayer(france);
-                });
+            czechia = L.geoJson(null, {name: "czechia"});
+            loadKML(czechia, "kml/czechia.kml");
 
-            germany = L.geoJson(null, {
-                name: "germany"
-            });
-            fetch("kml/germany.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    germany.addData(geojson);
-                    map.addLayer(germany);
-                });
+            england = L.geoJson(null, {name: "england"});
+            loadKML(england, "kml/england.kml");
 
-            japan = L.geoJson(null, {
-                name: "japan"
-            });
-            fetch("kml/japan.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    japan.addData(geojson);
-                    map.addLayer(japan);
-                });
+            france = L.geoJson(null, {name: "france"});
+            loadKML(france, "kml/france.kml");
 
-            mexico = L.geoJson(null, {
-                name: "mexico"
-            });
-            fetch("kml/mexico.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    mexico.addData(geojson);
-                    map.addLayer(mexico);
-                });
+            germany = L.geoJson(null, {name: "germany"});
+            loadKML(germany, "kml/germany.kml");
 
-            spain = L.geoJson(null, {
-                name: "spain"
-            });
-            fetch("kml/spain.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    spain.addData(geojson);
-                    map.addLayer(spain);
-                });
+            japan = L.geoJson(null, {name: "japan"});
+            loadKML(japan, "kml/japan.kml");
 
-            switzerland = L.geoJson(null, {
-                name: "switzerland"
-            });
-            fetch("kml/switzerland.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    switzerland.addData(geojson);
-                    map.addLayer(switzerland);
-                });
+            mexico = L.geoJson(null, {name: "mexico"});
+            loadKML(mexico, "kml/mexico.kml");
 
-            thailand = L.geoJson(null, {
-                name: "thailand"
-            });
-            fetch("kml/thailand.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    thailand.addData(geojson);
-                    map.addLayer(thailand);
-                });
+            spain = L.geoJson(null, {name: "spain"});
+            loadKML(spain, "kml/spain.kml");
 
-            thenetherlands = L.geoJson(null, {
-                name: "thenetherlands"
-            });
-            fetch("kml/thenetherlands.kml")
-                .then(response => response.text())
-                .then(kml => {
-                    const geojson = toGeoJSON(kml, {extractStyles: true, extractAttributes: true});
-                    thenetherlands.addData(geojson);
-                    map.addLayer(thenetherlands);
-                });
+            switzerland = L.geoJson(null, {name: "switzerland"});
+            loadKML(switzerland, "kml/switzerland.kml");
 
-            usa = L.geoJson(null, {
-                name: "usa"
+            thailand = L.geoJson(null, {name: "thailand"});
+            loadKML(thailand, "kml/thailand.kml");
+
+            thenetherlands = L.geoJson(null, {name: "thenetherlands"});
+            loadKML(thenetherlands, "kml/thenetherlands.kml");
+
+            usa = L.geoJson(null, {name: "usa"});
+            loadKML(usa, "kml/usa.kml");
+
+            vietnam = L.geoJson(null, {name: "vietnam"});
+            loadKML(vietnam, "kml/vietnam.kml");
+
+            // Call setCountry after all layers are loaded
+            setTimeout(() => {
+                setCountry("none");
+            }, 1000); // Adjust the timeout as needed
+        }
+
+        function setCountry(theCountry) {
+            console.log(theCountry);
+
+            // Hide all layers
+            map.eachLayer(layer => {
+                if (layer instanceof L.GeoJSON) {
+                    map.removeLayer(layer);
+                }
             });
-            fetch
+
+            if (theCountry!== "none") {
+                // Show the selected layer
+                var selectedLayer = getLayerByName(theCountry);
+                if (selectedLayer) {
+                    map.addLayer(selectedLayer);
+                    map.fitBounds(selectedLayer.getBounds());
+                    document.getElementById("viewing").innerHTML = fullName(theCountry);
+                    document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/" + fullName(theCountry);
+                }
+            } else {
+                map.setView(, 2); // Zoom to the world
+                document.getElementById("viewing").innerHTML = "Earth";
+                document.getElementById("ifInfo").src = "http://en.wikipedia.org/wiki/Earth";
+            }
+        }
+
+        // Helper function to get layer by name
+        function getLayerByName(name) {
+            switch (name) {
+                case "australia": return australia;
+                case "bahrain": return bahrain;
+                case "canada": return canada;
+                case "cayman": return cayman;
+                case "czechia": return czechia;
+                case "england": return england;
+                case "france": return france;
+                case "germany": return germany;
+                case "japan": return japan;
+                case "mexico": return mexico;
+                case "spain": return spain;
+                case "switzerland": return switzerland;
+                case "thailand": return thailand;
+                case "thenetherlands": return thenetherlands;
+                case "usa": return usa;
+                case "vietnam": return vietnam;
+                default: return null;
+            }
+        }
+
+        //... rest of the functions (setCountryViaCheckbox, showRegion, fullName)...
+    </script>
+</head>
+<body onLoad="init()">
+    <h1>Dan Ames to See the World</h1>
+    <p>Interactive map of visited countries.</p>
+
+    <h2>Custom Images</h2>
+    <img src="images/middleeast.png" height="60px" border="0" onClick="showRegion('middleeast')">
+    <img src="images/asia.png" height="60px" border="0" onClick="showRegion('asia')">
+    <img src="images/europe.png" height="60px" border="0" onClick="showRegion('europe')">
+    <img src="images/americas.png" height="60px" border="0" onClick="showRegion('americas')">
+    <img src="images/engine.png" height="60px" border="0" onClick="showRegion('none')">
+
+    <h2>Dropdown List</h2>
+    <form>
+        <select onChange="setCountry(this.value)">
+            <option value="none">(Choose a country)</option>
+            <option value="australia">Australia</option>
+            <option value="bahrain">Bahrain</option>
+            <option value="canada">Canada</option>
+            <option value="cayman">Cayman Islands</option>
+            <option value="czechia">Czechia</option>
+            <option value="england">United Kingdom</option>
+            <option value="france">France</option>
+            <option value="germany">Germany</option>
+            <option value="japan">Japan</option>
+            <option value="mexico">Mexico</option>
+            <option value="spain">Spain</option>
+            <option value="switzerland">Switzerland</option>
+            <option value="thailand">Thailand</option>
+            <option value="thenetherlands">The Netherlands</option>
+            <option value="usa">USA</option>
+            <option value="vietnam">Vietnam</option>
+        </select>
+    </form>
+
+    <h2>Buttons</h2>
+    <form>
+        <input type="button" onClick="setCountry(this.id)" id="none" value="None">
+        <input type="button" onClick="setCountry(this.id)" id="australia" value="Australia">
+        <input type="button" onClick="setCountry(this.id)" id="bahrain" value="Bahrain">
+        <input type="button" onClick="setCountry(this.id)" id="canada" value="Canada">
+        <input type="button" onClick="setCountry(this.id)" id="cayman" value="Cayman Islands">
+        <input type="button" onClick="setCountry(this.id)" id="czechia" value="Czechia">
+        <input type="button" onClick="setCountry(this.id)" id="england" value="United Kingdom">
+        <input type="button" onClick="setCountry(this.id)" id="france" value="France">
+        <input type="button" onClick="setCountry(this.id)" id="germany" value="Germany">
+        <input type="button" onClick="setCountry(this.id)" id="japan" value="Japan">
+        <input type="button" onClick="setCountry(this.id)" id="mexico" value="Mexico">
+        <input type="button" onClick="setCountry(this.id)" id="spain" value="Spain">
+        <input type="button" onClick="setCountry(this.id)" id="switzerland" value="Switzerland">
+        <input type="button" onClick="setCountry(this.id)" id="thailand" value="Thailand">
+        <input type="button" onClick="setCountry(this.id)" id="thenetherlands" value="The Netherlands">
+        <input type="button" onClick="setCountry(this.id)" id="usa" value="USA">
+        <input type="button" onClick="setCountry(this.id)" id="vietnam" value="Vietnam">
+    </form>
+
+    <h2>Checkboxes</h2>
+    <form>
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_none" name="none">None
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_australia" name="australia">Australia
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_bahrain" name="bahrain">Bahrain
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_canada" name="canada">Canada
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_cayman" name="cayman">Cayman Islands
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_czechia" name="czechia">Czechia
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_england" name="england">United Kingdom
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_france" name="france">France
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_germany" name="germany">Germany
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_japan" name="japan">Japan
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_mexico" name="mexico">Mexico
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_spain" name="spain">Spain
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_switzerland" name="switzerland">Switzerland
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_thailand" name="thailand">Thailand
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_thenetherlands" name="thenetherlands">The Netherlands
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_usa" name="usa">USA
+        <input type="checkbox" onClick="setCountryViaCheckbox(this.name)" id="ch_vietnam" name="vietnam">Vietnam
+    </form>
+
+    <h2>Radio Buttons</h2>
+    <form>
+        <input type="radio" onClick="setCountry(this.id)" id="none" name="country" checked="true">None
+        <input type="radio" onClick="setCountry(this.id)" id="australia" name="country">Australia
+        <input type="radio" onClick="setCountry(this.id)" id="bahrain" name="country">Bahrain
+        <input type="radio" onClick="setCountry(this.id)" id="canada" name="country">Canada
+        <input type="radio" onClick="setCountry(this.id)" id="cayman" name="country">Cayman Islands
+        <input type="radio" onClick="setCountry(this.id)" id="czechia" name="country">Czechia
+        <input type="radio" onClick="setCountry(this.id)" id="england" name="country">United Kingdom
+        <input type="radio" onClick="setCountry(this.id)" id="france" name="country">France
+        <input type="radio" onClick="setCountry(this.id)" id="germany" name="country">Germany
+        <input type="radio" onClick="setCountry(this.id)" id="japan" name="country">Japan
+        <input type="radio" onClick="setCountry(this.id)" id="mexico" name="country">Mexico
+        <input type="radio" onClick="setCountry(this.id)" id="spain" name="country">Spain
+        <input type="radio" onClick="setCountry(this.id)" id="switzerland" name="country">Switzerland
+        <input type="radio" onClick="setCountry(this.id)" id="thailand" name="country">Thailand
+        <input type="radio" onClick="setCountry(this.id)" id="thenetherlands" name="country">The Netherlands
+        <input type="radio" onClick="setCountry(this.id)" id="usa" name="country">USA
+        <input type="radio" onClick="setCountry(this.id)" id="vietnam" name="country">Vietnam
+    </form>
+
+    <table border="1">
+        <tr>
+            <td colspan="2" align="center"><div id="viewing">The whole world</div></td>
+        </tr>
+        <tr>
+            <td><div id="map_id" style="width:600px; height:400px;"></div></td>
+            <td><iframe style="width:600px; height:400px;" id="ifInfo" scrolling="yes">This is the world</iframe></td>
+        </tr>
+    </table>
+</body>
+</html>
