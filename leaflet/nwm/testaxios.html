@@ -3,74 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Streamflow Forecast</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Simple Plotly Chart</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-  <h1>Streamflow Forecast</h1>
-  <button onclick="getForecast()">Get Forecast</button>
-  <canvas id="streamflowChart"></canvas>
-  <div id="errorMessage" style="color: red; font-weight: bold;"></div>
+  <h1>Random Data Chart</h1>
+  <div id="chart" style="width:600px;height:400px;"></div>
+  <button onclick="updateChart()">Generate New Data</button>
 
   <script>
-    function getForecast() {
-      const apiUrl = 'https://api.water.noaa.gov/nwps/v1/reaches/10373692/streamflow?series=short_range';
-
-      axios.get(apiUrl)
-        .then(response => {
-          const streamflowData = response.data.streamflow;
-          if (!streamflowData) throw new Error("Invalid API response");
-
-          const timestamps = streamflowData.map(item => new Date(item.timestamp));
-          const flowValues = streamflowData.map(item => item.value);
-
-          drawChart(timestamps, flowValues);
-          document.getElementById("errorMessage").innerText = ""; // Clear error message
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-          document.getElementById("errorMessage").innerText = "Error loading chart. Please try again later.";
-        });
+    function generateRandomData() {
+      let x = [];
+      let y = [];
+      for (let i = 0; i < 10; i++) {
+        x.push(i);
+        y.push(Math.random() * 10); // Random values between 0 and 10
+      }
+      return { x, y };
     }
 
-    function drawChart(timestamps, flowValues) {
-      const ctx = document.getElementById('streamflowChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: timestamps,
-          datasets: [{
-            label: 'Streamflow Forecast (Short Range)',
-            data: flowValues,
-            borderColor: 'blue',
-            borderWidth: 1,
-            fill: false
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            x: {
-              type: 'time',
-              time: {
-                unit: 'hour'
-              },
-              title: {
-                display: true,
-                text: 'Time'
-              }
-            },
-            y: {
-              title: {
-                display: true,
-                text: 'Streamflow'
-              }
-            }
-          }
-        }
+    function updateChart() {
+      let data = generateRandomData();
+      Plotly.newPlot('chart', [{
+        x: data.x,
+        y: data.y,
+        mode: 'lines+markers',
+        type: 'scatter',
+        line: { color: 'blue' }
+      }], {
+        title: 'Random Data Line Chart',
+        xaxis: { title: 'X Axis' },
+        yaxis: { title: 'Y Axis' }
       });
     }
+
+    // Initial chart render
+    updateChart();
   </script>
 </body>
 </html>
