@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Plotly Chart</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> </head>
+<body>
+    <h1>
+    Example Plotly Scatter Plot
+    </h1>
+    <h2>
+    CCE 514, Dr. Dan Ames
+    </h2>
+    <div id="myPlot" style="width:100%;max-width:700px"></div>
+    <script>
+        // Generate random data
+        var xArray = [1,2,3,4,5,6,7,8,9,10];
+        var yArray = [12,234,23,4,23,66,45,88,34,56];
+        for (var i = 0; i < 20; i++) {
+            xArray.push(Math.random() * 100); // Random x values between 0 and 100
+            yArray.push(Math.random() * 50);  // Random y values between 0 and 50
+        }
+
+        // Define the data
+        var data = [{
+            x: xArray,
+            y: yArray,
+            mode: "markers"
+        }];
+
+        // Define the layout
+        var layout = {
+            xaxis: {title: "X-axis"},
+            yaxis: {title: "Y-axis"},
+            title: "Scatter Plot with Random Data"
+        };
+
+        // Render the plot
+        Plotly.newPlot("myPlot", data, layout);
+    </script>
+</body>
+</html>
