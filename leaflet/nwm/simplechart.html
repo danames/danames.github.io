@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Chart.js Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="myChart"></canvas>
+
+  <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar', // Change to 'line', 'pie', etc. as needed
+      data: {
+        labels: ['A', 'B', 'C', 'D'], // X-axis labels
+        datasets: [{
+          label: 'My Data',
+          data:, // Y-axis values
+          backgroundColor: 'rgba(54, 162, 235, 0.2)', // Bar color
+          borderColor: 'rgba(54, 162, 235, 1)', // Bar border color
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true // Start the Y-axis at zero
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
