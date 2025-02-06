@@ -1,0 +1,65 @@
+/* index.css */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Light background */
+    color: #333; /* Dark text color for contrast */
+    line-height: 1.6; /* Improved readability */
+}
+
+header {
+    background-color: #007bff; /* Blue header */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+
+main {
+    padding: 20px;
+    margin: 20px auto; /* Center the main content */
+    max-width: 800px; /* Set a maximum width */
+    background-color: white; /* White content area */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 5px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    margin-bottom: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #007bff; /* Blue links */
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+nav a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+nav ul ul {
+    padding-left: 20px; /* Indent nested lists */
+    list-style-type: disc; /* Use bullet points for nested lists */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed; /* Fixed footer at the bottom */
+    bottom: 0;
+    width: 100%;
+}
