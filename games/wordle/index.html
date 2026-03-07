@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordle</title>
+  <style>
+    :root {
+      --bg: #0f0f12;
+      --surface: #1a1a1f;
+      --tile-default: #2d2d35;
+      --tile-absent: #3d3d47;
+      --tile-present: #b59f3b;
+      --tile-correct: #538d4e;
+      --text: #e8e6e3;
+      --text-muted: #787878;
+      --border: #3d3d47;
+      --key-bg: #818384;
+      --key-text: #e8e6e3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'SF Mono', 'Consolas', 'Monaco', 'Liberation Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(83, 141, 78, 0.15), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(181, 159, 59, 0.08), transparent);
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--text);
+    }
+
+    .game-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      margin-top: 1.5rem;
+    }
+
+    .board {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 2rem;
+    }
+
+    .row {
+      display: flex;
+      gap: 0.35rem;
+      justify-content: center;
+    }
+
+    .tile {
+      width: 62px;
+      height: 62px;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      background: var(--tile-default);
+      transition: transform 0.1s, border-color 0.2s, background 0.3s;
+    }
+
+    .tile.filled {
+      border-color: var(--text-muted);
+      animation: pop 0.15s ease;
+    }
+
+    .tile.correct {
+      background: var(--tile-correct);
+      border-color: var(--tile-correct);
+      color: white;
+    }
+
+    .tile.present {
+      background: var(--tile-present);
+      border-color: var(--tile-present);
+      color: white;
+    }
+
+    .tile.absent {
+      background: var(--tile-absent);
+      border-color: var(--tile-absent);
+      color: var(--text-muted);
+    }
+
+    .tile.reveal {
+      animation: flip 0.5s ease forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes flip {
+      0% { transform: rotateX(0); }
+      50% { transform: rotateX(-90deg); }
+      100% { transform: rotateX(0); }
+    }
+
+    .keyboard {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .keyboard-row {
+      display: flex;
+      gap: 0.35rem;
+      justify-content: center;
+    }
+
+    .key {
+      height: 58px;
+      min-width: 43px;
+      padding: 0 0.75rem;
+      border: none;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      background: var(--key-bg);
+      color: var(--key-text);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .key:hover {
+      background: #6b6b6f;
+    }
+
+    .key:active {
+      transform: scale(0.96);
+    }
+
+    .key.wide {
+      min-width: 65px;
+      font-size: 0.75rem;
+    }
+
+    .key.correct {
+      background: var(--tile-correct);
+      color: white;
+    }
+
+    .key.present {
+      background: var(--tile-present);
+      color: white;
+    }
+
+    .key.absent {
+      background: var(--tile-absent);
+      color: var(--text-muted);
+    }
+
+    .message {
+      min-height: 2rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .message.error {
+      color: #e74c3c;
+    }
+
+    .message.success {
+      color: var(--tile-correct);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .modal-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 400px;
+      text-align: center;
+      transform: scale(0.9);
+      transition: transform 0.3s;
+    }
+
+    .modal-overlay.visible .modal {
+      transform: scale(1);
+    }
+
+    .modal h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal .target-word {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      margin: 1rem 0;
+      color: var(--tile-correct);
+    }
+
+    .modal p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .share-btn {
+      background: var(--tile-correct);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .share-btn:hover {
+      background: #4a7d45;
+    }
+
+    .share-btn:active {
+      transform: scale(0.98);
+    }
+
+    .new-game-btn {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .new-game-btn:hover {
+      border-color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .confetti {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    @media (max-width: 480px) {
+      .tile {
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
+      }
+
+      .key {
+        min-width: 28px;
+        height: 50px;
+        font-size: 0.75rem;
+      }
+
+      .key.wide {
+        min-width: 45px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WORDLE</h1>
+  </header>
+
+  <main class="game-container">
+    <div class="message" id="message"></div>
+
+    <div class="board" id="board"></div>
+
+    <div class="keyboard" id="keyboard"></div>
+  </main>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2 id="modalTitle">Congratulations!</h2>
+      <div class="target-word" id="modalWord"></div>
+      <p id="modalMessage"></p>
+      <button class="share-btn" id="shareBtn">Share Result</button>
+      <br>
+      <button class="new-game-btn" id="newGameBtn">Play Again</button>
+    </div>
+  </div>
+
+  <script src="wordle.js"></script>
+  <script>
+    (function () {
+      const KEYBOARD_LAYOUT = [
+        ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+        ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+        ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Backspace'],
+      ];
+
+      const board = document.getElementById('board');
+      const keyboard = document.getElementById('keyboard');
+      const messageEl = document.getElementById('message');
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalWord = document.getElementById('modalWord');
+      const modalMessage = document.getElementById('modalMessage');
+      const shareBtn = document.getElementById('shareBtn');
+      const newGameBtn = document.getElementById('newGameBtn');
+
+      function setMessage(text, type = '') {
+        messageEl.textContent = text;
+        messageEl.className = 'message' + (type ? ' ' + type : '');
+      }
+
+      function createBoard() {
+        board.innerHTML = '';
+        for (let row = 0; row < 6; row++) {
+          const rowEl = document.createElement('div');
+          rowEl.className = 'row';
+          for (let col = 0; col < 5; col++) {
+            const tile = document.createElement('div');
+            tile.className = 'tile';
+            tile.dataset.row = row;
+            tile.dataset.col = col;
+            rowEl.appendChild(tile);
+          }
+          board.appendChild(rowEl);
+        }
+      }
+
+      function createKeyboard() {
+        keyboard.innerHTML = '';
+        KEYBOARD_LAYOUT.forEach((row) => {
+          const rowEl = document.createElement('div');
+          rowEl.className = 'keyboard-row';
+          row.forEach((key) => {
+            const btn = document.createElement('button');
+            btn.className = 'key' + (key.length > 1 ? ' wide' : '');
+            btn.textContent = key;
+            btn.dataset.key = key;
+            btn.addEventListener('click', () => handleKey(key));
+            rowEl.appendChild(btn);
+          });
+          keyboard.appendChild(rowEl);
+        });
+      }
+
+      function renderBoard() {
+        const state = WordleGame.getState();
+        const tiles = board.querySelectorAll('.tile');
+
+        tiles.forEach((tile, i) => {
+          const row = Math.floor(i / 5);
+          const col = i % 5;
+          tile.textContent = '';
+          tile.className = 'tile';
+
+          if (row < state.guesses.length) {
+            const guess = state.guesses[row];
+            tile.textContent = guess.word[col];
+            tile.classList.add(guess.evaluation[col], 'filled', 'reveal');
+          } else if (row === state.guesses.length && state.currentGuess) {
+            tile.textContent = state.currentGuess[col] || '';
+            if (state.currentGuess[col]) tile.classList.add('filled');
+          }
+        });
+      }
+
+      function updateKeyboard() {
+        const kbState = WordleGame.getKeyboardState();
+        keyboard.querySelectorAll('.key').forEach((key) => {
+          const letter = key.dataset.key;
+          if (letter.length === 1 && kbState[letter]) {
+            key.className = 'key' + (key.classList.contains('wide') ? ' wide' : '') + ' ' + kbState[letter];
+          }
+        });
+      }
+
+      function showModal(won) {
+        const targetWord = WordleGame.getTargetWord();
+        modalTitle.textContent = won ? 'Congratulations!' : 'Game Over';
+        modalWord.textContent = targetWord?.toUpperCase() || '';
+        const state = WordleGame.getState();
+        modalMessage.textContent = won
+          ? `You got it in ${state.guesses.length} ${state.guesses.length === 1 ? 'guess' : 'guesses'}!`
+          : `The word was ${targetWord?.toUpperCase()}. Better luck next time!`;
+        modalOverlay.classList.add('visible');
+      }
+
+      function createConfetti() {
+        const colors = ['#538d4e', '#b59f3b', '#e8e6e3'];
+        for (let i = 0; i < 80; i++) {
+          const confetti = document.createElement('div');
+          confetti.style.cssText = `
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            left: ${Math.random() * 100}vw;
+            top: -20px;
+            opacity: 1;
+            border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+            animation: confetti-fall ${2 + Math.random() * 2}s linear forwards;
+            pointer-events: none;
+            z-index: 99;
+          `;
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 4000);
+        }
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes confetti-fall {
+            to {
+              transform: translateY(100vh) rotate(720deg);
+              opacity: 0;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      function getShareText() {
+        const state = WordleGame.getState();
+        const lines = state.guesses.map((g) =>
+          g.evaluation
+            .map((e) => (e === 'correct' ? '🟩' : e === 'present' ? '🟨' : '⬛'))
+            .join('')
+        );
+        return `Wordle ${state.guesses.length}/6\n\n${lines.join('\n')}`;
+      }
+
+      function handleKey(key) {
+        if (WordleGame.getState().gameOver) return;
+
+        if (key === 'Enter') {
+          const result = WordleGame.submitGuess();
+          if (!result.valid) {
+            setMessage(result.error || 'Not enough letters', 'error');
+            setTimeout(() => setMessage(''), 2000);
+            return;
+          }
+          setMessage('');
+          renderBoard();
+          updateKeyboard();
+          if (result.won) {
+            createConfetti();
+            setTimeout(() => showModal(true), 800);
+          } else if (result.lost) {
+            setTimeout(() => showModal(false), 800);
+          }
+        } else if (key === 'Backspace') {
+          WordleGame.removeLetter();
+          setMessage('');
+        } else if (key.length === 1) {
+          WordleGame.addLetter(key);
+          setMessage('');
+        }
+        renderBoard();
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (modalOverlay.classList.contains('visible')) return;
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleKey('Enter');
+        } else if (e.key === 'Backspace') {
+          e.preventDefault();
+          handleKey('Backspace');
+        } else if (/^[a-zA-Z]$/.test(e.key)) {
+          e.preventDefault();
+          handleKey(e.key.toUpperCase());
+        }
+      });
+
+      shareBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(getShareText()).then(() => {
+          shareBtn.textContent = 'Copied!';
+          setTimeout(() => (shareBtn.textContent = 'Share Result'), 2000);
+        });
+      });
+
+      newGameBtn.addEventListener('click', () => {
+        modalOverlay.classList.remove('visible');
+        startGame();
+      });
+
+      function startGame() {
+        WordleGame.newGame();
+        createBoard();
+        renderBoard();
+        keyboard.querySelectorAll('.key').forEach((k) => {
+          k.className = 'key' + (k.classList.contains('wide') ? ' wide' : '');
+        });
+        setMessage('');
+      }
+
+      fetch('words.json')
+        .then((r) => r.json())
+        .then((data) => {
+          WordleGame.init(data);
+          startGame();
+        })
+        .catch((err) => {
+          setMessage('Failed to load word list. Make sure words.json exists.', 'error');
+          console.error(err);
+        });
+    })();
+  </script>
+</body>
+</html>
