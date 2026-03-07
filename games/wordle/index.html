@@ -620,6 +620,7 @@
       function startGame() {
         WordleGame.newGame();
         createBoard();
+        createKeyboard();
         renderBoard();
         keyboard.querySelectorAll('.key').forEach((k) => {
           k.className = 'key' + (k.classList.contains('wide') ? ' wide' : '');
