@@ -132,7 +132,7 @@ const SudokuTiles = (function () {
     },
 
     canEdit(row, col) {
-      return !isGiven(row, col) && !isLocked(row, col);
+      return !isGiven(row, col) && !this.isLocked(row, col);
     },
 
     placeTile(row, col, value) {
