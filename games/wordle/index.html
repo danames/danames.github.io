@@ -344,6 +344,40 @@
       opacity: 0.9;
     }
 
+    /* Hidden input to trigger mobile keyboard - must stay in DOM for focus */
+    .mobile-input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      font-size: 16px; /* Prevents iOS zoom on focus */
+      caret-color: transparent;
+      pointer-events: none;
+    }
+
+    .game-container {
+      position: relative;
+    }
+
+    .game-container.touch-mode {
+      cursor: pointer;
+    }
+
+    .tap-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .tap-hint {
+        display: block;
+      }
+    }
+
     @media (max-width: 480px) {
       .row {
         gap: 0.25rem;
@@ -392,7 +426,9 @@
     <h1>WORDLE</h1>
   </header>
 
-  <main class="game-container">
+  <main class="game-container" id="gameContainer">
+    <input type="text" class="mobile-input" id="mobileInput" inputmode="text" autocomplete="off" autocapitalize="characters" maxlength="5" aria-label="Word guess input">
+    <p class="tap-hint" id="tapHint">Tap here to use your keyboard</p>
     <div class="message" id="message"></div>
 
     <div class="board" id="board"></div>
@@ -433,6 +469,8 @@
       const board = document.getElementById('board');
       const keyboard = document.getElementById('keyboard');
       const messageEl = document.getElementById('message');
+      const gameContainer = document.getElementById('gameContainer');
+      const mobileInput = document.getElementById('mobileInput');
       const modalOverlay = document.getElementById('modalOverlay');
       const modalTitle = document.getElementById('modalTitle');
       const modalWord = document.getElementById('modalWord');
@@ -628,6 +666,52 @@
       }
 
       document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+
+      // Tap anywhere on game to open mobile keyboard
+      function focusMobileInput() {
+        if (modalOverlay.classList.contains('visible')) return;
+        if (WordleGame.getState().gameOver) return;
+        mobileInput.focus();
+      }
+
+      gameContainer.addEventListener('click', focusMobileInput);
+      gameContainer.addEventListener('touchstart', function (e) {
+        if (e.target.closest('.key') || e.target.closest('button')) return;
+        focusMobileInput();
+      }, { passive: true });
+
+      mobileInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleKey('Enter');
+          return;
+        }
+        if (e.key === 'Backspace') {
+          e.preventDefault();
+          handleKey('Backspace');
+          mobileInput.value = '';
+          return;
+        }
+        if (/^[a-zA-Z]$/.test(e.key)) {
+          e.preventDefault();
+          handleKey(e.key.toUpperCase());
+          mobileInput.value = '';
+        }
+      });
+
+      mobileInput.addEventListener('input', function () {
+        const val = mobileInput.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+        if (val.length > 0) {
+          for (let i = 0; i < val.length && i < 5; i++) {
+            handleKey(val[i]);
+          }
+          mobileInput.value = '';
+        }
+      });
+
+      mobileInput.addEventListener('blur', function () {
+        mobileInput.value = '';
+      });
 
       fetch('words.json')
         .then((r) => r.json())
