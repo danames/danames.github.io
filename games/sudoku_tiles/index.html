@@ -92,18 +92,25 @@
       position: relative;
     }
 
-    .tile.locked::after {
+    .tile.given::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 25%;
-      height: 25%;
-      min-width: 4px;
-      min-height: 4px;
-      background: #000;
+      width: 20%;
+      height: 20%;
+      min-width: 3px;
+      min-height: 3px;
+      background: #787878;
       border-radius: 50%;
+    }
+
+    .key-btn.locked {
+      opacity: 0.35;
+      filter: grayscale(0.6);
+      cursor: default;
+      pointer-events: none;
     }
 
     .keyboard {
@@ -243,7 +250,7 @@
 
   <footer class="footer">
     <p class="footer-instructions">
-      Tap a color or X to select, then tap a cell to place or delete. When all 9 tiles of a color are correct, they lock (black dot).
+      Tap a color or X to select, then tap a cell to place or delete. Starting tiles have a gray dot. When all 9 tiles of a color are correct, that color grays out in the keyboard.
     </p>
     <p><a href="../../justforfun.html">Return to Dan Ames Just for Fun Page</a></p>
     <p class="footer-legal">
@@ -272,7 +279,6 @@
       function renderBoard() {
         board.innerHTML = '';
         const grid = SudokuTiles.getGrid();
-        const locked = SudokuTiles.getLockedColors();
 
         for (let r = 0; r < 9; r++) {
           for (let c = 0; c < 9; c++) {
@@ -286,7 +292,7 @@
               const tile = document.createElement('div');
               tile.className = 'tile';
               tile.style.backgroundColor = SudokuTiles.getColor(val);
-              if (locked.has(val)) tile.classList.add('locked');
+              if (SudokuTiles.isGiven(r, c)) tile.classList.add('given');
               cell.appendChild(tile);
             }
 
@@ -314,14 +320,18 @@
         deleteBtn.addEventListener('click', (e) => { e.preventDefault(); selectTool('delete'); });
         keyboard.appendChild(deleteBtn);
 
+        const locked = SudokuTiles.getLockedColors();
         const colors = SudokuTiles.getColors();
         colors.forEach((color, i) => {
           const btn = document.createElement('button');
           btn.type = 'button';
-          btn.className = 'key-btn' + (selectedTool === i + 1 ? ' selected' : '');
+          const value = i + 1;
+          btn.className = 'key-btn' + (selectedTool === value ? ' selected' : '') + (locked.has(value) ? ' locked' : '');
           btn.style.backgroundColor = color;
-          btn.dataset.tool = i + 1;
-          btn.addEventListener('click', (e) => { e.preventDefault(); selectTool(i + 1); });
+          btn.dataset.tool = value;
+          if (!locked.has(value)) {
+            btn.addEventListener('click', (e) => { e.preventDefault(); selectTool(value); });
+          }
           keyboard.appendChild(btn);
         });
       }
@@ -341,6 +351,7 @@
           SudokuTiles.placeTile(row, col, selectedTool);
         }
         renderBoard();
+        renderKeyboard();
 
         if (SudokuTiles.isComplete()) {
           winOverlay.classList.add('visible');
