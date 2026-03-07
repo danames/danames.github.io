@@ -6,34 +6,47 @@
   <title>Sudoku Tiles</title>
   <style>
     :root {
-      --bg: #0a0a0a;
-      --cell-border: #444;
-      --quadrant-border: #fff;
-      --keyboard-bg: #222;
+      --bg: #0f0f12;
+      --surface: #1a1a1f;
+      --text: #e8e6e3;
+      --text-muted: #787878;
+      --border: #3d3d47;
+      --cell-border: #3d3d47;
+      --quadrant-border: #e8e6e3;
+      --keyboard-bg: #1a1a1f;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: 'SF Mono', 'Consolas', 'Monaco', 'Liberation Mono', monospace;
       background: var(--bg);
-      color: #fff;
+      color: var(--text);
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 1rem;
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
     }
 
     header {
       text-align: center;
-      padding: 0.5rem 0;
-      margin-bottom: 0.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+      max-width: 500px;
     }
 
     h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--text);
     }
 
     .game-container {
@@ -140,18 +153,33 @@
     }
 
     .footer {
-      margin-top: 1.5rem;
+      width: 100%;
+      max-width: 500px;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
       font-size: 0.8rem;
-      color: #888;
+      color: var(--text-muted);
       text-align: center;
+      line-height: 1.6;
     }
 
     .footer a {
-      color: #27ae60;
+      color: #538d4e;
       text-decoration: none;
     }
 
     .footer a:hover { text-decoration: underline; }
+
+    .footer-instructions {
+      margin-bottom: 1rem;
+    }
+
+    .footer-legal {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
 
     .win-overlay {
       position: fixed;
@@ -214,8 +242,13 @@
   </main>
 
   <footer class="footer">
-    <p>Tap a color or X to select, then tap a cell to place or delete. When all 9 tiles of a color are correct, they lock (black dot).</p>
+    <p class="footer-instructions">
+      Tap a color or X to select, then tap a cell to place or delete. When all 9 tiles of a color are correct, they lock (black dot).
+    </p>
     <p><a href="../../justforfun.html">Return to Dan Ames Just for Fun Page</a></p>
+    <p class="footer-legal">
+      Copyright &copy; <span id="copyrightYear"></span> Dan Ames. The color tiles concept is an original idea of Dan Ames. Based on the standard Sudoku game concept.
+    </p>
   </footer>
 
   <div class="win-overlay" id="winOverlay">
@@ -257,29 +290,38 @@
               cell.appendChild(tile);
             }
 
-            cell.addEventListener('click', () => handleCellClick(r, c));
             board.appendChild(cell);
           }
         }
       }
 
+      board.addEventListener('click', (e) => {
+        const cell = e.target.closest('.cell');
+        if (!cell) return;
+        const row = parseInt(cell.dataset.row, 10);
+        const col = parseInt(cell.dataset.col, 10);
+        handleCellClick(row, col);
+      });
+
       function renderKeyboard() {
         keyboard.innerHTML = '';
 
         const deleteBtn = document.createElement('button');
+        deleteBtn.type = 'button';
         deleteBtn.className = 'key-btn delete' + (selectedTool === 'delete' ? ' selected' : '');
         deleteBtn.textContent = 'X';
         deleteBtn.dataset.tool = 'delete';
-        deleteBtn.addEventListener('click', () => selectTool('delete'));
+        deleteBtn.addEventListener('click', (e) => { e.preventDefault(); selectTool('delete'); });
         keyboard.appendChild(deleteBtn);
 
         const colors = SudokuTiles.getColors();
         colors.forEach((color, i) => {
           const btn = document.createElement('button');
+          btn.type = 'button';
           btn.className = 'key-btn' + (selectedTool === i + 1 ? ' selected' : '');
           btn.style.backgroundColor = color;
           btn.dataset.tool = i + 1;
-          btn.addEventListener('click', () => selectTool(i + 1));
+          btn.addEventListener('click', (e) => { e.preventDefault(); selectTool(i + 1); });
           keyboard.appendChild(btn);
         });
       }
@@ -314,6 +356,9 @@
       }
 
       playAgainBtn.addEventListener('click', startGame);
+
+      document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+
       startGame();
     })();
   </script>
