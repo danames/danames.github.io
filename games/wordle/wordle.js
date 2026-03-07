@@ -17,6 +17,13 @@ const WordleGame = (function () {
   const WORD_LENGTH = 5;
   const MAX_GUESSES = 6;
 
+  // Words to exclude from being chosen as answers (swear words, slang, etc.)
+  const ANSWER_BLOCKLIST = new Set([
+    'booby', 'lusty', 'sissy', 'sluts', 'whore', 'bitch', 'dicks', 'cocks',
+    'pussy', 'cunts', 'fucks', 'shits', 'asses', 'damns', 'hells', 'craps',
+    'fags', 'retard', 'nigga', 'nigger', 'titty', 'twats', 'boner', 'horny',
+  ]);
+
   /**
    * Evaluates a guess against the target word.
    * Returns array of: 'correct' | 'present' | 'absent'
@@ -68,7 +75,10 @@ const WordleGame = (function () {
       if (!lists || !lists.answers?.length || !lists.guesses?.length) {
         throw new Error('Invalid word lists: need both answers and guesses arrays');
       }
-      wordLists = lists;
+      wordLists = {
+        answers: lists.answers.filter((w) => !ANSWER_BLOCKLIST.has(w.toLowerCase())),
+        guesses: lists.guesses,
+      };
     },
 
     /**

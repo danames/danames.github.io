@@ -196,6 +196,7 @@
     .key.absent {
       background: var(--tile-absent);
       color: var(--text-muted);
+      opacity: 0.5;
     }
 
     .message {
@@ -503,8 +504,10 @@
         const kbState = WordleGame.getKeyboardState();
         keyboard.querySelectorAll('.key').forEach((key) => {
           const letter = key.dataset.key;
-          if (letter.length === 1 && kbState[letter]) {
-            key.className = 'key' + (key.classList.contains('wide') ? ' wide' : '') + ' ' + kbState[letter];
+          if (letter.length === 1) {
+            const state = kbState[letter.toLowerCase()];
+            const baseClass = 'key' + (key.classList.contains('wide') ? ' wide' : '');
+            key.className = state ? baseClass + ' ' + state : baseClass;
           }
         });
       }
