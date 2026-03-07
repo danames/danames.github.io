@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Tiles</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --cell-border: #444;
+      --quadrant-border: #fff;
+      --keyboard-bg: #222;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 0.5rem 0;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: min(450px, 95vw);
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: repeat(9, 1fr);
+      aspect-ratio: 1;
+      width: 100%;
+      max-width: min(400px, 90vw);
+      background: var(--bg);
+      border: 2px solid var(--quadrant-border);
+    }
+
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--cell-border);
+      cursor: pointer;
+      min-height: 0;
+    }
+
+    .cell:nth-child(3n) { border-right-width: 2px; border-right-color: var(--quadrant-border); }
+    .cell:nth-child(6n) { border-right-width: 2px; border-right-color: var(--quadrant-border); }
+    .cell:nth-child(9n) { border-right-width: 2px; border-right-color: var(--quadrant-border); }
+
+    .cell:nth-child(n+19):nth-child(-n+27),
+    .cell:nth-child(n+46):nth-child(-n+54),
+    .cell:nth-child(n+73):nth-child(-n+81) { border-bottom-width: 2px; border-bottom-color: var(--quadrant-border); }
+
+    .tile {
+      width: 85%;
+      height: 85%;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .tile.locked::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 25%;
+      height: 25%;
+      min-width: 4px;
+      min-height: 4px;
+      background: #000;
+      border-radius: 50%;
+    }
+
+    .keyboard {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      margin-top: 1rem;
+      background: var(--keyboard-bg);
+      border-radius: 8px;
+      width: 100%;
+      max-width: min(450px, 95vw);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .key-btn {
+      width: 36px;
+      height: 36px;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, transform 0.1s;
+      flex-shrink: 0;
+      touch-action: manipulation;
+    }
+
+    .key-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .key-btn.selected {
+      border-color: #e74c3c;
+      box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.3);
+    }
+
+    .key-btn.delete {
+      background: #fff;
+      color: #333;
+      font-size: 1.2rem;
+      font-weight: bold;
+      width: 40px;
+      height: 36px;
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #888;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #27ae60;
+      text-decoration: none;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+
+    .win-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+    }
+
+    .win-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .win-modal {
+      background: #1a1a1a;
+      border: 2px solid #27ae60;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .win-modal h2 { margin-bottom: 1rem; color: #27ae60; }
+    .win-modal button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 430px) {
+      .key-btn {
+        width: 32px;
+        height: 32px;
+      }
+      .key-btn.delete {
+        width: 36px;
+        height: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sudoku Tiles</h1>
+  </header>
+
+  <main class="game-container">
+    <div class="board" id="board"></div>
+    <div class="keyboard" id="keyboard"></div>
+  </main>
+
+  <footer class="footer">
+    <p>Tap a color or X to select, then tap a cell to place or delete. When all 9 tiles of a color are correct, they lock (black dot).</p>
+    <p><a href="../../justforfun.html">Return to Dan Ames Just for Fun Page</a></p>
+  </footer>
+
+  <div class="win-overlay" id="winOverlay">
+    <div class="win-modal">
+      <h2>Congratulations!</h2>
+      <p>You've completed the puzzle!</p>
+      <button id="playAgainBtn">Play Again</button>
+    </div>
+  </div>
+
+  <script src="sudoku_tiles.js"></script>
+  <script>
+    (function () {
+      const board = document.getElementById('board');
+      const keyboard = document.getElementById('keyboard');
+      const winOverlay = document.getElementById('winOverlay');
+      const playAgainBtn = document.getElementById('playAgainBtn');
+
+      let selectedTool = null; // 'delete' or 1-9
+
+      function renderBoard() {
+        board.innerHTML = '';
+        const grid = SudokuTiles.getGrid();
+        const locked = SudokuTiles.getLockedColors();
+
+        for (let r = 0; r < 9; r++) {
+          for (let c = 0; c < 9; c++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            cell.dataset.row = r;
+            cell.dataset.col = c;
+
+            const val = grid[r][c];
+            if (val !== 0) {
+              const tile = document.createElement('div');
+              tile.className = 'tile';
+              tile.style.backgroundColor = SudokuTiles.getColor(val);
+              if (locked.has(val)) tile.classList.add('locked');
+              cell.appendChild(tile);
+            }
+
+            cell.addEventListener('click', () => handleCellClick(r, c));
+            board.appendChild(cell);
+          }
+        }
+      }
+
+      function renderKeyboard() {
+        keyboard.innerHTML = '';
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'key-btn delete' + (selectedTool === 'delete' ? ' selected' : '');
+        deleteBtn.textContent = 'X';
+        deleteBtn.dataset.tool = 'delete';
+        deleteBtn.addEventListener('click', () => selectTool('delete'));
+        keyboard.appendChild(deleteBtn);
+
+        const colors = SudokuTiles.getColors();
+        colors.forEach((color, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'key-btn' + (selectedTool === i + 1 ? ' selected' : '');
+          btn.style.backgroundColor = color;
+          btn.dataset.tool = i + 1;
+          btn.addEventListener('click', () => selectTool(i + 1));
+          keyboard.appendChild(btn);
+        });
+      }
+
+      function selectTool(tool) {
+        selectedTool = tool;
+        renderKeyboard();
+      }
+
+      function handleCellClick(row, col) {
+        if (SudokuTiles.isGiven(row, col)) return;
+        if (SudokuTiles.isLocked(row, col)) return;
+
+        if (selectedTool === 'delete') {
+          SudokuTiles.removeTile(row, col);
+        } else if (selectedTool >= 1 && selectedTool <= 9) {
+          SudokuTiles.placeTile(row, col, selectedTool);
+        }
+        renderBoard();
+
+        if (SudokuTiles.isComplete()) {
+          winOverlay.classList.add('visible');
+        }
+      }
+
+      function startGame() {
+        SudokuTiles.init();
+        selectedTool = null;
+        renderBoard();
+        renderKeyboard();
+        winOverlay.classList.remove('visible');
+      }
+
+      playAgainBtn.addEventListener('click', startGame);
+      startGame();
+    })();
+  </script>
+</body>
+</html>
