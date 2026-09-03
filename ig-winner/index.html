@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BYU Football Tickets Instagram Giveaway | Pioneer Party</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Background Image & Gradient Scrim -->
+  <div class="bg-layer" id="bgLayer"></div>
+  <div class="overlay-scrim"></div>
+
+  <!-- Fireworks / Confetti Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Main App Layout -->
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand-section">
+        <img src="assets/pioneer-party-logo.png" alt="Pioneer Party Gift & Copy" class="pp-logo" />
+        <div class="title-wrap">
+          <h1>
+            <span class="byu-tag">BYU Football Tickets</span>
+            Instagram Giveaway
+          </h1>
+        </div>
+      </div>
+      <div class="header-controls">
+        <button id="btnSound" class="btn-icon" title="Toggle Music & Sound Effects">
+          <span id="soundIcon">🔊</span> Music & Sound
+        </button>
+        <button id="btnManage" class="btn-icon" title="View or edit handles">
+          ⚙️ Handles (<span id="handlesCountBadge">0</span>)
+        </button>
+        <button id="btnFullscreen" class="btn-icon" title="Toggle Fullscreen">
+          ⛶ Fullscreen
+        </button>
+      </div>
+    </header>
+
+    <!-- Cyclone Stage -->
+    <main class="stage" id="stage">
+      <!-- Status pill shown during cyclone -->
+      <div class="status-pill" id="statusPill">
+        <div class="spinner"></div>
+        <span id="statusText">Swirling participants...</span>
+      </div>
+
+      <!-- Handle Elements Container -->
+      <div class="cyclone-container" id="cycloneContainer"></div>
+
+      <!-- Center Action Card (Pre-start) -->
+      <div class="center-card" id="centerCard">
+        <div class="participants-stat">
+          <span>Total Qualified Entrants:</span>
+          <strong id="participantsCount">0</strong>
+        </div>
+        <button id="btnStart" class="btn-start">
+          <span>🏈</span> START GIVEAWAY
+        </button>
+      </div>
+
+      <!-- Winner & Runners-Up Announcement Card -->
+      <div class="winner-card" id="winnerCard">
+        <div class="trophy-badge">🏆</div>
+        <div class="winner-subtitle">Grand Prize Winner</div>
+        <div class="winner-handle" id="winnerHandle">@winner</div>
+
+        <div class="runners-up-box">
+          <div class="runners-up-title">Official Backup Winners (24-Hr Window)</div>
+          <div class="runner-row">
+            <div class="runner-label"><span>🥈</span> 1st Runner-Up</div>
+            <div class="runner-handle" id="runnerUp1">@runnerup1</div>
+          </div>
+          <div class="runner-row">
+            <div class="runner-label"><span>🥉</span> 2nd Runner-Up</div>
+            <div class="runner-handle" id="runnerUp2">@runnerup2</div>
+          </div>
+        </div>
+
+        <div class="winner-actions">
+          <button id="btnRedraw" class="btn-secondary">
+            🔄 Draw Again
+          </button>
+          <button id="btnCopy" class="btn-primary-action">
+            📋 Copy Results
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Disclaimer -->
+    <footer class="footer">
+      <p class="disclaimer">
+        This giveaway is not affiliated with BYU. Tickets will be transferred electronically to the winner. 
+        The winner has 24 hours to reply or the tickets will be offered to the next selected individual. 
+        See original Instagram post for full rules.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Manage Handles Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <h3>Manage Entrant Handles</h3>
+      <button id="btnCloseDrawer" class="btn-close">&times;</button>
+    </div>
+    <p style="font-size: 0.85rem; color: #A0AEC0; margin-bottom: 12px;">
+      One handle per line. The handles extracted from the video comments are loaded below.
+    </p>
+    <textarea id="handlesTextarea" class="handles-textarea" spellcheck="false"></textarea>
+    <div class="drawer-actions">
+      <button id="btnSaveHandles" class="btn-primary-action" style="flex: 1;">
+        Save & Update (<span id="drawerCount">0</span>)
+      </button>
+      <button id="btnResetHandles" class="btn-secondary">
+        Reset to Original
+      </button>
+    </div>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="data/handles.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/fireworks.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
