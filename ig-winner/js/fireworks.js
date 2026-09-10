@@ -10,6 +10,7 @@ class FireworksFX {
     this.flashAlpha = 0;
     this.resize();
     window.addEventListener('resize', () => this.resize());
+    window.addEventListener('orientationchange', () => setTimeout(() => this.resize(), 100));
   }
 
   resize() {

@@ -57,6 +57,9 @@
     btnResetHandles.addEventListener('click', resetHandlesToDefault);
     handlesTextarea.addEventListener('input', updateDrawerCount);
 
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
     await loadHandles();
 
     // Check for test mode query parameters
@@ -133,11 +136,34 @@
   }
 
   function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => {});
+    const doc = document;
+    const docEl = document.documentElement;
+    const isFs = doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement;
+
+    if (!isFs) {
+      if (docEl.requestFullscreen) {
+        docEl.requestFullscreen().catch(() => {});
+      } else if (docEl.webkitRequestFullscreen) {
+        docEl.webkitRequestFullscreen();
+      }
     } else {
-      document.exitFullscreen().catch(() => {});
+      if (doc.exitFullscreen) {
+        doc.exitFullscreen().catch(() => {});
+      } else if (doc.webkitExitFullscreen) {
+        doc.webkitExitFullscreen();
+      }
     }
+  }
+
+  function handleResize() {
+    if (!stage || cycloneParticles.length === 0) return;
+    const rect = stage.getBoundingClientRect();
+    cycloneParticles.forEach(p => {
+      if (p.phase === 'cyclone') {
+        p.orbitRadiusX = Math.min(p.orbitRadiusX, rect.width * 0.44);
+        p.orbitRadiusY = Math.min(p.orbitRadiusY, rect.height * 0.36);
+      }
+    });
   }
 
   function openDrawer() {
