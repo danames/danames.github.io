@@ -33,23 +33,17 @@ body {
   -webkit-touch-callout: none;
 }
 
-/* Background image & gradient overlay */
+/* Background gradient (clean deep BYU navy, eliminates busy duplicate background image) */
 .bg-layer {
   position: fixed;
   inset: 0;
-  background-image: url('../assets/emily-tickets.jpg');
-  background-size: cover;
-  background-position: center 30%;
-  background-repeat: no-repeat;
-  filter: brightness(0.68) saturate(1.2);
-  transform: scale(1.02);
-  transition: transform 12s ease-out, filter 1.5s ease;
+  background: radial-gradient(ellipse at 50% 38%, #0e2f5d 0%, #061833 55%, #020a17 100%);
   z-index: 1;
+  transition: background 1.5s ease;
 }
 
 .body-running .bg-layer {
-  filter: brightness(0.48) saturate(1.25) blur(3px);
-  transform: scale(1.08);
+  background: radial-gradient(ellipse at 50% 50%, #071933 0%, #030d1c 65%, #01060e 100%);
 }
 
 .overlay-scrim {
@@ -241,6 +235,11 @@ body {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(29, 62, 110, 0.4);
   max-width: 460px;
   width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -297,6 +296,9 @@ body {
   padding: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(29, 62, 110, 0.35);
   transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .post-preview-wrapper:hover {
@@ -304,16 +306,20 @@ body {
 }
 
 .giveaway-post-img {
-  max-height: 195px;
+  max-height: 175px;
   width: auto;
   max-width: 100%;
   border-radius: 8px;
   display: block;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .post-info-bar {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 3px;
   margin-top: 10px;
 }
