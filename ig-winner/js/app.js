@@ -188,7 +188,6 @@
     if (window.soundFX) {
       window.soundFX.init();
       window.soundFX.playCycloneMusic();
-      window.soundFX.playWhoosh();
     }
 
     document.body.classList.add('body-running');
@@ -196,12 +195,30 @@
     winnerCard.classList.remove('visible');
     fireworks.clear();
 
+    const dockedPostBadge = document.getElementById('dockedPostBadge');
+    if (dockedPostBadge) dockedPostBadge.classList.add('visible');
+
+    // Check for Emily's shortlisted finalists
+    const rawShortlist = (window.SHORTLISTED_FINALISTS && Array.isArray(window.SHORTLISTED_FINALISTS)) 
+      ? window.SHORTLISTED_FINALISTS 
+      : [];
+    const shortlistSet = new Set(rawShortlist.map(h => h.toLowerCase().trim().replace(/^@/, '')));
+    const hasShortlist = shortlistSet.size >= 3;
+
     // Shuffle
     activeHandles = [...allHandles].sort(() => Math.random() - 0.5);
 
-    // Large cloud of 450 simultaneous names
+    // Cloud of simultaneous names
     const maxVisual = Math.min(activeHandles.length, 450);
-    const visualPool = activeHandles.slice(0, maxVisual);
+    let visualPool = [];
+    if (hasShortlist) {
+      // Ensure all shortlisted handles are guaranteed to be in the visual pool
+      const shortlistedInActive = activeHandles.filter(h => shortlistSet.has(h.toLowerCase().trim().replace(/^@/, '')));
+      const others = activeHandles.filter(h => !shortlistSet.has(h.toLowerCase().trim().replace(/^@/, '')));
+      visualPool = [...shortlistedInActive, ...others.slice(0, Math.max(0, maxVisual - shortlistedInActive.length))];
+    } else {
+      visualPool = activeHandles.slice(0, maxVisual);
+    }
 
     cycloneContainer.innerHTML = '';
     cycloneParticles = [];
@@ -358,6 +375,12 @@
   function runEliminationSequence() {
     let pool = [...activeHandles];
 
+    const rawShortlist = (window.SHORTLISTED_FINALISTS && Array.isArray(window.SHORTLISTED_FINALISTS)) 
+      ? window.SHORTLISTED_FINALISTS 
+      : [];
+    const shortlistSet = new Set(rawShortlist.map(h => h.toLowerCase().trim().replace(/^@/, '')));
+    const hasShortlist = shortlistSet.size >= 3;
+
     function stepElimination() {
       if (pool.length <= 3) {
         runFinalThree(pool);
@@ -367,7 +390,16 @@
       let removeCount = 1;
       let delay = 80;
 
-      if (pool.length > 300) {
+      if (hasShortlist && pool.length <= shortlistSet.size) {
+        removeCount = 1;
+        if (pool.length > 10) {
+          delay = 450;
+        } else if (pool.length > 6) {
+          delay = 620;
+        } else {
+          delay = 850;
+        }
+      } else if (pool.length > 300) {
         removeCount = Math.floor(pool.length * 0.16);
         delay = 100;
       } else if (pool.length > 100) {
@@ -388,7 +420,25 @@
       }
 
       for (let k = 0; k < removeCount && pool.length > 3; k++) {
-        const removeIdx = Math.floor(Math.random() * pool.length);
+        let removeIdx = -1;
+        if (hasShortlist && pool.length > shortlistSet.size) {
+          // Identify indices of non-shortlisted handles to eliminate first
+          const nonShortlistIndices = [];
+          for (let i = 0; i < pool.length; i++) {
+            const clean = pool[i].toLowerCase().trim().replace(/^@/, '');
+            if (!shortlistSet.has(clean)) {
+              nonShortlistIndices.push(i);
+            }
+          }
+          if (nonShortlistIndices.length > 0) {
+            removeIdx = nonShortlistIndices[Math.floor(Math.random() * nonShortlistIndices.length)];
+          } else {
+            removeIdx = Math.floor(Math.random() * pool.length);
+          }
+        } else {
+          removeIdx = Math.floor(Math.random() * pool.length);
+        }
+
         const removedHandle = pool.splice(removeIdx, 1)[0];
 
         const particle = cycloneParticles.find(p => p.handle === removedHandle && p.phase !== 'eliminating');
@@ -400,11 +450,11 @@
         }
       }
 
-      if (window.soundFX && pool.length <= 15) {
-        window.soundFX.playTick(1.0 + (15 - pool.length) * 0.08);
+      if (hasShortlist && pool.length <= shortlistSet.size && pool.length > 3) {
+        statusText.textContent = `⭐ Top ${pool.length} Finalists in the Vortex! ⭐`;
+      } else {
+        statusText.textContent = `Eliminating... ${pool.length} contestants remaining`;
       }
-
-      statusText.textContent = `Eliminating... ${pool.length} contestants remaining`;
       setTimeout(stepElimination, delay);
     }
 
@@ -415,7 +465,6 @@
   function runFinalThree(finalists) {
     statusPill.classList.add('active');
     statusText.textContent = '⭐ THE FINAL 3 WINNERS ARE SWIRLING! ⭐';
-    if (window.soundFX) window.soundFX.playWhoosh();
 
     // The 3 finalists: 0 is Grand Winner, 1 is Runner Up 1, 2 is Runner Up 2
     finalists.forEach((handle, idx) => {
@@ -477,7 +526,6 @@
       const r2Idx = Math.floor(Math.random() * finalists.length);
       const r2Handle = finalists.splice(r2Idx, 1)[0];
       statusText.textContent = `🥉 2nd Runner-Up: @${r2Handle}!`;
-      if (window.soundFX) window.soundFX.playTick(1.5);
 
       // Fade 2nd runner up out of the swirl
       const p2 = cycloneParticles.find(p => p.handle === r2Handle);
@@ -489,7 +537,6 @@
         const r1Idx = Math.floor(Math.random() * finalists.length);
         const r1Handle = finalists.splice(r1Idx, 1)[0];
         statusText.textContent = `🥈 1st Runner-Up: @${r1Handle}!`;
-        if (window.soundFX) window.soundFX.playTick(1.8);
 
         // Fade 1st runner up out of the swirl
         const p1 = cycloneParticles.find(p => p.handle === r1Handle);
@@ -547,10 +594,9 @@
     winParticle.el.style.border = '2.5px solid #FFFFFF';
     winParticle.el.style.boxShadow = '0 0 60px rgba(255, 200, 55, 0.95), 0 0 100px rgba(255, 128, 8, 0.8)';
 
-    // Play Celebration Music & Fanfare
+    // Play Celebration Music
     if (window.soundFX) {
       window.soundFX.playCelebrationMusic();
-      window.soundFX.playFanfare();
     }
     fireworks.start();
 
@@ -571,6 +617,8 @@
     fireworks.clear();
     winnerCard.classList.remove('visible');
     statusPill.classList.remove('active');
+    const dockedPostBadge = document.getElementById('dockedPostBadge');
+    if (dockedPostBadge) dockedPostBadge.classList.remove('visible');
     cycloneContainer.innerHTML = '';
     cycloneParticles = [];
     document.body.classList.remove('body-running');

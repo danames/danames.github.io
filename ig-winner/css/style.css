@@ -226,10 +226,10 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
-  padding: 34px 44px;
-  border-radius: 28px;
+  padding: 24px 32px 28px;
+  border-radius: 26px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(29, 62, 110, 0.4);
-  max-width: 520px;
+  max-width: 460px;
   width: 90%;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -241,10 +241,146 @@ body {
   display: none !important;
 }
 
-.participants-stat {
-  font-size: 1.15rem;
+/* Featured Post Preview in Center Card */
+.featured-post-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.post-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(29, 62, 110, 0.65);
+  border: 1px solid rgba(255, 200, 55, 0.4);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 12px;
+}
+
+.pulse-indicator {
+  width: 7px;
+  height: 7px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-gold);
+  animation: pulseDot 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+.post-preview-wrapper {
+  position: relative;
+  background: rgba(4, 11, 22, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(29, 62, 110, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.post-preview-wrapper:hover {
+  transform: translateY(-2px);
+}
+
+.giveaway-post-img {
+  max-height: 195px;
+  width: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.post-info-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 10px;
+}
+
+.post-headline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.2px;
+}
+
+.post-subtext {
+  font-size: 0.82rem;
   color: var(--text-dim);
-  margin-bottom: 20px;
+}
+
+/* Docked Post Reference Badge (Shown during cyclone & reveal) */
+.docked-post-badge {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(7, 19, 34, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 200, 55, 0.4);
+  border-radius: 12px;
+  padding: 6px 12px 6px 7px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.docked-post-badge.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.docked-post-thumb {
+  width: 36px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.docked-post-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.docked-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.docked-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.participants-stat {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  margin-bottom: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -253,7 +389,7 @@ body {
 
 .participants-stat strong {
   color: var(--accent-gold);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 .btn-start {
