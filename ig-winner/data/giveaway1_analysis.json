@@ -1,0 +1,1501 @@
+{
+  "giveaway": "Week 1 Football Tickets Giveaway",
+  "video_source": "Screen Recording 2026-09-14 at 2.37.34 AM.mov",
+  "summary": {
+    "total_unique_commenters": 1145,
+    "total_clean_comments": 3191,
+    "total_tag_instances": 4191,
+    "total_unique_tagged_users": 3756,
+    "total_reciprocal_pairs": 86,
+    "total_tag_chains_detected": 1216
+  },
+  "product_mentions": {
+    "BYU Football / Stadium": 58,
+    "Candy & Treats": 5,
+    "Play Dough / Toys": 3,
+    "Ribbons": 3
+  },
+  "top_taggers": [
+    {
+      "author": "tw",
+      "total_tags": 66,
+      "unique_tagged": 63
+    },
+    {
+      "author": "jmhigginson",
+      "total_tags": 41,
+      "unique_tagged": 40
+    },
+    {
+      "author": "dayna_carter1",
+      "total_tags": 40,
+      "unique_tagged": 39
+    },
+    {
+      "author": "kenzie1618",
+      "total_tags": 34,
+      "unique_tagged": 34
+    },
+    {
+      "author": "utah_lifeelevated",
+      "total_tags": 25,
+      "unique_tagged": 25
+    },
+    {
+      "author": "keylageraldinee",
+      "total_tags": 24,
+      "unique_tagged": 21
+    },
+    {
+      "author": "whithowlett",
+      "total_tags": 20,
+      "unique_tagged": 20
+    },
+    {
+      "author": "megannnbird",
+      "total_tags": 20,
+      "unique_tagged": 20
+    },
+    {
+      "author": "jenteagle",
+      "total_tags": 19,
+      "unique_tagged": 19
+    },
+    {
+      "author": "olgarauch",
+      "total_tags": 19,
+      "unique_tagged": 13
+    },
+    {
+      "author": "hannah.esplin",
+      "total_tags": 18,
+      "unique_tagged": 15
+    },
+    {
+      "author": "lucumaali",
+      "total_tags": 17,
+      "unique_tagged": 17
+    },
+    {
+      "author": "courtneyharrispoe",
+      "total_tags": 16,
+      "unique_tagged": 16
+    },
+    {
+      "author": "jerisuesjourneys",
+      "total_tags": 15,
+      "unique_tagged": 15
+    },
+    {
+      "author": "chelscannon27",
+      "total_tags": 14,
+      "unique_tagged": 14
+    },
+    {
+      "author": "kitchendelinz",
+      "total_tags": 14,
+      "unique_tagged": 14
+    },
+    {
+      "author": "byjocyyy",
+      "total_tags": 13,
+      "unique_tagged": 13
+    },
+    {
+      "author": "jenavee",
+      "total_tags": 13,
+      "unique_tagged": 13
+    },
+    {
+      "author": "sofi_sa",
+      "total_tags": 13,
+      "unique_tagged": 13
+    },
+    {
+      "author": "michael_paris_94",
+      "total_tags": 12,
+      "unique_tagged": 6
+    },
+    {
+      "author": "kenna_penrod",
+      "total_tags": 12,
+      "unique_tagged": 12
+    },
+    {
+      "author": "jess741",
+      "total_tags": 12,
+      "unique_tagged": 12
+    },
+    {
+      "author": "alexjaynehawker",
+      "total_tags": 12,
+      "unique_tagged": 12
+    },
+    {
+      "author": "stephstucki",
+      "total_tags": 12,
+      "unique_tagged": 11
+    },
+    {
+      "author": "audreyfullerart",
+      "total_tags": 12,
+      "unique_tagged": 12
+    },
+    {
+      "author": "morgan.dimmick",
+      "total_tags": 12,
+      "unique_tagged": 12
+    },
+    {
+      "author": "amanda_funsaker",
+      "total_tags": 12,
+      "unique_tagged": 12
+    },
+    {
+      "author": "madie_fong",
+      "total_tags": 12,
+      "unique_tagged": 12
+    },
+    {
+      "author": "kari.nitaa",
+      "total_tags": 11,
+      "unique_tagged": 6
+    },
+    {
+      "author": "duul_ac",
+      "total_tags": 11,
+      "unique_tagged": 11
+    }
+  ],
+  "most_tagged_friends": [
+    {
+      "handle": "babyparis18",
+      "times_tagged": 6,
+      "tagged_by": [
+        "michael_paris_94",
+        "sweetlifewithmindy",
+        "tw"
+      ]
+    },
+    {
+      "handle": "esteelauren",
+      "times_tagged": 5,
+      "tagged_by": [
+        "steph",
+        "stephsicki",
+        "stephsjucki",
+        "stephstucki"
+      ]
+    },
+    {
+      "handle": "pumpkinjane",
+      "times_tagged": 4,
+      "tagged_by": [
+        "bridgetlinde",
+        "sportsmam",
+        "tw"
+      ]
+    },
+    {
+      "handle": "mindyparis94",
+      "times_tagged": 4,
+      "tagged_by": [
+        "michael_paris_94",
+        "sweetlifewithmindy"
+      ]
+    },
+    {
+      "handle": "duul_ac",
+      "times_tagged": 4,
+      "tagged_by": [
+        "ivv",
+        "lucumaali",
+        "taniaazabache",
+        "tw"
+      ]
+    },
+    {
+      "handle": "jordyn_isaac",
+      "times_tagged": 4,
+      "tagged_by": [
+        "blairre",
+        "cassidy.cochran04",
+        "jordyn.isaac14",
+        "melanie_isaac"
+      ]
+    },
+    {
+      "handle": "stlewis2726",
+      "times_tagged": 4,
+      "tagged_by": [
+        "brooklinnlewis",
+        "cpgines",
+        "epines",
+        "tw"
+      ]
+    },
+    {
+      "handle": "emilywoodsy",
+      "times_tagged": 4,
+      "tagged_by": [
+        "alindholm",
+        "alindholm2010",
+        "erinrwatts",
+        "watts_baking"
+      ]
+    },
+    {
+      "handle": "chanhaas17",
+      "times_tagged": 4,
+      "tagged_by": [
+        "elizabeth.k.haas",
+        "haasdalin",
+        "kitchendelinz",
+        "nailsby.elizabethh"
+      ]
+    },
+    {
+      "handle": "itsnotriahoon",
+      "times_tagged": 4,
+      "tagged_by": [
+        "jancaldero",
+        "jennifer_bravo_sena",
+        "yali_el_peruano"
+      ]
+    },
+    {
+      "handle": "zkeeper00",
+      "times_tagged": 3,
+      "tagged_by": [
+        "alexlynn.gray",
+        "lexiecstrong",
+        "zylie.15"
+      ]
+    },
+    {
+      "handle": "sweetlifewithmindy",
+      "times_tagged": 3,
+      "tagged_by": [
+        "michael_paris_94"
+      ]
+    },
+    {
+      "handle": "brockmellor",
+      "times_tagged": 3,
+      "tagged_by": [
+        "brody_mellor",
+        "rachelmellor09",
+        "tw"
+      ]
+    },
+    {
+      "handle": "therealrandymellor",
+      "times_tagged": 3,
+      "tagged_by": [
+        "brody_mellor",
+        "rachelmellor09",
+        "tw"
+      ]
+    },
+    {
+      "handle": "conknarr",
+      "times_tagged": 3,
+      "tagged_by": [
+        "kellykbrown",
+        "tavlork_brown",
+        "taylork_brown"
+      ]
+    },
+    {
+      "handle": "he_generaleclectic",
+      "times_tagged": 3,
+      "tagged_by": [
+        "annie.k.walker",
+        "repiy",
+        "tw"
+      ]
+    },
+    {
+      "handle": "aaronnuckles",
+      "times_tagged": 3,
+      "tagged_by": [
+        "aubreyewiseman",
+        "janae_nuckles",
+        "whithowlett"
+      ]
+    },
+    {
+      "handle": "scottmason137",
+      "times_tagged": 3,
+      "tagged_by": [
+        "rubster2821",
+        "theluxemommethod",
+        "tw"
+      ]
+    },
+    {
+      "handle": "livyb6",
+      "times_tagged": 3,
+      "tagged_by": [
+        "krisbloomfield",
+        "tauai_8",
+        "vnij"
+      ]
+    },
+    {
+      "handle": "katelynoblake",
+      "times_tagged": 3,
+      "tagged_by": [
+        "davidblake9939",
+        "kiohara725",
+        "kjohara725"
+      ]
+    },
+    {
+      "handle": "marrumeg",
+      "times_tagged": 3,
+      "tagged_by": [
+        "ivv",
+        "taniaazabache",
+        "tw"
+      ]
+    },
+    {
+      "handle": "sarahheber",
+      "times_tagged": 3,
+      "tagged_by": [
+        "ivv",
+        "taniaazabache",
+        "tw"
+      ]
+    },
+    {
+      "handle": "dearmadisonann",
+      "times_tagged": 3,
+      "tagged_by": [
+        "jenteagle",
+        "utah",
+        "utah_lifeelevated"
+      ]
+    },
+    {
+      "handle": "a_smith321",
+      "times_tagged": 3,
+      "tagged_by": [
+        "jess.bjorling",
+        "jess.bjorlingr",
+        "read_and_report"
+      ]
+    },
+    {
+      "handle": "emilee.simp",
+      "times_tagged": 3,
+      "tagged_by": [
+        "janetireyes",
+        "janetlreyes",
+        "tw"
+      ]
+    },
+    {
+      "handle": "jefflloyd1",
+      "times_tagged": 3,
+      "tagged_by": [
+        "heatherclloyd",
+        "repiy",
+        "tw"
+      ]
+    },
+    {
+      "handle": "kadanbradley",
+      "times_tagged": 3,
+      "tagged_by": [
+        "bradleykidz",
+        "luke.h.bradley",
+        "triciambradley"
+      ]
+    },
+    {
+      "handle": "coxmccabe",
+      "times_tagged": 3,
+      "tagged_by": [
+        "coxconnor9",
+        "coxconnorg",
+        "mandycoxmc2"
+      ]
+    },
+    {
+      "handle": "mitchmeyer2",
+      "times_tagged": 3,
+      "tagged_by": [
+        "coxconnor9",
+        "coxconnorg",
+        "mandycoxmc2"
+      ]
+    },
+    {
+      "handle": "bria.granados",
+      "times_tagged": 3,
+      "tagged_by": [
+        "gingersnap",
+        "gingersnap_29",
+        "tw"
+      ]
+    }
+  ],
+  "most_active_commenters": [
+    {
+      "author": "dayna_carter1",
+      "comments_count": 43
+    },
+    {
+      "author": "jmhigginson",
+      "comments_count": 41
+    },
+    {
+      "author": "tw",
+      "comments_count": 38
+    },
+    {
+      "author": "kenzie1618",
+      "comments_count": 36
+    },
+    {
+      "author": "utah_lifeelevated",
+      "comments_count": 27
+    },
+    {
+      "author": "whithowlett",
+      "comments_count": 20
+    },
+    {
+      "author": "megannnbird",
+      "comments_count": 20
+    },
+    {
+      "author": "jenteagle",
+      "comments_count": 20
+    },
+    {
+      "author": "keylageraldinee",
+      "comments_count": 19
+    },
+    {
+      "author": "courtneyharrispoe",
+      "comments_count": 16
+    },
+    {
+      "author": "jerisuesjourneys",
+      "comments_count": 15
+    },
+    {
+      "author": "jenavee",
+      "comments_count": 15
+    },
+    {
+      "author": "hannah.esplin",
+      "comments_count": 15
+    },
+    {
+      "author": "chelscannon27",
+      "comments_count": 14
+    },
+    {
+      "author": "sofi_sa",
+      "comments_count": 13
+    },
+    {
+      "author": "kenna_penrod",
+      "comments_count": 12
+    },
+    {
+      "author": "lucumaali",
+      "comments_count": 12
+    },
+    {
+      "author": "jess741",
+      "comments_count": 12
+    },
+    {
+      "author": "kitchendelinz",
+      "comments_count": 12
+    },
+    {
+      "author": "alexjaynehawker",
+      "comments_count": 12
+    },
+    {
+      "author": "audreyfullerart",
+      "comments_count": 12
+    },
+    {
+      "author": "morgan.dimmick",
+      "comments_count": 12
+    },
+    {
+      "author": "amanda_funsaker",
+      "comments_count": 12
+    },
+    {
+      "author": "preslee.searle",
+      "comments_count": 11
+    },
+    {
+      "author": "brianw1717",
+      "comments_count": 11
+    },
+    {
+      "author": "rebekahlundskog",
+      "comments_count": 11
+    },
+    {
+      "author": "maryscharman",
+      "comments_count": 11
+    },
+    {
+      "author": "callielockhart21",
+      "comments_count": 11
+    },
+    {
+      "author": "lindsey_mcd85",
+      "comments_count": 10
+    },
+    {
+      "author": "katquirante",
+      "comments_count": 10
+    }
+  ],
+  "reciprocal_tag_pairs": [
+    {
+      "user_1": "ava_katia12",
+      "user_2": "wyatt_steffens",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "coolestgirlsintheworld_man",
+      "user_2": "amanda_funsaker",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "zarafranklin27",
+      "user_2": "laur.eccles",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "theluxemommethod",
+      "user_2": "rubster2821",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "michael_paris_94",
+      "user_2": "sweetlifewithmindy",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "ness_hatty",
+      "user_2": "mary_h.p",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "sophie_scoresby20",
+      "user_2": "hallestinger",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "sophie_scoresby20",
+      "user_2": "sarah.scoresby",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "hillaryhd12",
+      "user_2": "withlovetaralee",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "chio1_989",
+      "user_2": "keylageraldinee",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "rachelmellor09",
+      "user_2": "brody_mellor",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "courtneyharrispoe",
+      "user_2": "sherrylynn66",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "kelgrant3",
+      "user_2": "paislee_grant_dance",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "kenna_penrod",
+      "user_2": "kimmharman",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "melocopter",
+      "user_2": "colleen_harker",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "mobrewer",
+      "user_2": "nonidoors",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "whithowlett",
+      "user_2": "janae_nuckles",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "dani_mathis_pinck",
+      "user_2": "pinckney77",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "taylee_price",
+      "user_2": "pricedancer",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "taniaazabache",
+      "user_2": "duul_ac",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "lainey_ray1",
+      "user_2": "chadray",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "kessaleav",
+      "user_2": "leavittannie",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "utah_lifeelevated",
+      "user_2": "jenteagle",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "sarcastickristin",
+      "user_2": "aleshialoo",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "danellecox",
+      "user_2": "withlovetaralee",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "josh450f",
+      "user_2": "s.elmer01",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "litaalger",
+      "user_2": "michaeldalger",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "cpgines",
+      "user_2": "stlewis2726",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "stlewis2726",
+      "user_2": "brooklinnlewis",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "aubreyewiseman",
+      "user_2": "janae_nuckles",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "celesteharrisofficial",
+      "user_2": "hannah.cutler",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "freddyburs",
+      "user_2": "taunishields",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "janiceoreyes",
+      "user_2": "lucumaali",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "lucumaali",
+      "user_2": "duul_ac",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "pty.lulu22",
+      "user_2": "tayalaluna24",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "coop_schwarz",
+      "user_2": "ma11ory.b",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "steph.bryner",
+      "user_2": "juliekayt6",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "stev_jamieson",
+      "user_2": "dancinstace",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "jordyrobs",
+      "user_2": "jamie.ashdown",
+      "type": "mutual_tag"
+    },
+    {
+      "user_1": "abby.j.cannon",
+      "user_2": "shinebrightandteach",
+      "type": "mutual_tag"
+    }
+  ],
+  "sample_tag_chains": [
+    {
+      "path": [
+        "sportsmam",
+        "bridgetlinde",
+        "mjo.linde"
+      ]
+    },
+    {
+      "path": [
+        "sportsmam",
+        "bridgetlinde",
+        "amberlsampson"
+      ]
+    },
+    {
+      "path": [
+        "sportsmam",
+        "bridgetlinde",
+        "smjones23"
+      ]
+    },
+    {
+      "path": [
+        "sportsmam",
+        "bridgetlinde",
+        "korbineaton6"
+      ]
+    },
+    {
+      "path": [
+        "sportsmam",
+        "bridgetlinde",
+        "pumpkinjane"
+      ]
+    },
+    {
+      "path": [
+        "sportsmam",
+        "bridgetlinde",
+        "breanneeaton"
+      ]
+    },
+    {
+      "path": [
+        "mollyjenkins04",
+        "sadie._.jenkins",
+        "zoey._.jenkins"
+      ]
+    },
+    {
+      "path": [
+        "mollyjenkins04",
+        "sadie._.jenkins",
+        "ericjenkinseric"
+      ]
+    },
+    {
+      "path": [
+        "mollyjenkins04",
+        "sadie._.jenkins",
+        "zoey._jenkins"
+      ]
+    },
+    {
+      "path": [
+        "mollyjenkins04",
+        "sadie._.jenkins",
+        "jennbjenkins"
+      ]
+    },
+    {
+      "path": [
+        "sadie._.jenkins",
+        "jennbjenkins",
+        "ourjenericfamily"
+      ]
+    },
+    {
+      "path": [
+        "sadie._.jenkins",
+        "jennbjenkins",
+        "real_carter_jenkins"
+      ]
+    },
+    {
+      "path": [
+        "sadie._.jenkins",
+        "jennbjenkins",
+        "def_not_zozo"
+      ]
+    },
+    {
+      "path": [
+        "alexlynn.gray",
+        "zkeeper00",
+        "charleejo33"
+      ]
+    },
+    {
+      "path": [
+        "alexlynn.gray",
+        "zkeeper00",
+        "tkmom"
+      ]
+    },
+    {
+      "path": [
+        "alexlynn.gray",
+        "zkeeper00",
+        "zylie.15"
+      ]
+    },
+    {
+      "path": [
+        "ava_katia12",
+        "wyatt_steffens",
+        "dylan_jene10"
+      ]
+    },
+    {
+      "path": [
+        "ava_katia12",
+        "wyatt_steffens",
+        "lehisport"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "lanaisneat"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "lydiajanehuns"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "john"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "johnroot62"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "jalyny_be.good26"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "krystal_root_andrew_artist"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "brockhunsaker32"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "lydiyanehuns"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "brootal1"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "brootally"
+      ]
+    },
+    {
+      "path": [
+        "coolestgirlsintheworld_man",
+        "amanda_funsaker",
+        "jonny_be.good26"
+      ]
+    },
+    {
+      "path": [
+        "zarafranklin27",
+        "racheljtrotter",
+        "thattrotter"
+      ]
+    }
+  ],
+  "top_comments": [
+    {
+      "author": "southcountyrealestate",
+      "clean_text": "It would be hard to narrow it down but I'd love to take my 15 year old that plays football in spanish fork!!! He'd love to be at a game",
+      "full_text": "It would be hard to narrow it down but I'd love to take my 15 year old that plays football in spanish fork!!! He'd love to be at a game",
+      "length": 135,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "steph",
+      "clean_text": "Wucki  I'm so in stephstucki H Stephanie Lee Stucki & stephstucki bestg6 (  893 418 816 posts followers following",
+      "full_text": "Wucki @esteelauren I'm so in stephstucki H Stephanie Lee Stucki & stephstucki bestg6 ( @ainsley 893 418 816 posts followers following",
+      "length": 113,
+      "tagged_count": 2,
+      "tagged_handles": [
+        "ainsley",
+        "esteelauren"
+      ]
+    },
+    {
+      "author": "mariekc11",
+      "clean_text": "| would take my kids but they are not on Facebook to tag so here are three friends that might be jealous",
+      "full_text": "| would take my kids but they are not on Facebook to tag so here are three friends that might be jealous @njbrimley @shaunti11 @daddowgourley",
+      "length": 104,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "daddowgourley",
+        "njbrimley",
+        "shaunti11"
+      ]
+    },
+    {
+      "author": "abbymariewatson",
+      "clean_text": "GAH!!! I neeeeeeed to win!!! I have some little boys who would be over the moon to go to this game!",
+      "full_text": "GAH!!! I neeeeeeed to win!!! I have some little boys who would be over the moon to go to this game! @kabbywats @sarah_esplin @brynn.rachel.e",
+      "length": 99,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "brynn.rachel.e",
+        "kabbywats",
+        "sarah_esplin"
+      ]
+    },
+    {
+      "author": "jenicalillybrown",
+      "clean_text": "i    can't believe I still haven't been live to a byu football game!! This would be awesome!! '",
+      "full_text": "i @iamjoshuabrown @emilieduersch @abrownpearl can't believe I still haven't been live to a byu football game!! This would be awesome!! '",
+      "length": 95,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "abrownpearl",
+        "emilieduersch",
+        "iamjoshuabrown"
+      ]
+    },
+    {
+      "author": "instadrew801",
+      "clean_text": "she really wants to go, think about picking and choosing her and her family",
+      "full_text": "@tiffanymduering she really wants to go, think about picking and choosing her and her family",
+      "length": 75,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "tiffanymduering"
+      ]
+    },
+    {
+      "author": "stephstucki",
+      "clean_text": "it's about time you went to your alma mater's football game again\"",
+      "full_text": "@casshby it's about time you went to your alma mater's football game again\"",
+      "length": 66,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "casshby",
+        "laurieleestone",
+        "moonbeam1962"
+      ]
+    },
+    {
+      "author": "tw",
+      "clean_text": "керІу smith.homestead.doodles    Crossing my fingers AND my toes.",
+      "full_text": "керІу smith.homestead.doodles @annie_V_smith @just_jers @the.vandylife Crossing my fingers AND my toes.",
+      "length": 65,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "annie_v_smith",
+        "just_jers",
+        "the.vandylife"
+      ]
+    },
+    {
+      "author": "iccluff",
+      "clean_text": "Tried to DM you the story screenshot but it wouldn't allow me to",
+      "full_text": "Tried to DM you the story screenshot but it wouldn't allow me to",
+      "length": 64,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "charnelecushing",
+      "clean_text": "Here's to manifesting winning this!!!  this would be soo fun!!!",
+      "full_text": "Here's to manifesting winning this!!! @chriscushingidaho this would be soo fun!!! @travel.tea.cc @snake.river.entertainment",
+      "length": 63,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "chriscushingidaho",
+        "snake.river.entertainment",
+        "travel.tea.cc"
+      ]
+    },
+    {
+      "author": "tw",
+      "clean_text": "керІу phany_g  babe!!! It's our chance. Let's go cougars!!!!",
+      "full_text": "керІу phany_g @7ndy_k babe!!! It's our chance. Let's go cougars!!!!",
+      "length": 60,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "7ndy_k"
+      ]
+    },
+    {
+      "author": "sarahnonu",
+      "clean_text": "Account is privite, but reposted!! \" Photo available on app",
+      "full_text": "Account is privite, but reposted!! \" Photo available on app",
+      "length": 59,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "tw",
+      "clean_text": "керіу dally.c.abreu Maybe we're have some luck this time!",
+      "full_text": "керіу dally.c.abreu Maybe we're have some luck this time! @manoel.abreu.atd @fatimaotacila @daianysj",
+      "length": 57,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "daianysj",
+        "fatimaotacila",
+        "manoel.abreu.atd"
+      ]
+    },
+    {
+      "author": "adrianefrehner",
+      "clean_text": "LETS GO! ~    Never has a chance to go! Would be so fun!!",
+      "full_text": "LETS GO! ~ @abrielledempsey @ash.hey @chadfrehner Never has a chance to go! Would be so fun!!",
+      "length": 57,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "abrielledempsey",
+        "ash.hey",
+        "chadfrehner"
+      ]
+    },
+    {
+      "author": "sadie._.jenkins",
+      "clean_text": "Ok so you guys up to go to the BYU game this weekend?? ++",
+      "full_text": "Ok so you guys up to go to the BYU game this weekend?? ++ @jennbjenkins @ericjenkinseric @zoey._.jenkins",
+      "length": 57,
+      "tagged_count": 4,
+      "tagged_handles": [
+        "ericjenkinseric",
+        "jennbjenkins",
+        "zoey._.jenkins",
+        "zoey._jenkins"
+      ]
+    },
+    {
+      "author": "sadie._.jenkins",
+      "clean_text": "Ok so you guys up to go to the BYU game this weekend?? +",
+      "full_text": "Ok so you guys up to go to the BYU game this weekend?? + @jennbjenkins @ericjenkinseric @zoey._.jenkins",
+      "length": 56,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "ericjenkinseric",
+        "jennbjenkins",
+        "zoey._.jenkins"
+      ]
+    },
+    {
+      "author": "emrosell",
+      "clean_text": "Oh my daughter would die if she could go to this game!!\"",
+      "full_text": "Oh my daughter would die if she could go to this game!!\" @jim.rosell @doodlepope @jjjrosell",
+      "length": 56,
+      "tagged_count": 4,
+      "tagged_handles": [
+        "doodlepope",
+        "jim.rosell",
+        "jjirosell",
+        "jjjrosell"
+      ]
+    },
+    {
+      "author": "tw",
+      "clean_text": "керіу jordyrobs I vote  wins so she can come visit us!",
+      "full_text": "керіу jordyrobs I vote @jamie.ashdown wins so she can come visit us!",
+      "length": 54,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "jamie.ashdown"
+      ]
+    },
+    {
+      "author": "heat1101",
+      "clean_text": "Id love to get these for our niece and nephew in Utah",
+      "full_text": "Id love to get these for our niece and nephew in Utah",
+      "length": 53,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "valoriewalters",
+      "clean_text": "is the biggest BYU fan I know!!  ~ _maddie_elizabeth_",
+      "full_text": "@scottgwalters_realestate is the biggest BYU fan I know!! @mitchell_walters ~ _maddie_elizabeth_",
+      "length": 53,
+      "tagged_count": 2,
+      "tagged_handles": [
+        "mitchell_walters",
+        "scottgwalters_realestate"
+      ]
+    },
+    {
+      "author": "christopherdbishop10",
+      "clean_text": "we would love to go see at least one game in person!",
+      "full_text": "@jlbishop9 @johnbishop410 @tony_bishop1 @pioneerparty we would love to go see at least one game in person!",
+      "length": 52,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "jlbishop9",
+        "johnbishop410",
+        "tony_bishop1"
+      ]
+    },
+    {
+      "author": "atony_bisnopi",
+      "clean_text": "we would love to go see at least one game in person!",
+      "full_text": "@pioneerparty we would love to go see at least one game in person!",
+      "length": 52,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "smith.homestead.doodles",
+      "clean_text": "cannie_v_smith   Crossing my fingers AND my toes.",
+      "full_text": "cannie_v_smith @just_jers @the.vandylife Crossing my fingers AND my toes.",
+      "length": 49,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "annie_v_smith",
+        "just_jers",
+        "the.vandylife"
+      ]
+    },
+    {
+      "author": "karitozaro",
+      "clean_text": "I tried to DM screenshot but it wouldn't allow me",
+      "full_text": "I tried to DM screenshot but it wouldn't allow me",
+      "length": 49,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "tw",
+      "clean_text": "gotti_doctor5 Don't I wish I still lived it Utahe",
+      "full_text": "gotti_doctor5 Don't I wish I still lived it Utahe",
+      "length": 49,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "diane",
+      "clean_text": "newald Alicauckic Akalr arickenn Ahriarickenn",
+      "full_text": "newald Alicauckic Akalr arickenn Ahriarickenn",
+      "length": 45,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "phany_g",
+      "clean_text": "babe!!! It's our chance. Let's go cougars!!!!",
+      "full_text": "@7ndy_k babe!!! It's our chance. Let's go cougars!!!!",
+      "length": 45,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "7ndy_k",
+        "cj_idahoboy",
+        "jhknudsen"
+      ]
+    },
+    {
+      "author": "hailey_allfrey_larsen",
+      "clean_text": "large & in charge takes on a football game??",
+      "full_text": "@adam15allfrey large & in charge takes on a football game??",
+      "length": 44,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "adam15allfrey"
+      ]
+    },
+    {
+      "author": "vavavanillaster",
+      "clean_text": "Added to my stories Photo available on app",
+      "full_text": "Added to my stories Photo available on app",
+      "length": 42,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "marea",
+      "clean_text": "kaith Aharhariankid1n0k Ahraddank lanraeco",
+      "full_text": "kaith Aharhariankid1n0k Ahraddank lanraeco",
+      "length": 42,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "anthonybishop1076",
+      "clean_text": "Noah Dunn and Nelson Lunt and Tanner sppay",
+      "full_text": "Noah Dunn and Nelson Lunt and Tanner sppay",
+      "length": 42,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "vavavanillaster",
+      "clean_text": "Added to mystories Dhatn avsilahla an ann",
+      "full_text": "Added to mystories Dhatn avsilahla an ann",
+      "length": 41,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "shells256",
+      "clean_text": "Would love to win! Photo available on app",
+      "full_text": "Would love to win! Photo available on app",
+      "length": 41,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "sweetlifewithmindy",
+      "clean_text": "In case they have to be separate comments",
+      "full_text": "In case they have to be separate comments @michael_paris_94",
+      "length": 41,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "michael_paris_94"
+      ]
+    },
+    {
+      "author": "michael_paris_94",
+      "clean_text": "Happy wife happy life so I need to win e",
+      "full_text": "Happy wife happy life so I need to win e @mindyparis94 @sweetlifewithmindy @babyparis18",
+      "length": 40,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "babyparis18",
+        "mindyparis94",
+        "sweetlifewithmindy"
+      ]
+    },
+    {
+      "author": "havannial",
+      "clean_text": "Anlinnartar nR A alicaact Ataaniianartar",
+      "full_text": "Anlinnartar nR A alicaact Ataaniianartar",
+      "length": 40,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "michael_paris_94",
+      "clean_text": "Happy wike happy life so I need to win a",
+      "full_text": "Happy wike happy life so I need to win a @mindvparis94 @sweetlifewithmindv @babvparis18",
+      "length": 40,
+      "tagged_count": 6,
+      "tagged_handles": [
+        "babvparis18",
+        "babyparis18",
+        "mindvparis94",
+        "mindyparis94",
+        "sweetlifewithmindv",
+        "sweetlifewithmindy"
+      ]
+    },
+    {
+      "author": "koofonua",
+      "clean_text": "YASSSSS!!!!¿+ baby bear is back!!!!! *4<",
+      "full_text": "YASSSSS!!!!¿+ baby bear is back!!!!! *4< @halfwit_mit",
+      "length": 40,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "halfwit_mit"
+      ]
+    },
+    {
+      "author": "manah",
+      "clean_text": "lenit AAnulAl Alundalhannan Aft Ammarna",
+      "full_text": "lenit AAnulAl Alundalhannan Aft Ammarna",
+      "length": 39,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "clairealexandria",
+      "clean_text": ", , @ _karicarlson_ BIGGEST COUG FANS !",
+      "full_text": "@jakeacarlson, @averi_carlson7, @ _karicarlson_ BIGGEST COUG FANS !",
+      "length": 39,
+      "tagged_count": 2,
+      "tagged_handles": [
+        "averi_carlson7",
+        "jakeacarlson"
+      ]
+    },
+    {
+      "author": "jordyrobs",
+      "clean_text": "I vote  wins so she can come visit us!",
+      "full_text": "I vote @jamie.ashdown wins so she can come visit us!",
+      "length": 38,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "jamie.ashdown"
+      ]
+    },
+    {
+      "author": "shayhardman",
+      "clean_text": "The kids first byu game?  whitneystone",
+      "full_text": "The kids first byu game? @kaylynnrob whitneystone @becsmoore21",
+      "length": 38,
+      "tagged_count": 2,
+      "tagged_handles": [
+        "becsmoore21",
+        "kaylynnrob"
+      ]
+    },
+    {
+      "author": "michael_paris_94",
+      "clean_text": "Happy wife happy life so I need to win",
+      "full_text": "Happy wife happy life so I need to win @mindyparis94 @sweetlifewithmindy @babyparis18",
+      "length": 38,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "babyparis18",
+        "mindyparis94",
+        "sweetlifewithmindy"
+      ]
+    },
+    {
+      "author": "jennifer_price_carver",
+      "clean_text": "- one last M game before your mission!",
+      "full_text": "@landon.knight.carver - one last M game before your mission!",
+      "length": 38,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "landon.knight.carver"
+      ]
+    },
+    {
+      "author": "dally.c.abreu",
+      "clean_text": "Maybe we're have some luck this time!",
+      "full_text": "Maybe we're have some luck this time! @manoel.abreu.atd @fatimaotacila @daianysj",
+      "length": 37,
+      "tagged_count": 3,
+      "tagged_handles": [
+        "daianysj",
+        "fatimaotacila",
+        "manoel.abreu.atd"
+      ]
+    },
+    {
+      "author": "ivv",
+      "clean_text": "поріу vianny1284  . Let's go cougars",
+      "full_text": "поріу vianny1284 @sigis78bda . Let's go cougars",
+      "length": 36,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "sigis78bda"
+      ]
+    },
+    {
+      "author": "suzy_hearn",
+      "clean_text": "Would love to go cheer on the Cougs!",
+      "full_text": "@ervinhearn @tuunmyOanderson @melissqanderson Would love to go cheer on the Cougs!",
+      "length": 36,
+      "tagged_count": 6,
+      "tagged_handles": [
+        "ervinhearn",
+        "melissanderson",
+        "melissqanderson",
+        "tommyanderson",
+        "tommyoanderson",
+        "tuunmyoanderson"
+      ]
+    },
+    {
+      "author": "celesteharrisofficial",
+      "clean_text": "Give these tickets to  and GO COUGS",
+      "full_text": "Give these tickets to @hannah.cutler and GO COUGS",
+      "length": 35,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "hannah.cutler"
+      ]
+    },
+    {
+      "author": "colbynelson.16",
+      "clean_text": "It won't let me DM you a screenshot",
+      "full_text": "It won't let me DM you a screenshot",
+      "length": 35,
+      "tagged_count": 0,
+      "tagged_handles": []
+    },
+    {
+      "author": "stephstucki",
+      "clean_text": "ready, for another cougar tail? •••",
+      "full_text": "@kistucki ready, for another cougar tail? •••",
+      "length": 35,
+      "tagged_count": 1,
+      "tagged_handles": [
+        "kistucki"
+      ]
+    }
+  ]
+}
