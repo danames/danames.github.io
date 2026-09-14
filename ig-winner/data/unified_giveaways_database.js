@@ -7,25 +7,25 @@ window.PIONEER_GIVEAWAYS_DB = {
       {
         "id": 1,
         "title": "Week 1 - BYU Football Tickets Giveaway",
-        "total_entrants": 1265,
-        "total_comments_logged": 3191,
+        "total_entrants": 1263,
+        "total_comments_logged": 3151,
         "comments_data_status": "full_comments_and_tags"
       },
       {
         "id": 2,
         "title": "Week 2 - BYU vs. Arizona Football Tickets",
-        "total_entrants": 632,
-        "total_comments_logged": 1582,
+        "total_entrants": 626,
+        "total_comments_logged": 1548,
         "comments_data_status": "full_comments_and_tags"
       }
     ],
     "stats": {
-      "total_unique_audience": 1669,
+      "total_unique_audience": 1661,
       "repeat_superfans_both_giveaways": 228,
-      "giveaway_1_only": 1037,
-      "giveaway_2_new_entrants": 404,
-      "repeat_loyalty_rate_pct": 18.0,
-      "total_comments_across_both": 4773
+      "giveaway_1_only": 1035,
+      "giveaway_2_new_entrants": 398,
+      "repeat_loyalty_rate_pct": 18.1,
+      "total_comments_across_both": 4699
     }
   },
   "users": {
@@ -3827,10 +3827,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       "network": {
         "tagged_by": [
           "lolander",
-          "lolander3",
-          "tw"
+          "lolander3"
         ],
-        "tagged_by_count": 3,
+        "tagged_by_count": 2,
         "all_tags_made": [
           "jpsbookishlibrary",
           "jpsbookishlilhary",
@@ -6114,10 +6113,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       },
       "network": {
         "tagged_by": [
-          "smith.homestead.doodles",
-          "tw"
+          "smith.homestead.doodles"
         ],
-        "tagged_by_count": 2,
+        "tagged_by_count": 1,
         "all_tags_made": [
           "annie_creative",
           "hashtagfly",
@@ -12823,10 +12821,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       },
       "network": {
         "tagged_by": [
-          "rachelmellor09",
-          "tw"
+          "rachelmellor09"
         ],
-        "tagged_by_count": 2,
+        "tagged_by_count": 1,
         "all_tags_made": [
           "brockmellor",
           "moluga22_betham",
@@ -23933,10 +23930,9 @@ window.PIONEER_GIVEAWAYS_DB = {
         "tagged_by": [
           "ivv",
           "lucumaali",
-          "taniaazabache",
-          "tw"
+          "taniaazabache"
         ],
-        "tagged_by_count": 4,
+        "tagged_by_count": 3,
         "all_tags_made": [
           "4laurahuerta4",
           "derian_nahomi",
@@ -33321,60 +33317,6 @@ window.PIONEER_GIVEAWAYS_DB = {
         "total_comments": 1
       }
     },
-    "ia": {
-      "handle": "ia",
-      "giveaways": [
-        2
-      ],
-      "giveaway_count": 1,
-      "is_repeat_entrant": false,
-      "giveaway_1": {
-        "participated": false,
-        "comment_count": 0,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": []
-      },
-      "giveaway_2": {
-        "participated": true,
-        "comment_count": 2,
-        "unique_tags_count": 4,
-        "tags_made": [
-          "jennis.designs",
-          "man_vs_fishing",
-          "victorias.nail.art",
-          "wpsargent"
-        ],
-        "comments": [
-          {
-            "text": "керіу house_of_redheads @man_vs_fishing @victorias.nail.art @jennis.designs",
-            "tagged": [
-              "jennis.designs",
-              "man_vs_fishing",
-              "victorias.nail.art"
-            ]
-          },
-          {
-            "text": "керіу sargentfamily @wpsargent",
-            "tagged": [
-              "wpsargent"
-            ]
-          }
-        ]
-      },
-      "network": {
-        "tagged_by": [],
-        "tagged_by_count": 0,
-        "all_tags_made": [
-          "jennis.designs",
-          "man_vs_fishing",
-          "victorias.nail.art",
-          "wpsargent"
-        ],
-        "all_tags_made_count": 4,
-        "total_comments": 2
-      }
-    },
     "iacc741": {
       "handle": "iacc741",
       "giveaways": [
@@ -34577,10 +34519,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       },
       "network": {
         "tagged_by": [
-          "lu",
           "ryanmcdonald801"
         ],
-        "tagged_by_count": 2,
+        "tagged_by_count": 1,
         "all_tags_made": [
           "tiffanymduering"
         ],
@@ -35322,40 +35263,6 @@ window.PIONEER_GIVEAWAYS_DB = {
           "rporter99"
         ],
         "all_tags_made_count": 3,
-        "total_comments": 1
-      }
-    },
-    "iu": {
-      "handle": "iu",
-      "giveaways": [
-        2
-      ],
-      "giveaway_count": 1,
-      "is_repeat_entrant": false,
-      "giveaway_1": {
-        "participated": false,
-        "comment_count": 0,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": []
-      },
-      "giveaway_2": {
-        "participated": true,
-        "comment_count": 1,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": [
-          {
-            "text": "• нас поріу _brynnmerrill_ The ministering gifts are SO nice and easy. Gives me something to take!",
-            "tagged": []
-          }
-        ]
-      },
-      "network": {
-        "tagged_by": [],
-        "tagged_by_count": 0,
-        "all_tags_made": [],
-        "all_tags_made_count": 0,
         "total_comments": 1
       }
     },
@@ -36257,10 +36164,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       },
       "network": {
         "tagged_by": [
-          "jordyrobs",
-          "tw"
+          "jordyrobs"
         ],
-        "tagged_by_count": 2,
+        "tagged_by_count": 1,
         "all_tags_made": [
           "abunchofgardners",
           "breeperrins",
@@ -37250,10 +37156,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       "giveaway_1": {
         "participated": true,
         "comment_count": 1,
-        "unique_tags_count": 4,
+        "unique_tags_count": 3,
         "tags_made": [
           "davecw21",
-          "kf",
           "kfwhite6",
           "shay.mann20"
         ],
@@ -37262,7 +37167,6 @@ window.PIONEER_GIVEAWAYS_DB = {
             "text": "@kfWhite6 @davecw21 @shay.mann20 Go Cougs!!!",
             "tagged": [
               "davecw21",
-              "kf",
               "kfwhite6",
               "shay.mann20"
             ]
@@ -37283,11 +37187,10 @@ window.PIONEER_GIVEAWAYS_DB = {
         "tagged_by_count": 1,
         "all_tags_made": [
           "davecw21",
-          "kf",
           "kfwhite6",
           "shay.mann20"
         ],
-        "all_tags_made_count": 4,
+        "all_tags_made_count": 3,
         "total_comments": 1
       }
     },
@@ -38768,10 +38671,9 @@ window.PIONEER_GIVEAWAYS_DB = {
         "tagged_by": [
           "banner_events",
           "landon.knight.carver",
-          "monica_alters",
-          "za"
+          "monica_alters"
         ],
-        "tagged_by_count": 4,
+        "tagged_by_count": 3,
         "all_tags_made": [
           "annamarieprice",
           "banner_events",
@@ -48733,10 +48635,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       },
       "network": {
         "tagged_by": [
-          "brooklinnlewis",
-          "tw"
+          "brooklinnlewis"
         ],
-        "tagged_by_count": 2,
+        "tagged_by_count": 1,
         "all_tags_made": [],
         "all_tags_made_count": 0,
         "total_comments": 0
@@ -53595,76 +53496,6 @@ window.PIONEER_GIVEAWAYS_DB = {
         "total_comments": 1
       }
     },
-    "la": {
-      "handle": "la",
-      "giveaways": [
-        2
-      ],
-      "giveaway_count": 1,
-      "is_repeat_entrant": false,
-      "giveaway_1": {
-        "participated": false,
-        "comment_count": 0,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": []
-      },
-      "giveaway_2": {
-        "participated": true,
-        "comment_count": 5,
-        "unique_tags_count": 5,
-        "tags_made": [
-          "chriswardqueen",
-          "elliescarb",
-          "sarahc_801",
-          "sarahfoster24",
-          "sportscourt49"
-        ],
-        "comments": [
-          {
-            "text": "керіу rockinreids @sarahfoster24",
-            "tagged": [
-              "sarahfoster24"
-            ]
-          },
-          {
-            "text": "керіу ... lindzcoates brooklynshumway_",
-            "tagged": []
-          },
-          {
-            "text": "11ке керіу carolmello76 @sarahc_801",
-            "tagged": [
-              "sarahc_801"
-            ]
-          },
-          {
-            "text": "piersonr13 Definitely that Diet Coke candle",
-            "tagged": []
-          },
-          {
-            "text": "керіу coriescarb Seasonal gifts for sure! @elliescarb @chriswardqueen @sportscourt49",
-            "tagged": [
-              "chriswardqueen",
-              "elliescarb",
-              "sportscourt49"
-            ]
-          }
-        ]
-      },
-      "network": {
-        "tagged_by": [],
-        "tagged_by_count": 0,
-        "all_tags_made": [
-          "chriswardqueen",
-          "elliescarb",
-          "sarahc_801",
-          "sarahfoster24",
-          "sportscourt49"
-        ],
-        "all_tags_made_count": 5,
-        "total_comments": 5
-      }
-    },
     "lacelott": {
       "handle": "lacelott",
       "giveaways": [
@@ -58238,120 +58069,6 @@ window.PIONEER_GIVEAWAYS_DB = {
         "total_comments": 3
       }
     },
-    "lu": {
-      "handle": "lu",
-      "giveaways": [
-        2
-      ],
-      "giveaway_count": 1,
-      "is_repeat_entrant": false,
-      "giveaway_1": {
-        "participated": false,
-        "comment_count": 0,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": []
-      },
-      "giveaway_2": {
-        "participated": true,
-        "comment_count": 9,
-        "unique_tags_count": 13,
-        "tags_made": [
-          "akanesi",
-          "brandon_beazer",
-          "burke_pemberton",
-          "cate_oconnor",
-          "disaac_24",
-          "instadrew801",
-          "jamieannmcdonald",
-          "juni_niutupuivaha",
-          "kristen_utley",
-          "leeshlutui",
-          "palau676",
-          "ronmcdon7926",
-          "sarah_utley_10"
-        ],
-        "comments": [
-          {
-            "text": "noNiy sarahnonu_ @leeshlutui",
-            "tagged": [
-              "leeshlutui"
-            ]
-          },
-          {
-            "text": "noNiy hopeputley Ministering gifts! @kristen_utley @sarah_utley_10 @burke_pemberton",
-            "tagged": [
-              "burke_pemberton",
-              "kristen_utley",
-              "sarah_utley_10"
-            ]
-          },
-          {
-            "text": "керу taylor_bement @cate_oconnor",
-            "tagged": [
-              "cate_oconnor"
-            ]
-          },
-          {
-            "text": "поріу ryanmcdonald801 @ronmcdon7926 @jamieannmcdonald @instadrew801",
-            "tagged": [
-              "instadrew801",
-              "jamieannmcdonald",
-              "ronmcdon7926"
-            ]
-          },
-          {
-            "text": "інке керіу",
-            "tagged": []
-          },
-          {
-            "text": "керу ••• _isileli @juni_niutupuivaha @palau676 @_akanesi",
-            "tagged": [
-              "akanesi",
-              "juni_niutupuivaha",
-              "palau676"
-            ]
-          },
-          {
-            "text": "поріу jadyn_beazer6 @brandon_beazer",
-            "tagged": [
-              "brandon_beazer"
-            ]
-          },
-          {
-            "text": "поріу haileywankier brockdonny",
-            "tagged": []
-          },
-          {
-            "text": "nopiy jordyn_isaac @disaac_24",
-            "tagged": [
-              "disaac_24"
-            ]
-          }
-        ]
-      },
-      "network": {
-        "tagged_by": [],
-        "tagged_by_count": 0,
-        "all_tags_made": [
-          "akanesi",
-          "brandon_beazer",
-          "burke_pemberton",
-          "cate_oconnor",
-          "disaac_24",
-          "instadrew801",
-          "jamieannmcdonald",
-          "juni_niutupuivaha",
-          "kristen_utley",
-          "leeshlutui",
-          "palau676",
-          "ronmcdon7926",
-          "sarah_utley_10"
-        ],
-        "all_tags_made_count": 13,
-        "total_comments": 9
-      }
-    },
     "lubdeeze": {
       "handle": "lubdeeze",
       "giveaways": [
@@ -61061,10 +60778,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       },
       "network": {
         "tagged_by": [
-          "texandrea33",
-          "tw"
+          "texandrea33"
         ],
-        "tagged_by_count": 2,
+        "tagged_by_count": 1,
         "all_tags_made": [
           "abbykayfrazier",
           "cade_morgan",
@@ -64486,50 +64202,6 @@ window.PIONEER_GIVEAWAYS_DB = {
         "total_comments": 3
       }
     },
-    "mi": {
-      "handle": "mi",
-      "giveaways": [
-        1
-      ],
-      "giveaway_count": 1,
-      "is_repeat_entrant": false,
-      "giveaway_1": {
-        "participated": true,
-        "comment_count": 2,
-        "unique_tags_count": 1,
-        "tags_made": [
-          "anna"
-        ],
-        "comments": [
-          {
-            "text": "malan addubsmalan",
-            "tagged": []
-          },
-          {
-            "text": "malan @anna m deden ~",
-            "tagged": [
-              "anna"
-            ]
-          }
-        ]
-      },
-      "giveaway_2": {
-        "participated": false,
-        "comment_count": 0,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": []
-      },
-      "network": {
-        "tagged_by": [],
-        "tagged_by_count": 0,
-        "all_tags_made": [
-          "anna"
-        ],
-        "all_tags_made_count": 1,
-        "total_comments": 2
-      }
-    },
     "mi_malan": {
       "handle": "mi_malan",
       "giveaways": [
@@ -67876,19 +67548,17 @@ window.PIONEER_GIVEAWAYS_DB = {
       "giveaway_1": {
         "participated": true,
         "comment_count": 1,
-        "unique_tags_count": 3,
+        "unique_tags_count": 2,
         "tags_made": [
           "aua",
-          "todazstorever",
-          "zo"
+          "todazstorever"
         ],
         "comments": [
           {
             "text": "@zoıplayne @auaı_wynn @todazstorever",
             "tagged": [
               "aua",
-              "todazstorever",
-              "zo"
+              "todazstorever"
             ]
           }
         ]
@@ -67905,10 +67575,9 @@ window.PIONEER_GIVEAWAYS_DB = {
         "tagged_by_count": 0,
         "all_tags_made": [
           "aua",
-          "todazstorever",
-          "zo"
+          "todazstorever"
         ],
-        "all_tags_made_count": 3,
+        "all_tags_made_count": 2,
         "total_comments": 1
       }
     },
@@ -81374,10 +81043,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       "network": {
         "tagged_by": [
           "erikiskis",
-          "grisarzaluz",
-          "tw"
+          "grisarzaluz"
         ],
-        "tagged_by_count": 3,
+        "tagged_by_count": 2,
         "all_tags_made": [
           "apricity_camille",
           "devwiberg",
@@ -83657,10 +83325,9 @@ window.PIONEER_GIVEAWAYS_DB = {
         "tagged_by": [
           "brooklinnlewis",
           "cpgines",
-          "epines",
-          "tw"
+          "epines"
         ],
-        "tagged_by_count": 4,
+        "tagged_by_count": 3,
         "all_tags_made": [
           "brooklinnlewis",
           "cpgines",
@@ -91207,419 +90874,6 @@ window.PIONEER_GIVEAWAYS_DB = {
         "total_comments": 2
       }
     },
-    "tw": {
-      "handle": "tw",
-      "giveaways": [
-        1
-      ],
-      "giveaway_count": 1,
-      "is_repeat_entrant": false,
-      "giveaway_1": {
-        "participated": true,
-        "comment_count": 38,
-        "unique_tags_count": 63,
-        "tags_made": [
-          "7ndy_k",
-          "a_aron_meyer",
-          "alexandra.franco_official",
-          "allieymajors",
-          "altheareesemcc",
-          "andrewthegolfpro55",
-          "annie_v_smith",
-          "babyparis18",
-          "bdagley",
-          "breevickers",
-          "bria.granados",
-          "brockmellor",
-          "brody_mellor",
-          "chelthorne",
-          "coletonclark3",
-          "daianysj",
-          "dalekprice",
-          "dannysnydes",
-          "dentist_foodie",
-          "duul_ac",
-          "emaldrich",
-          "emilee.simp",
-          "fatimaotacila",
-          "gfong05",
-          "hayden_beferreal",
-          "he_generaleclectic",
-          "jamie.ashdown",
-          "jaylon.vickers",
-          "jefflloyd1",
-          "jfrancokc",
-          "jfrancoke",
-          "just_jers",
-          "kalebsanche_z",
-          "kelty_dags03",
-          "kendall.schweitzer",
-          "lux_shower_remodel",
-          "manoel.abreu.atd",
-          "marci_frazier",
-          "marrumeg",
-          "matthew_hales45",
-          "micaela.shipley",
-          "nthurm",
-          "pumpkinjane",
-          "randallsanchezbolhen",
-          "rhbrammer",
-          "sarahheber",
-          "scottmason137",
-          "sofi_sa",
-          "sophiecox210",
-          "stlewis2726",
-          "swolewithchin",
-          "sydnie_clarah",
-          "taylie_clark",
-          "teagandagley",
-          "the.vandylife",
-          "thechindynasty_88",
-          "therealrandymellor",
-          "therealryan32",
-          "tjclark44",
-          "topper_yost",
-          "toripaulson24",
-          "transistor.photo",
-          "unsanctioned_christian"
-        ],
-        "comments": [
-          {
-            "text": "Тике керІу jessicastella_curtis @chelthorne",
-            "tagged": [
-              "chelthorne"
-            ]
-          },
-          {
-            "text": "Тике керІу rachelmellor09 @therealrandymellor @brody_mellor @brockmellor",
-            "tagged": [
-              "brockmellor",
-              "brody_mellor",
-              "therealrandymellor"
-            ]
-          },
-          {
-            "text": "theluxemommethod @scottmason137",
-            "tagged": [
-              "scottmason137"
-            ]
-          },
-          {
-            "text": "керІу jannieclark @coletonclark3 @taylie_clark @tjclark44",
-            "tagged": [
-              "coletonclark3",
-              "taylie_clark",
-              "tjclark44"
-            ]
-          },
-          {
-            "text": "RepIy taniaazabache @sarahheber_ @marrumeg @duul_ac",
-            "tagged": [
-              "duul_ac",
-              "marrumeg",
-              "sarahheber"
-            ]
-          },
-          {
-            "text": "RepIy sdagley @kelty_dags03 @teagandagley @bdagley",
-            "tagged": [
-              "bdagley",
-              "kelty_dags03",
-              "teagandagley"
-            ]
-          },
-          {
-            "text": "керіу dally.c.abreu Maybe we're have some luck this time! @manoel.abreu.atd @fatimaotacila @daianysj",
-            "tagged": [
-              "daianysj",
-              "fatimaotacila",
-              "manoel.abreu.atd"
-            ]
-          },
-          {
-            "text": "керІу phany_g @7ndy_k babe!!! It's our chance. Let's go cougars!!!!",
-            "tagged": [
-              "7ndy_k"
-            ]
-          },
-          {
-            "text": "керІу smith.homestead.doodles @annie_V_smith @just_jers @the.vandylife Crossing my fingers AND my toes.",
-            "tagged": [
-              "annie_v_smith",
-              "just_jers",
-              "the.vandylife"
-            ]
-          },
-          {
-            "text": "керіу brooklinnlewis @stlewis2726 @sophiecox210 @kendall.schweitzer",
-            "tagged": [
-              "kendall.schweitzer",
-              "sophiecox210",
-              "stlewis2726"
-            ]
-          },
-          {
-            "text": "keply janetireyes @emilee.simp",
-            "tagged": [
-              "emilee.simp"
-            ]
-          },
-          {
-            "text": "керІу meyerjoanna @jaylon.vickers @breevickers_ @a_aron_meyer",
-            "tagged": [
-              "a_aron_meyer",
-              "breevickers",
-              "jaylon.vickers"
-            ]
-          },
-          {
-            "text": "RepIy penpalsink @dannysnydes",
-            "tagged": [
-              "dannysnydes"
-            ]
-          },
-          {
-            "text": "керіу jordyrobs I vote @jamie.ashdown wins so she can come visit us!",
-            "tagged": [
-              "jamie.ashdown"
-            ]
-          },
-          {
-            "text": "keply heatherclloyd @jefflloyd1",
-            "tagged": [
-              "jefflloyd1"
-            ]
-          },
-          {
-            "text": "керІу mmayr @therealryan32",
-            "tagged": [
-              "therealryan32"
-            ]
-          },
-          {
-            "text": "керіу gabrielathurman_ @nthurm",
-            "tagged": [
-              "nthurm"
-            ]
-          },
-          {
-            "text": "керІу cdabomb808 @thechindynasty_88 @swolewithchin @andrewthegolfpro55",
-            "tagged": [
-              "andrewthegolfpro55",
-              "swolewithchin",
-              "thechindynasty_88"
-            ]
-          },
-          {
-            "text": "керІу klbramm7 @rhbrammer",
-            "tagged": [
-              "rhbrammer"
-            ]
-          },
-          {
-            "text": "keply gingersnap_29 @bria.granados",
-            "tagged": [
-              "bria.granados"
-            ]
-          },
-          {
-            "text": "juliettemccartney @altheareesemcc",
-            "tagged": [
-              "altheareesemcc"
-            ]
-          },
-          {
-            "text": "RepIy lolander3 @allieymajors",
-            "tagged": [
-              "allieymajors"
-            ]
-          },
-          {
-            "text": "керІу annie.k.walker @he_generaleclectic",
-            "tagged": [
-              "he_generaleclectic"
-            ]
-          },
-          {
-            "text": "keply allieymajors @topper_yost",
-            "tagged": [
-              "topper_yost"
-            ]
-          },
-          {
-            "text": "RepIy grisarzaluz @randallsanchezbolhen @kalebsanche_Z @sofi_sa_",
-            "tagged": [
-              "kalebsanche_z",
-              "randallsanchezbolhen",
-              "sofi_sa"
-            ]
-          },
-          {
-            "text": "керІу dayna_carter1 @lux_shower_remodel",
-            "tagged": [
-              "lux_shower_remodel"
-            ]
-          },
-          {
-            "text": "gotti_doctor5 Don't I wish I still lived it Utahe",
-            "tagged": []
-          },
-          {
-            "text": "RepIy taygaskill @toripaulson24",
-            "tagged": [
-              "toripaulson24"
-            ]
-          },
-          {
-            "text": "керІу melpoulsen @unsanctioned_christian @hayden_beferreal @sydnie_clarah",
-            "tagged": [
-              "hayden_beferreal",
-              "sydnie_clarah",
-              "unsanctioned_christian"
-            ]
-          },
-          {
-            "text": "керіу selin.hales @matthew_hales45",
-            "tagged": [
-              "matthew_hales45"
-            ]
-          },
-          {
-            "text": "керіу bridgetlinde @pumpkinjane",
-            "tagged": [
-              "pumpkinjane"
-            ]
-          },
-          {
-            "text": "керіу michellesaves @transistor.photo",
-            "tagged": [
-              "transistor.photo"
-            ]
-          },
-          {
-            "text": "RepIy madie_fong @jfrancoke @alexandra.franco_official @gfong05",
-            "tagged": [
-              "alexandra.franco_official",
-              "gfong05",
-              "jfrancokc",
-              "jfrancoke"
-            ]
-          },
-          {
-            "text": "texandrea33 @marci_frazier @dentist_foodie @micaela.shipley",
-            "tagged": [
-              "dentist_foodie",
-              "marci_frazier",
-              "micaela.shipley"
-            ]
-          },
-          {
-            "text": "керІу texandrea33 @marci_frazier @dentist_foodie @micaela.shipley",
-            "tagged": [
-              "dentist_foodie",
-              "marci_frazier",
-              "micaela.shipley"
-            ]
-          },
-          {
-            "text": "RepIy burtbunch8 @emaldrich",
-            "tagged": [
-              "emaldrich"
-            ]
-          },
-          {
-            "text": "керІу sweetlifewithmindy @babyparis18",
-            "tagged": [
-              "babyparis18"
-            ]
-          },
-          {
-            "text": "RepIy jennifer_price_carver @dalekprice",
-            "tagged": [
-              "dalekprice"
-            ]
-          }
-        ]
-      },
-      "giveaway_2": {
-        "participated": false,
-        "comment_count": 0,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": []
-      },
-      "network": {
-        "tagged_by": [],
-        "tagged_by_count": 0,
-        "all_tags_made": [
-          "7ndy_k",
-          "a_aron_meyer",
-          "alexandra.franco_official",
-          "allieymajors",
-          "altheareesemcc",
-          "andrewthegolfpro55",
-          "annie_v_smith",
-          "babyparis18",
-          "bdagley",
-          "breevickers",
-          "bria.granados",
-          "brockmellor",
-          "brody_mellor",
-          "chelthorne",
-          "coletonclark3",
-          "daianysj",
-          "dalekprice",
-          "dannysnydes",
-          "dentist_foodie",
-          "duul_ac",
-          "emaldrich",
-          "emilee.simp",
-          "fatimaotacila",
-          "gfong05",
-          "hayden_beferreal",
-          "he_generaleclectic",
-          "jamie.ashdown",
-          "jaylon.vickers",
-          "jefflloyd1",
-          "jfrancokc",
-          "jfrancoke",
-          "just_jers",
-          "kalebsanche_z",
-          "kelty_dags03",
-          "kendall.schweitzer",
-          "lux_shower_remodel",
-          "manoel.abreu.atd",
-          "marci_frazier",
-          "marrumeg",
-          "matthew_hales45",
-          "micaela.shipley",
-          "nthurm",
-          "pumpkinjane",
-          "randallsanchezbolhen",
-          "rhbrammer",
-          "sarahheber",
-          "scottmason137",
-          "sofi_sa",
-          "sophiecox210",
-          "stlewis2726",
-          "swolewithchin",
-          "sydnie_clarah",
-          "taylie_clark",
-          "teagandagley",
-          "the.vandylife",
-          "thechindynasty_88",
-          "therealrandymellor",
-          "therealryan32",
-          "tjclark44",
-          "topper_yost",
-          "toripaulson24",
-          "transistor.photo",
-          "unsanctioned_christian"
-        ],
-        "all_tags_made_count": 63,
-        "total_comments": 38
-      }
-    },
     "tyandra_perez": {
       "handle": "tyandra_perez",
       "giveaways": [
@@ -94705,10 +93959,9 @@ window.PIONEER_GIVEAWAYS_DB = {
       },
       "network": {
         "tagged_by": [
-          "ia",
           "sargentfamily"
         ],
-        "tagged_by_count": 2,
+        "tagged_by_count": 1,
         "all_tags_made": [
           "hadleymsargent",
           "sargentfamily",
@@ -95037,160 +94290,6 @@ window.PIONEER_GIVEAWAYS_DB = {
         "total_comments": 1
       }
     },
-    "za": {
-      "handle": "za",
-      "giveaways": [
-        2
-      ],
-      "giveaway_count": 1,
-      "is_repeat_entrant": false,
-      "giveaway_1": {
-        "participated": false,
-        "comment_count": 0,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": []
-      },
-      "giveaway_2": {
-        "participated": true,
-        "comment_count": 15,
-        "unique_tags_count": 17,
-        "tags_made": [
-          "brevenbalser",
-          "chriswardqueen",
-          "disaac_24",
-          "elliescarb",
-          "emilyannmecham",
-          "erintaylorfloral",
-          "grandpaparry",
-          "j_bals15",
-          "jennifer_price_carver",
-          "kase.south",
-          "kennybalser",
-          "mark22b",
-          "olsen1925",
-          "sarahc_801",
-          "sarahfoster24",
-          "sportscourt49",
-          "susandoubleu"
-        ],
-        "comments": [
-          {
-            "text": "керІу katesouthwick @kase.south",
-            "tagged": [
-              "kase.south"
-            ]
-          },
-          {
-            "text": "керіу rockinreids @sarahfoster24",
-            "tagged": [
-              "sarahfoster24"
-            ]
-          },
-          {
-            "text": "керІу ecrocks7 @erintaylorfloral",
-            "tagged": [
-              "erintaylorfloral"
-            ]
-          },
-          {
-            "text": "керІу denaecarlson @olsen1925",
-            "tagged": [
-              "olsen1925"
-            ]
-          },
-          {
-            "text": "RepIy carolmello76 @sarahc_801",
-            "tagged": [
-              "sarahc_801"
-            ]
-          },
-          {
-            "text": "керІу jordyn_isaac Ballon's!",
-            "tagged": []
-          },
-          {
-            "text": "керІу cassie_balser Ministering & holiday gifts @kennybalser @j_bals15 @brevenbalser",
-            "tagged": [
-              "brevenbalser",
-              "j_bals15",
-              "kennybalser"
-            ]
-          },
-          {
-            "text": "керІу beckyjalbrecht Balloons",
-            "tagged": []
-          },
-          {
-            "text": "керіу laurbird | love the little ministering gifts, and the HOME BODY pullover!",
-            "tagged": []
-          },
-          {
-            "text": "RepIy jordyn_isaac @disaac_24",
-            "tagged": [
-              "disaac_24"
-            ]
-          },
-          {
-            "text": "керІу coriescarb Seasonal gifts for sure! @elliescarb @chriswardqueen @sportscourt49",
-            "tagged": [
-              "chriswardqueen",
-              "elliescarb",
-              "sportscourt49"
-            ]
-          },
-          {
-            "text": "керіу banner_events @jennifer_price_carver",
-            "tagged": [
-              "jennifer_price_carver"
-            ]
-          },
-          {
-            "text": "керіу rachelditto @emilyannmecham",
-            "tagged": [
-              "emilyannmecham"
-            ]
-          },
-          {
-            "text": "керІу emilywoodsy @susandoubleu @mark22b @grandpaparry",
-            "tagged": [
-              "grandpaparry",
-              "mark22b",
-              "susandoubleu"
-            ]
-          },
-          {
-            "text": "керіу kyleswat1 | love the balloon selection",
-            "tagged": []
-          }
-        ]
-      },
-      "network": {
-        "tagged_by": [],
-        "tagged_by_count": 0,
-        "all_tags_made": [
-          "brevenbalser",
-          "chriswardqueen",
-          "disaac_24",
-          "elliescarb",
-          "emilyannmecham",
-          "erintaylorfloral",
-          "grandpaparry",
-          "j_bals15",
-          "jennifer_price_carver",
-          "kase.south",
-          "kennybalser",
-          "mark22b",
-          "olsen1925",
-          "sarahc_801",
-          "sarahfoster24",
-          "sportscourt49",
-          "susandoubleu"
-        ],
-        "all_tags_made_count": 17,
-        "total_comments": 15
-      }
-    },
     "zacfarnworth": {
       "handle": "zacfarnworth",
       "giveaways": [
@@ -95508,56 +94607,6 @@ window.PIONEER_GIVEAWAYS_DB = {
         ],
         "all_tags_made_count": 3,
         "total_comments": 1
-      }
-    },
-    "zu": {
-      "handle": "zu",
-      "giveaways": [
-        2
-      ],
-      "giveaway_count": 1,
-      "is_repeat_entrant": false,
-      "giveaway_1": {
-        "participated": false,
-        "comment_count": 0,
-        "unique_tags_count": 0,
-        "tags_made": [],
-        "comments": []
-      },
-      "giveaway_2": {
-        "participated": true,
-        "comment_count": 2,
-        "unique_tags_count": 3,
-        "tags_made": [
-          "burke_pemberton",
-          "kristen_utley",
-          "sarah_utley_10"
-        ],
-        "comments": [
-          {
-            "text": "nopiy hopeputley Ministering gifts! @kristen_utley @sarah_utley_10 @burke_pemberton",
-            "tagged": [
-              "burke_pemberton",
-              "kristen_utley",
-              "sarah_utley_10"
-            ]
-          },
-          {
-            "text": "noNiy samaymemm Love all the missionary things we can order",
-            "tagged": []
-          }
-        ]
-      },
-      "network": {
-        "tagged_by": [],
-        "tagged_by_count": 0,
-        "all_tags_made": [
-          "burke_pemberton",
-          "kristen_utley",
-          "sarah_utley_10"
-        ],
-        "all_tags_made_count": 3,
-        "total_comments": 2
       }
     },
     "zylie": {
