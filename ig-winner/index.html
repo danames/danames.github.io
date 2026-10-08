@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BYU Football Tickets Instagram Giveaway | Pioneer Party</title>
-  <link rel="stylesheet" href="css/style.css?v=2.3" />
+  <link rel="stylesheet" href="css/style.css?v=3.0" />
 </head>
 <body>
   <!-- Background Image & Gradient Scrim -->
@@ -22,8 +22,8 @@
         <img src="assets/pioneer-party-logo.png" alt="Pioneer Party Gift & Copy" class="pp-logo" />
         <div class="title-wrap">
           <h1>
-            <span class="byu-tag">Week 2 Giveaway</span>
-            BYU vs. Arizona Football Tickets
+            <span class="byu-tag" id="hdrTag">Week 2 Giveaway</span>
+            <span id="hdrTitle">BYU vs. Arizona Football Tickets</span>
           </h1>
         </div>
       </div>
@@ -50,10 +50,10 @@
 
       <!-- Docked Post Reference Badge (Visible during cyclone) -->
       <div class="docked-post-badge" id="dockedPostBadge" title="Official Giveaway Post">
-        <img src="assets/giveaway-post.png" alt="Week 2 Post" class="docked-post-thumb" />
+        <img src="assets/giveaway-post.png" alt="Giveaway post" class="docked-post-thumb" id="dockImg" />
         <div class="docked-post-meta">
-          <span class="docked-tag">Week 2 Giveaway</span>
-          <span class="docked-title">BYU vs. Arizona</span>
+          <span class="docked-tag" id="dockTag">Week 2 Giveaway</span>
+          <span class="docked-title" id="dockTitle">BYU vs. Arizona</span>
         </div>
       </div>
 
@@ -62,7 +62,7 @@
 
       <!-- Center Action Card (Pre-start) -->
       <div class="center-card" id="centerCard">
-        <div class="featured-post-card">
+        <div class="featured-post-card" id="featuredPost">
           <div class="post-pill">
             <span class="pulse-indicator"></span> Official Shared Post
           </div>
@@ -80,17 +80,18 @@
           <strong id="participantsCount">0</strong>
         </div>
         <button id="btnStart" class="btn-start">
-          <span>🏈</span> START GIVEAWAY
+          <span>🏈</span> <span id="btnStartLabel">START GIVEAWAY</span>
         </button>
       </div>
 
       <!-- Winner & Runners-Up Announcement Card -->
       <div class="winner-card" id="winnerCard">
         <div class="trophy-badge">🏆</div>
-        <div class="winner-subtitle">Grand Prize Winner</div>
+        <div class="winner-subtitle" id="winnerSubtitle">Grand Prize Winner</div>
+        <div class="winner-note" id="winnerNote" hidden></div>
         <div class="winner-handle" id="winnerHandle">@winner</div>
 
-        <div class="runners-up-box">
+        <div class="runners-up-box" id="runnersBox">
           <div class="runners-up-title">Official Backup Winners (24-Hr Window)</div>
           <div class="runner-row">
             <div class="runner-label"><span>🥈</span> 1st Runner-Up</div>
@@ -104,7 +105,7 @@
 
         <div class="winner-actions">
           <button id="btnRedraw" class="btn-secondary">
-            🔄 Draw Again
+            <span id="btnRedrawLabel">🔄 Draw Again</span>
           </button>
           <button id="btnCopy" class="btn-primary-action">
             📋 Copy Results
@@ -115,7 +116,7 @@
 
     <!-- Footer Disclaimer -->
     <footer class="footer">
-      <p class="disclaimer">
+      <p class="disclaimer" id="disclaimer">
         This giveaway is not affiliated with BYU. Tickets will be transferred electronically to the winner. 
         The winner has 24 hours to reply or the tickets will be offered to the next selected individual. 
         See original Instagram post for full rules.
@@ -145,10 +146,11 @@
   </aside>
 
   <!-- Scripts -->
-  <script src="data/handles.js?v=2.3"></script>
-  <script src="data/shortlist.js?v=2.3"></script>
-  <script src="js/audio.js?v=2.3"></script>
-  <script src="js/fireworks.js?v=2.3"></script>
-  <script src="js/app.js?v=2.3"></script>
+  <script src="data/config.js?v=3.0"></script>
+  <script src="data/handles.js?v=3.0"></script>
+  <script src="data/shortlist.js?v=3.0"></script>
+  <script src="js/audio.js?v=3.0"></script>
+  <script src="js/fireworks.js?v=3.0"></script>
+  <script src="js/app.js?v=3.0"></script>
 </body>
 </html>

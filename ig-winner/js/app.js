@@ -30,6 +30,11 @@
   const btnSaveHandles = document.getElementById('btnSaveHandles');
   const btnResetHandles = document.getElementById('btnResetHandles');
 
+  // Giveaway settings (data/config.js). revealWinner = announce a chosen winner, not a random draw.
+  const CFG = window.GIVEAWAY_CONFIG || {};
+  const REVEAL = CFG.revealWinner ? CFG.revealWinner.replace(/^@+/, '').trim().toLowerCase() : null;
+  const STORAGE_KEY = 'ig_giveaway_handles_' + (CFG.id || 'default');
+
   // State
   let allHandles = [];
   let defaultHandles = [];
@@ -60,6 +65,7 @@
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
 
+    applyConfig();
     await loadHandles();
 
     // Check for test mode query parameters
@@ -76,8 +82,41 @@
     } else if (urlParams.get('test') === 'winner') {
       setTimeout(() => {
         centerCard.classList.add('hidden');
-        revealGrandWinner(allHandles[0] || 'sample_winner', allHandles[1] || 'runner_up_1', allHandles[2] || 'runner_up_2');
+        revealGrandWinner(REVEAL || allHandles[0] || 'sample_winner', allHandles[1] || 'runner_up_1', allHandles[2] || 'runner_up_2');
       }, 300);
+    }
+  }
+
+  function setText(id, text) {
+    const el = document.getElementById(id);
+    if (el && text) el.textContent = text;
+  }
+
+  function applyConfig() {
+    setText('hdrTag', CFG.tag); setText('hdrTitle', CFG.title);
+    setText('dockTag', CFG.tag); setText('dockTitle', CFG.title);
+    if (CFG.title) document.title = `${CFG.title} Instagram Giveaway | Pioneer Party`;
+    if ('postImage' in CFG) {
+      const featured = document.getElementById('featuredPost');
+      const dockImg = document.getElementById('dockImg');
+      if (CFG.postImage) {
+        document.querySelectorAll('.giveaway-post-img').forEach(img => { img.src = CFG.postImage; });
+        if (dockImg) dockImg.src = CFG.postImage;
+      } else {
+        if (featured) featured.hidden = true;
+        if (dockImg) dockImg.hidden = true;
+      }
+    }
+    if (REVEAL) {
+      setText('btnStartLabel', 'REVEAL THE WINNER');
+      setText('winnerSubtitle', CFG.revealLabel || 'Winner');
+      setText('btnRedrawLabel', '↺ Replay Reveal');
+      const note = document.getElementById('winnerNote');
+      if (note && CFG.revealNote) { note.textContent = CFG.revealNote; note.hidden = false; }
+      const runners = document.getElementById('runnersBox');
+      if (runners) runners.hidden = true;
+      setText('disclaimer', 'This giveaway is not affiliated with BYU. The winner was chosen by Pioneer Party. ' +
+        'Tickets will be transferred electronically to the winner. See original Instagram post for full rules.');
     }
   }
 
@@ -97,7 +136,7 @@
       defaultHandles = window.INITIAL_HANDLES.map(cleanHandle).filter(Boolean);
     }
 
-    const saved = localStorage.getItem('ig_giveaway_handles');
+    const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -110,6 +149,7 @@
     if (allHandles.length === 0) {
       allHandles = [...defaultHandles];
     }
+    if (REVEAL && !allHandles.includes(REVEAL)) allHandles.push(REVEAL);
 
     updateHandlesUI();
   }
@@ -192,14 +232,14 @@
       return;
     }
     allHandles = unique;
-    localStorage.setItem('ig_giveaway_handles', JSON.stringify(allHandles));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allHandles));
     updateHandlesUI();
     closeDrawer();
   }
 
   function resetHandlesToDefault() {
     if (confirm('Reset handles to the original video extracted list?')) {
-      localStorage.removeItem('ig_giveaway_handles');
+      localStorage.removeItem(STORAGE_KEY);
       allHandles = [...defaultHandles];
       updateHandlesUI();
       closeDrawer();
@@ -229,7 +269,7 @@
       ? window.SHORTLISTED_FINALISTS 
       : [];
     const shortlistSet = new Set(rawShortlist.map(h => h.toLowerCase().trim().replace(/^@/, '')));
-    const hasShortlist = shortlistSet.size >= 3;
+    const hasShortlist = !REVEAL && shortlistSet.size >= 3;
 
     // Shuffle
     activeHandles = [...allHandles].sort(() => Math.random() - 0.5);
@@ -245,6 +285,7 @@
     } else {
       visualPool = activeHandles.slice(0, maxVisual);
     }
+    if (REVEAL && !visualPool.includes(REVEAL)) visualPool[visualPool.length - 1] = REVEAL;
 
     cycloneContainer.innerHTML = '';
     cycloneParticles = [];
@@ -302,14 +343,14 @@
     });
 
     statusPill.classList.add('active');
-    statusText.textContent = `Gathering ${allHandles.length} participants into cyclone...`;
+    statusText.textContent = REVEAL ? `Gathering all ${allHandles.length} entrants...` : `Gathering ${allHandles.length} participants into cyclone...`;
 
     const startTime = performance.now();
     runAnimationLoop(startTime);
 
     // Accelerate into full cyclone
     setTimeout(() => {
-      statusText.textContent = `Vortex active: ${allHandles.length} contestants swirling!`;
+      statusText.textContent = REVEAL ? `${allHandles.length} entrants swirling!` : `Vortex active: ${allHandles.length} contestants swirling!`;
       cycloneParticles.forEach(p => {
         p.phase = 'cyclone';
         p.orbitSpeed *= 1.5;
@@ -405,9 +446,13 @@
       ? window.SHORTLISTED_FINALISTS 
       : [];
     const shortlistSet = new Set(rawShortlist.map(h => h.toLowerCase().trim().replace(/^@/, '')));
-    const hasShortlist = shortlistSet.size >= 3;
+    const hasShortlist = !REVEAL && shortlistSet.size >= 3;
 
     function stepElimination() {
+      if (REVEAL && pool.length <= 4) {
+        runRevealFinale(pool);
+        return;
+      }
       if (pool.length <= 3) {
         runFinalThree(pool);
         return;
@@ -445,7 +490,7 @@
         delay = 520;
       }
 
-      for (let k = 0; k < removeCount && pool.length > 3; k++) {
+      for (let k = 0; k < removeCount && pool.length > (REVEAL ? 4 : 3); k++) {
         let removeIdx = -1;
         if (hasShortlist && pool.length > shortlistSet.size) {
           // Identify indices of non-shortlisted handles to eliminate first
@@ -461,6 +506,8 @@
           } else {
             removeIdx = Math.floor(Math.random() * pool.length);
           }
+        } else if (REVEAL) {
+          do { removeIdx = Math.floor(Math.random() * pool.length); } while (pool[removeIdx] === REVEAL);
         } else {
           removeIdx = Math.floor(Math.random() * pool.length);
         }
@@ -476,7 +523,9 @@
         }
       }
 
-      if (hasShortlist && pool.length <= shortlistSet.size && pool.length > 3) {
+      if (REVEAL) {
+        statusText.textContent = `Narrowing it down... ${pool.length} names left`;
+      } else if (hasShortlist && pool.length <= shortlistSet.size && pool.length > 3) {
         statusText.textContent = `⭐ Top ${pool.length} Finalists in the Vortex! ⭐`;
       } else {
         statusText.textContent = `Eliminating... ${pool.length} contestants remaining`;
@@ -582,6 +631,36 @@
     }, 3800);
   }
 
+  // Reveal mode finale: the last few names swirl, fade one at a time, then the chosen winner is announced.
+  function runRevealFinale(remaining) {
+    statusPill.classList.add('active');
+    statusText.textContent = 'Almost there...';
+    remaining.forEach((handle, idx) => {
+      const p = cycloneParticles.find(part => part.handle === handle);
+      if (!p) return;
+      p.phase = 'finalist';
+      p.el.classList.add('finalist-badge');
+      p.orbitAngle = (Math.PI * 2 / remaining.length) * idx;
+    });
+    cycloneParticles.forEach(p => { if (!remaining.includes(p.handle)) p.phase = 'eliminating'; });
+
+    const others = remaining.filter(h => h !== REVEAL);
+    let i = 0;
+    function fadeNext() {
+      if (i < others.length) {
+        const p = cycloneParticles.find(part => part.handle === others[i]);
+        if (p) p.phase = 'eliminating';
+        if (window.soundFX) window.soundFX.playEliminatePop();
+        i++;
+        if (i === others.length) statusText.textContent = `🏆 And ${CFG.revealLabel || 'the winner'} is...`;
+        setTimeout(fadeNext, i === others.length ? 1500 : 1300);
+      } else {
+        revealGrandWinner(REVEAL);
+      }
+    }
+    setTimeout(fadeNext, 3000);
+  }
+
   // Reveal Grand Winner with full fireworks & celebration music
   function revealGrandWinner(winner, r1, r2) {
     lastResults = {
@@ -627,11 +706,20 @@
     fireworks.start();
 
     winnerHandle.textContent = `@${winner}`;
-    runnerUp1.textContent = `@${r1}`;
-    runnerUp2.textContent = `@${r2}`;
+    if (!REVEAL) {
+      runnerUp1.textContent = `@${r1}`;
+      runnerUp2.textContent = `@${r2}`;
+    }
 
     setTimeout(() => {
       winnerCard.classList.add('visible');
+      // In reveal mode the card carries the name and "Emily's Pick" label; fade the big badge so it doesn't cover them
+      if (REVEAL && winParticle.el) {
+        winParticle.el.style.transition = 'opacity 0.6s ease';
+        winParticle.phase = 'done';
+        winParticle.opacity = 0;
+        winParticle.el.style.opacity = '0';
+      }
     }, 850);
   }
 
@@ -658,7 +746,14 @@
 
   function copyResults() {
     if (!lastResults) return;
-    const text = `🏆 BYU Football Tickets Instagram Giveaway Results\n` +
+    const text = REVEAL ?
+                 `🏆 ${CFG.title || 'BYU Football Tickets'} Instagram Giveaway${CFG.tag ? ' (' + CFG.tag + ')' : ''}\n` +
+                 `Pioneer Party Gift & Copy\n` +
+                 `-----------------------------------------\n` +
+                 `Winner: @${lastResults.winner}\n` +
+                 `${CFG.revealNote || 'Chosen by Pioneer Party'}\n` +
+                 `Announced: ${lastResults.timestamp}\n\n` +
+                 `* The winner has 24 hours to reply to claim the tickets.` : `🏆 BYU Football Tickets Instagram Giveaway Results\n` +
                  `Organized by Pioneer Party Gift & Copy\n` +
                  `-----------------------------------------\n` +
                  `Grand Prize Winner: @${lastResults.winner}\n` +

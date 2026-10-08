@@ -910,3 +910,16 @@ body {
     font-size: 1.8rem;
   }
 }
+
+/* Winner-reveal mode (data/config.js) */
+[hidden] { display: none !important; }
+.winner-note {
+  margin: -4px 0 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #FFD87A;
+}
+@media (max-width: 480px) {
+  .winner-handle { font-size: clamp(1.3rem, 7.4vw, 2.2rem); word-break: keep-all; overflow-wrap: normal; white-space: nowrap; }
+}
