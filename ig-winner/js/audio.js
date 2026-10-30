@@ -15,8 +15,22 @@ class SoundFX {
     this.bgMusic.loop = true;
     this.bgMusic.volume = this.musicVolume;
 
-    this.celebrationMusic = new Audio('assets/audio/celebration.mp3');
-    this.celebrationMusic.loop = true;
+    // Celebration track: data/config.js celebrationTrack (e.g. Rise and Shout), else the bundled celebration.mp3.
+    const cfg = window.GIVEAWAY_CONFIG || {};
+    const track = cfg.celebrationTrack || 'assets/audio/celebration.mp3';
+    this.celebrationMusic = new Audio(track);
+    this.celebrationMusic.loop = cfg.celebrationLoop !== false;
+    if (cfg.celebrationTrack) {
+      // if the configured file is missing, fall back to the bundled track so the reveal still has music
+      this.celebrationMusic.addEventListener('error', () => {
+        console.warn('Celebration track not found: ' + track + '; using assets/audio/celebration.mp3');
+        this.celebrationMusic = new Audio('assets/audio/celebration.mp3');
+        this.celebrationMusic.loop = true;
+        this.celebrationMusic.volume = this.musicVolume;
+        this.celebrationMusic.muted = this.muted;
+      }, { once: true });
+    }
+    this.sfxEnabled = cfg.soundEffects === true;   // ticks, pops and booms are off unless config turns them on
     this.celebrationMusic.volume = this.musicVolume;
   }
 
@@ -93,6 +107,7 @@ class SoundFX {
   }
 
   playEliminatePop() {
+    if (!this.sfxEnabled) return;
     if (this.muted || !this.ctx) return;
     try {
       const osc = this.ctx.createOscillator();
@@ -115,10 +130,12 @@ class SoundFX {
   }
 
   playTick(pitch = 1.0) {
+    if (!this.sfxEnabled) return;
     // Disabled dramatic tick
   }
 
   playFireworkBoom() {
+    if (!this.sfxEnabled) return;
     if (this.muted || !this.ctx) return;
     try {
       const osc = this.ctx.createOscillator();

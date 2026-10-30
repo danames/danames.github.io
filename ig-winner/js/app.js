@@ -32,7 +32,15 @@
 
   // Giveaway settings (data/config.js). revealWinner = announce a chosen winner, not a random draw.
   const CFG = window.GIVEAWAY_CONFIG || {};
-  const REVEAL = CFG.revealWinner ? CFG.revealWinner.replace(/^@+/, '').trim().toLowerCase() : null;
+  // revealWinners (list) or revealWinner (single): names are kept exactly as listed, minus any leading "@".
+  const REVEALS = (Array.isArray(CFG.revealWinners) ? CFG.revealWinners : (CFG.revealWinner ? [CFG.revealWinner] : []))
+    .map(cleanHandle).filter(Boolean);
+  const REVEAL = REVEALS.length ? REVEALS[0] : null;
+  const isReveal = (h) => REVEALS.includes(h);
+  // Facebook entrants are marked "fb:<username>" (shown as @username, "via Facebook").
+  // A bare name with spaces (no username known) is shown as written.
+  const isFb = (h) => /^fb:/i.test(h) || /\s/.test(h);
+  const display = (h) => (/^fb:/i.test(h) ? '@' + h.slice(3) : (/\s/.test(h) ? h : '@' + h));
   const STORAGE_KEY = 'ig_giveaway_handles_' + (CFG.id || 'default');
 
   // State
@@ -79,10 +87,19 @@
         runAnimationLoop(performance.now());
         runFinalThree(['sample_winner', 'runner_up_1', 'runner_up_2']);
       }, 300);
+    } else if (urlParams.get('test') === 'spinner') {
+      setTimeout(() => {
+        centerCard.classList.add('hidden');
+        isRunning = true;
+        runAnimationLoop(performance.now());
+        const sl = (window.SHORTLISTED_FINALISTS || []).map(cleanHandle);
+        runSpinnerFinale(sl.length ? sl : allHandles.slice(0, 20));
+      }, 300);
     } else if (urlParams.get('test') === 'winner') {
       setTimeout(() => {
         centerCard.classList.add('hidden');
-        revealGrandWinner(REVEAL || allHandles[0] || 'sample_winner', allHandles[1] || 'runner_up_1', allHandles[2] || 'runner_up_2');
+        if (REVEALS.length) revealWinners(REVEALS);
+        else revealGrandWinner(allHandles[0] || 'sample_winner', allHandles[1] || 'runner_up_1', allHandles[2] || 'runner_up_2');
       }, 300);
     }
   }
@@ -108,15 +125,19 @@
       }
     }
     if (REVEAL) {
-      setText('btnStartLabel', 'REVEAL THE WINNER');
+      const many = REVEALS.length > 1;
+      setText('btnStartLabel', many ? 'REVEAL THE WINNERS' : 'REVEAL THE WINNER');
       setText('winnerSubtitle', CFG.revealLabel || 'Winner');
       setText('btnRedrawLabel', '↺ Replay Reveal');
       const note = document.getElementById('winnerNote');
       if (note && CFG.revealNote) { note.textContent = CFG.revealNote; note.hidden = false; }
       const runners = document.getElementById('runnersBox');
       if (runners) runners.hidden = true;
-      setText('disclaimer', 'This giveaway is not affiliated with BYU. The winner was chosen by Pioneer Party. ' +
-        'Tickets will be transferred electronically to the winner. See original Instagram post for full rules.');
+      setText('disclaimer', many
+        ? `This giveaway is not affiliated with BYU. The winners were chosen by Pioneer Party and each receives ${CFG.prizeEach || 'tickets'}. ` +
+          'Tickets will be transferred electronically. See the original Instagram and Facebook posts for full rules.'
+        : 'This giveaway is not affiliated with BYU. The winner was chosen by Pioneer Party. ' +
+          'Tickets will be transferred electronically to the winner. See original Instagram post for full rules.');
     }
   }
 
@@ -156,7 +177,8 @@
 
   function cleanHandle(str) {
     if (!str) return '';
-    return str.replace(/^@+/, '').trim().toLowerCase();
+    const s = str.replace(/^@+/, '').trim();
+    return /\s/.test(s) ? s : s.toLowerCase();   // handles lowercase; Facebook names keep their case
   }
 
   function updateHandlesUI() {
@@ -269,7 +291,7 @@
       ? window.SHORTLISTED_FINALISTS 
       : [];
     const shortlistSet = new Set(rawShortlist.map(h => h.toLowerCase().trim().replace(/^@/, '')));
-    const hasShortlist = !REVEAL && shortlistSet.size >= 3;
+    const hasShortlist = shortlistSet.size >= 3;
 
     // Shuffle
     activeHandles = [...allHandles].sort(() => Math.random() - 0.5);
@@ -285,7 +307,7 @@
     } else {
       visualPool = activeHandles.slice(0, maxVisual);
     }
-    if (REVEAL && !visualPool.includes(REVEAL)) visualPool[visualPool.length - 1] = REVEAL;
+    REVEALS.forEach((w, i) => { if (!visualPool.includes(w)) visualPool[visualPool.length - 1 - i] = w; });
 
     cycloneContainer.innerHTML = '';
     cycloneParticles = [];
@@ -419,7 +441,7 @@
             continue;
           }
         } else if (p.phase === 'winner') {
-          p.x += (0 - p.x) * 0.12;
+          p.x += ((p.homeX || 0) - p.x) * 0.12;
           p.y += (0 - p.y) * 0.12;
           p.z += (0 - p.z) * 0.12;
           p.opacity = 1;
@@ -446,10 +468,16 @@
       ? window.SHORTLISTED_FINALISTS 
       : [];
     const shortlistSet = new Set(rawShortlist.map(h => h.toLowerCase().trim().replace(/^@/, '')));
-    const hasShortlist = !REVEAL && shortlistSet.size >= 3;
+    const hasShortlist = shortlistSet.size >= 3;
+    // Reveal mode with a shortlist: narrow the cyclone to the shortlist, then spin the reels.
+    const useSpinner = REVEAL && hasShortlist && shortlistSet.size >= REVEALS.length + 2;
 
     function stepElimination() {
-      if (REVEAL && pool.length <= 4) {
+      if (useSpinner && pool.length <= shortlistSet.size) {
+        runSpinnerFinale(pool);
+        return;
+      }
+      if (REVEAL && pool.length <= REVEALS.length + 3) {
         runRevealFinale(pool);
         return;
       }
@@ -490,7 +518,7 @@
         delay = 520;
       }
 
-      for (let k = 0; k < removeCount && pool.length > (REVEAL ? 4 : 3); k++) {
+      for (let k = 0; k < removeCount && pool.length > (REVEAL ? REVEALS.length + 3 : 3); k++) {
         let removeIdx = -1;
         if (hasShortlist && pool.length > shortlistSet.size) {
           // Identify indices of non-shortlisted handles to eliminate first
@@ -507,7 +535,7 @@
             removeIdx = Math.floor(Math.random() * pool.length);
           }
         } else if (REVEAL) {
-          do { removeIdx = Math.floor(Math.random() * pool.length); } while (pool[removeIdx] === REVEAL);
+          do { removeIdx = Math.floor(Math.random() * pool.length); } while (isReveal(pool[removeIdx]));
         } else {
           removeIdx = Math.floor(Math.random() * pool.length);
         }
@@ -527,6 +555,8 @@
         statusText.textContent = `Narrowing it down... ${pool.length} names left`;
       } else if (hasShortlist && pool.length <= shortlistSet.size && pool.length > 3) {
         statusText.textContent = `⭐ Top ${pool.length} Finalists in the Vortex! ⭐`;
+      } else if (useSpinner) {
+        statusText.textContent = `Narrowing ${pool.length} names down to the final ${shortlistSet.size}...`;
       } else {
         statusText.textContent = `Eliminating... ${pool.length} contestants remaining`;
       }
@@ -631,6 +661,101 @@
     }, 3800);
   }
 
+  // Final-20 reels: the shortlist cycles slowly on one reel per winner, Price-is-Right style,
+  // each reel decelerating onto its chosen winner, then the winner card and fireworks.
+  function runSpinnerFinale(pool) {
+    statusPill.classList.add('active');
+    statusText.textContent = `🎰 The Final ${pool.length}! Spinning for the winners...`;
+    cycloneParticles.forEach(p => { p.phase = 'eliminating'; });
+
+    const stageEl = document.getElementById('spinnerStage');
+    const reelsEl = document.getElementById('reels');
+    const reelEls = [document.getElementById('reel1'), document.getElementById('reel2')];
+    stageEl.hidden = false;
+    requestAnimationFrame(() => stageEl.classList.add('visible'));
+    const winners = REVEALS.slice(0, 2);
+    if (winners.length < 2) { reelEls[1].hidden = true; reelEls[0].querySelector('.reel-label').textContent = 'Winner'; }
+    const lower = (h) => h.toLowerCase().trim().replace(/^@/, '');
+    const rowH = reelEls[0].querySelector('.reel-window').getBoundingClientRect().height / 3;
+
+    // Split the pool between the reels: each winner goes only on their own reel, the other names are
+    // shuffled and dealt out evenly, so the two reels show different names (about 10 each for a final 20).
+    const others = [...pool].filter(n => !winners.some(w => lower(w) === lower(n))).sort(() => Math.random() - 0.5);
+    const reelNames = winners.map(w => [w]);
+    others.forEach((n, i) => reelNames[i % winners.length].push(n));
+    reelNames.forEach(list => list.sort(() => Math.random() - 0.5));
+    const stageTitle = document.getElementById('spinnerTitle');
+    if (stageTitle) stageTitle.textContent = `🎰 THE FINAL ${pool.length} 🎰`;
+
+    // Build one reel from its own list of names, rendered as a vertical wheel.
+    function buildReel(reelEl, winner, names, spinSeconds, startDelay, onDone) {
+      const itemsEl = reelEl.querySelector('.reel-items');
+      itemsEl.innerHTML = '';
+      const els = names.map(n => {
+        const el = document.createElement('div');
+        el.className = 'reel-item' + (display(n).length > 18 ? ' long' : '');
+        el.textContent = display(n);
+        itemsEl.appendChild(el);
+        return el;
+      });
+      const n = names.length;
+      const target = names.findIndex(x => lower(x) === lower(winner));
+      const speed = 6.5;                                  // names per second at full speed (slow and readable)
+      const laps = Math.max(2, Math.round(speed * spinSeconds * 0.45 / n));
+      const total = laps * n + ((target - 0) % n + n) % n;  // end exactly on the winner
+      let start = null, lastIdx = -1;
+
+      function render(pos) {
+        for (let i = 0; i < n; i++) {
+          let off = ((i - pos) % n + n) % n;
+          if (off > n / 2) off -= n;
+          const el = els[i];
+          if (Math.abs(off) > 2.2) { el.style.display = 'none'; continue; }
+          el.style.display = 'flex';
+          const dist = Math.abs(off);
+          el.style.transform = `translateY(${off * rowH}px) scale(${1.18 - dist * 0.22})`;
+          el.style.opacity = String(Math.max(0, 1 - dist * 0.42));
+          el.classList.toggle('center', dist < 0.5);
+        }
+      }
+      function frame(ts) {
+        if (start === null) start = ts;
+        const t = Math.min(1, (ts - start) / (spinSeconds * 1000));
+        const eased = 1 - Math.pow(1 - t, 4);               // long, gentle slow-down
+        const pos = total * eased;
+        render(pos);
+        const idx = Math.round(pos) % n;
+        if (idx !== lastIdx) {
+          lastIdx = idx;
+          if (window.soundFX) window.soundFX.playTick(0.8 + 0.6 * (1 - t));
+        }
+        if (t < 1) requestAnimationFrame(frame);
+        else {
+          render(target + laps * n);  // snap exactly onto the winner
+          reelEl.classList.add('landed');
+          if (window.soundFX) window.soundFX.playFireworkBoom();
+          onDone();
+        }
+      }
+      render(0);
+      setTimeout(() => requestAnimationFrame(frame), startDelay);
+    }
+
+    let landed = 0;
+    const finish = () => {
+      landed++;
+      if (landed === 1 && winners.length > 1) statusText.textContent = `🏆 Winner #1: ${display(winners[0])}! Now spinning for Winner #2...`;
+      if (landed < winners.length) return;
+      statusText.textContent = winners.length > 1 ? '🏆 AND OUR TWO WINNERS ARE...' : '🏆 AND THE WINNER IS...';
+      setTimeout(() => {
+        stageEl.classList.remove('visible');
+        setTimeout(() => { stageEl.hidden = true; revealWinners(REVEALS); }, 800);
+      }, 2600);
+    };
+    buildReel(reelEls[0], winners[0], reelNames[0], 13, 1200, finish);
+    if (winners.length > 1) buildReel(reelEls[1], winners[1], reelNames[1], 17, 4200, finish);
+  }
+
   // Reveal mode finale: the last few names swirl, fade one at a time, then the chosen winner is announced.
   function runRevealFinale(remaining) {
     statusPill.classList.add('active');
@@ -644,7 +769,7 @@
     });
     cycloneParticles.forEach(p => { if (!remaining.includes(p.handle)) p.phase = 'eliminating'; });
 
-    const others = remaining.filter(h => h !== REVEAL);
+    const others = remaining.filter(h => !isReveal(h));
     let i = 0;
     function fadeNext() {
       if (i < others.length) {
@@ -652,13 +777,43 @@
         if (p) p.phase = 'eliminating';
         if (window.soundFX) window.soundFX.playEliminatePop();
         i++;
-        if (i === others.length) statusText.textContent = `🏆 And ${CFG.revealLabel || 'the winner'} is...`;
+        if (i === others.length) statusText.textContent = REVEALS.length > 1 ? `🏆 And ${CFG.revealLabel || 'the winners'} are...` : `🏆 And ${CFG.revealLabel || 'the winner'} is...`;
         setTimeout(fadeNext, i === others.length ? 1500 : 1300);
       } else {
-        revealGrandWinner(REVEAL);
+        revealWinners(REVEALS);
       }
     }
     setTimeout(fadeNext, 3000);
+  }
+
+  // Reveal mode: announce every chosen winner (one or several) on the card.
+  function revealWinners(winners) {
+    revealGrandWinner(winners[0]);
+    lastResults.winners = winners;
+    winnerHandle.innerHTML = winners.map(w =>
+      `<div class="winner-line">${escapeHtml(display(w))}` +
+      (isFb(w) ? '<span class="winner-src">via Facebook</span>' : '') + '</div>').join('');
+    winnerHandle.classList.toggle('multi', winners.length > 1);
+    // every winner's badge snaps to the center and glows gold, side by side
+    const spread = Math.min(300, (stage.getBoundingClientRect().width || 900) * 0.3);
+    winners.forEach((w, i) => {
+      const p = cycloneParticles.find(part => part.handle === w);
+      if (p) p.homeX = (i - (winners.length - 1) / 2) * spread;
+    });
+    winners.slice(1).forEach((w, i) => {
+      let p = cycloneParticles.find(part => part.handle === w);
+      if (!p) return;
+      p.phase = 'winner';
+      p.el.style.background = 'linear-gradient(135deg, #FFC837 0%, #FF8008 100%)';
+      p.el.style.color = '#071322';
+      p.el.style.border = '2.5px solid #FFFFFF';
+      p.el.style.boxShadow = '0 0 60px rgba(255, 200, 55, 0.95), 0 0 100px rgba(255, 128, 8, 0.8)';
+      setTimeout(() => { p.el.style.transition = 'opacity 0.6s ease'; p.phase = 'done'; p.opacity = 0; p.el.style.opacity = '0'; }, 850);
+    });
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
 
   // Reveal Grand Winner with full fireworks & celebration music
@@ -705,7 +860,8 @@
     }
     fireworks.start();
 
-    winnerHandle.textContent = `@${winner}`;
+    winnerHandle.textContent = display(winner);
+    winnerHandle.classList.remove('multi');
     if (!REVEAL) {
       runnerUp1.textContent = `@${r1}`;
       runnerUp2.textContent = `@${r2}`;
@@ -735,6 +891,9 @@
     if (dockedPostBadge) dockedPostBadge.classList.remove('visible');
     cycloneContainer.innerHTML = '';
     cycloneParticles = [];
+    const stageEl = document.getElementById('spinnerStage');
+    if (stageEl) { stageEl.hidden = true; stageEl.classList.remove('visible'); }
+    document.querySelectorAll('.reel').forEach(r => { r.classList.remove('landed'); r.querySelector('.reel-items').innerHTML = ''; });
     document.body.classList.remove('body-running');
     centerCard.classList.remove('hidden');
     isRunning = false;
@@ -750,10 +909,10 @@
                  `🏆 ${CFG.title || 'BYU Football Tickets'} Instagram Giveaway${CFG.tag ? ' (' + CFG.tag + ')' : ''}\n` +
                  `Pioneer Party Gift & Copy\n` +
                  `-----------------------------------------\n` +
-                 `Winner: @${lastResults.winner}\n` +
+                 (lastResults.winners || [lastResults.winner]).map(w => `Winner: ${display(w)}${CFG.prizeEach ? ' (' + CFG.prizeEach + ')' : ''}`).join('\n') + '\n' +
                  `${CFG.revealNote || 'Chosen by Pioneer Party'}\n` +
                  `Announced: ${lastResults.timestamp}\n\n` +
-                 `* The winner has 24 hours to reply to claim the tickets.` : `🏆 BYU Football Tickets Instagram Giveaway Results\n` +
+                 `* Each winner has 24 hours to reply to claim the tickets.` : `🏆 BYU Football Tickets Instagram Giveaway Results\n` +
                  `Organized by Pioneer Party Gift & Copy\n` +
                  `-----------------------------------------\n` +
                  `Grand Prize Winner: @${lastResults.winner}\n` +

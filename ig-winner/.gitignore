@@ -6,3 +6,5 @@ node_modules/
 tmp/
 temp_frames/
 scripts/*_bin
+.claude/launch.json
+assets/audio/rise-and-shout.mp3
